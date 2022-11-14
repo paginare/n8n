@@ -1,0 +1,210 @@
+{
+  "active": false,
+  "connections": {
+    "PEGA ID DO WORKFLOW": {
+      "main": [
+        [
+          {
+            "node": "ORGANIZA OS DADOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PEGA O JSON DO WORKFLOW": {
+      "main": [
+        [
+          {
+            "node": "JUNTA OS DADOS",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "ORGANIZA OS DADOS": {
+      "main": [
+        [
+          {
+            "node": "JUNTA OS DADOS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PEGA O JSON DO WORKFLOW",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JUNTA OS DADOS": {
+      "main": [
+        [
+          {
+            "node": "TRANFORMA JSON EM ARQUIVO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TRANFORMA JSON EM ARQUIVO": {
+      "main": [
+        [
+          {
+            "node": "FAZ UPLOAD",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "PEGA ID DO WORKFLOW",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-10T23:08:50.455Z",
+  "hash": "366632a8023f1bb12a894e14f78154e3",
+  "id": 22,
+  "name": "BACKUP - N8N",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://api.paginare.com/api/v1/workflows",
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "X-N8N-API-KEY",
+              "value": "n8n_api_b1ef4d55a0197048d63eb6cb533cfc44c935cdff0a79e5360840b03b42052692465790ddb07342e2"
+            }
+          ]
+        }
+      },
+      "id": "ed8ca3b1-1e36-477d-9fbd-f795ef7c7792",
+      "name": "PEGA ID DO WORKFLOW",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.paginare.com/api/v1/workflows/{{$node[\"ORGANIZA OS DADOS\"].json[\"id\"]}}",
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "X-N8N-API-KEY",
+              "value": "n8n_api_b1ef4d55a0197048d63eb6cb533cfc44c935cdff0a79e5360840b03b42052692465790ddb07342e2"
+            }
+          ]
+        }
+      },
+      "id": "e02d914f-3fc2-49b0-ade3-f44bf44c4a32",
+      "name": "PEGA O JSON DO WORKFLOW",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "c6369a17-89ba-4d2b-8a63-ba290f4881e1",
+      "name": "ORGANIZA OS DADOS",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        920,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "mergeByIndex"
+      },
+      "id": "43e3b7fe-0f72-45eb-ae9f-408d8864f23e",
+      "name": "JUNTA OS DADOS",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "options": {
+          "fileName": "={{$node[\"JUNTA OS DADOS\"].json[\"name\"]}}"
+        }
+      },
+      "id": "5ce4f599-79a7-451e-a999-b06832e08dfa",
+      "name": "TRANFORMA JSON EM ARQUIVO",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "binaryData": true,
+        "name": "={{$binary.data.fileName}}.json",
+        "parents": [
+          "1hFcTPR1OZfYmUdcmzvKnOG5D0YBlHKb4"
+        ],
+        "options": {}
+      },
+      "id": "77ebcc41-2137-4ff7-9d34-73a35e8ce421",
+      "name": "FAZ UPLOAD",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        320
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "5",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a4bfcd56-2c6d-4ed1-a1cb-b224398b677a",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-24T17:44:01.007Z"
+}
