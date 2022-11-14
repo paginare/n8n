@@ -1,0 +1,89 @@
+{
+  "active": true,
+  "connections": {
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-09T02:27:10.683Z",
+  "hash": "03bc34b471cf2ab7fc0955ec4ec8d7b6",
+  "id": 71,
+  "name": "WD10K - PVD",
+  "nodes": [
+    {
+      "parameters": {
+        "sheetId": "1jR-Inm2gky1Qrxzp3KSJPaMuTzzVSxMxqSe1mWbnH1M",
+        "options": {}
+      },
+      "id": "87629e68-1f4a-4259-b654-95882bfa0831",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        600,
+        280
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B36CE75F08AB01D96AED688574856B5/token/00D0D8CAB940BBFB6A20924B/send-text",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"phone\": \"{{$json[\"whatsapp\"].replace(/\\D/g,'')}}\",\n\"message\":\"Oi {{$json[\"nome\"] }}, tudo bem por ai?\\n\\nPassando para te avisar que o Vinicius esta AO VIVO para o ultimo dia da Jornada WD10k\\n\\nHoje você vai ver o Plano financeiro que vai te guiar aos 10k mensal e no final você terá acesso a um Presente.\\nMas somente para quem ficar com a gente até o final da live.\\n\\nAcesse o link abaixo para participar da aula:\\n\\n👉🏻 https://youtu.be/r5J79AXii58\"}",
+        "options": {}
+      },
+      "id": "18161582-2c91-4476-90e0-71df49f2b508",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        940,
+        280
+      ],
+      "alwaysOutputData": false,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "5fde4047-4e27-4bbe-8cda-9febf642ec2f",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        280
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-09T22:28:29.838Z"
+}
