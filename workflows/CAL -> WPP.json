@@ -1,0 +1,199 @@
+{
+  "active": false,
+  "connections": {
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - AGENDADA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[TEXTO] - CANCELADA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cal Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-14T23:19:01.695Z",
+  "hash": "58b39afe27f233f7819e41c27b0b381e",
+  "id": 51,
+  "name": "CAL -> WPP",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "82aab74f-e85b-46e3-ab54-033a31285c2d",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        175,
+        235
+      ]
+    },
+    {
+      "parameters": {
+        "events": [
+          "BOOKING_RESCHEDULED",
+          "BOOKING_CANCELLED",
+          "BOOKING_CREATED"
+        ],
+        "options": {}
+      },
+      "id": "de5df20a-70e9-445d-a7e6-cb9c9d53bdda",
+      "name": "Cal Trigger",
+      "type": "n8n-nodes-base.calTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        240
+      ],
+      "webhookId": "67e096b1-5bb5-48ff-ae6f-249d00e8145a",
+      "credentials": {
+        "calApi": {
+          "id": "13",
+          "name": "Cal account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "phone",
+              "value": "=55{{$node[\"Cal Trigger\"].json[\"customInputs\"][\"Seu whatsapp:\"]}}"
+            },
+            {
+              "name": "nome",
+              "value": "={{$json[\"attendees\"][0][\"name\"]}}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"videoCallData\"][\"url\"] }}"
+            },
+            {
+              "name": "evento",
+              "value": "={{$json[\"link\"]}}"
+            },
+            {
+              "name": "token",
+              "value": "3F0C5FDA165654A355A4E14C"
+            },
+            {
+              "name": "instancia",
+              "value": "3B1C018FE037F0C08302DA965400693C"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6d857a75-d43f-465c-bc58-a24b460f626d",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        660,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"status\"]}}",
+              "operation": "notEqual",
+              "value2": "CANCELLED"
+            }
+          ]
+        }
+      },
+      "id": "91a30e31-5216-4859-b5e4-33e9a83ed70d",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        880,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"Set\"].json[\"instancia\"]}}/token/{{$node[\"Set\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Olá {{$node[\"Set\"].json[\"nome\"]}}, sua reunião foi cancelada.\"\n}"
+      },
+      "id": "581dd831-7bf9-4582-8073-71b13468349e",
+      "name": "[TEXTO] - CANCELADA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"Set\"].json[\"instancia\"]}}/token/{{$node[\"Set\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Olá {{$node[\"Set\"].json[\"nome\"]}}, sua reunião foi agendada com sucesso e este é o link para acessar👇🏻\\n\\n{{$node[\"Set\"].json[\"link\"]}}\"\n}"
+      },
+      "id": "08a1464a-8d4e-490b-ac60-1daae4c2597d",
+      "name": "[TEXTO] - AGENDADA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        60
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": {
+    "node:Cal Trigger": {
+      "webhookId": "aad41626-cc8d-4eb9-8597-2cfd3004e9e9"
+    }
+  },
+  "tags": [
+    {
+      "createdAt": "2022-10-11T17:19:25.069Z",
+      "updatedAt": "2022-10-11T17:19:25.069Z",
+      "id": "12",
+      "name": "📆"
+    }
+  ],
+  "updatedAt": "2022-10-24T17:47:40.237Z"
+}
