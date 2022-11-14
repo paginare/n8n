@@ -1,0 +1,608 @@
+{
+  "active": true,
+  "connections": {
+    "START ROBÔ": {
+      "main": [
+        [
+          {
+            "node": "TEXTO - BOTÃO - LISTA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É GATILHO OU BOTÃO?": {
+      "main": [
+        [
+          {
+            "node": "ENVIA BOTÃO - DÚVIDA OU NÃO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA LISTA DÚVIDAS",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "RESPOSTAS BOTÕES",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESPOSTAS BOTÕES": {
+      "main": [
+        [
+          {
+            "node": "BOTÃO AÇÃO - LINK HOTMART",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA LISTA DÚVIDAS",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "RESPOSTAS LISTAS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESPOSTAS LISTAS": {
+      "main": [
+        [
+          {
+            "node": "MSG INDIVIDUAL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MSG VALOR PROMO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MSG PARCELAMENTO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RESPOSTAS LISTAS - CONTINUAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TEXTO - BOTÃO - LISTA": {
+      "main": [
+        [
+          {
+            "node": "É GATILHO OU BOTÃO?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG VALOR PROMO": {
+      "main": [
+        [
+          {
+            "node": "DÚVIDA SOLUCIONADA?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG PARCELAMENTO": {
+      "main": [
+        [
+          {
+            "node": "DÚVIDA SOLUCIONADA?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RESPOSTAS LISTAS - CONTINUAÇÃO": {
+      "main": [
+        [
+          {
+            "node": "MSG IMPLATAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MSG IMPLATAÇÃO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG INDIVIDUAL": {
+      "main": [
+        [
+          {
+            "node": "DÚVIDA SOLUCIONADA?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-10T15:24:33.090Z",
+  "hash": "5f9cdea4018837523ffe4bd404ec095b",
+  "id": 47,
+  "name": "[WS] - ROBÔ ATENDIMENTO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c11624bd-c9c2-4fe0-b5cf-b9b9f002070a",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -1160,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ws-atendimento",
+        "options": {}
+      },
+      "id": "91842dfe-6ef2-45c3-ad38-3051632aeba0",
+      "name": "START ROBÔ",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        660
+      ],
+      "webhookId": "fb477ad5-2ad0-474f-94b5-4477bf760526"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"texto\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "quero comprar"
+            },
+            {
+              "operation": "contains",
+              "value2": "tenho dúvidas ",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "valor"
+            },
+            {
+              "operation": "contains",
+              "value2": "preço"
+            },
+            {
+              "operation": "contains",
+              "value2": "pressu"
+            },
+            {
+              "value2": "robo"
+            },
+            {
+              "operation": "contains",
+              "value2": "robô"
+            },
+            {
+              "operation": "contains",
+              "value2": "duvidas",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "duvida",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "dúvidas",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "duvidas"
+            },
+            {
+              "operation": "contains",
+              "value2": "cuanto"
+            },
+            {
+              "operation": "contains",
+              "value2": "investir"
+            },
+            {
+              "operation": "contains",
+              "value2": "investimento"
+            },
+            {
+              "operation": "contains",
+              "value2": "divide"
+            },
+            {
+              "operation": "contains",
+              "value2": "presso"
+            },
+            {
+              "operation": "contains",
+              "value2": "quantos que é?"
+            },
+            {
+              "operation": "contains",
+              "value2": "va lor"
+            },
+            {
+              "operation": "contains",
+              "value2": "pre ço"
+            },
+            {
+              "operation": "contains",
+              "value2": "curso"
+            },
+            {
+              "operation": "contains",
+              "value2": "cuso"
+            },
+            {
+              "operation": "contains",
+              "value2": "quero"
+            },
+            {
+              "operation": "contains",
+              "value2": "olá will, eu tenho uma dúvida, pode me ajudar?"
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "2b75740c-3e32-4552-b260-c65ced754635",
+      "name": "É GATILHO OU BOTÃO?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"button\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "sim, ainda tenho dúvidas ⚠️",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "quero comprar"
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "a9486204-112f-4a43-8c73-631c9ea993cd",
+      "name": "RESPOSTAS BOTÕES",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        360,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"resposta-lista\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "posso comprar um resumo separadamente?"
+            },
+            {
+              "operation": "contains",
+              "value2": "como terei acesso?",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "qual valor do kit?",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "5333b7ca-59a4-4934-8a90-634d9b179d20",
+      "name": "RESPOSTAS LISTAS",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        900,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-option-list",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Não se preocupe! Vamos te ajudar 😉\",\n  \"optionList\": {\n    \"title\": \"Dúvidas frequentes\",\n    \"buttonLabel\": \"Escolha sua dúvida\",\n    \"options\": [\n      {\n        \"id\": \"1\",\n        \"description\": \"\",\n        \"title\": \"Posso comprar um resumo separadamente?\"\n      },\n      {\n        \"id\": \"2\",\n        \"description\": \"\",\n        \"title\": \"Como terei acesso?\"\n      },\n\n\t{\n\t\t\"id\": \"3\",\n\t\t\"description\": \"\",\n\t\t\"title\": \"Qual valor do KIT?\"\n},\n\t{\n\t\t\"id\": \"4\",\n\t\t\"description\": \"\",\n\t\t\"title\": \"Quais os materiais vou receber?\"\n},\n{\n\"id\": \"5\",\n\"description\": \"\",\n\"title\": \"Nenhuma dessas, preciso falar com um atendente\"\n}\n    ]\n  }\n}"
+      },
+      "id": "e8a02db4-e6ec-44a2-9507-307d302dee45",
+      "name": "ENVIA LISTA DÚVIDAS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        580,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-button-list",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Que legal, {{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"nome\"]}}! Você possui alguma dúvida sobre o Resumos do Will?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"Sim, ainda tenho dúvidas ⚠️\",\n        \"label\": \"Sim, ainda tenho dúvidas ⚠️\"\n      },\n      {\n        \"id\": \"Quero comprar 🤑\",\n        \"label\": \"Quero comprar 🤑\"\n      }\n    ]\n  }\n}"
+      },
+      "id": "1d0774a8-07fa-4a01-b3dd-8cc088c5fcf7",
+      "name": "ENVIA BOTÃO - DÚVIDA OU NÃO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        580,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "numero",
+              "value": "={{$json[\"body\"][\"phone\"]}}"
+            },
+            {
+              "name": "texto",
+              "value": "={{$json[\"body\"][\"text\"][\"message\"].toLowerCase()}}"
+            },
+            {
+              "name": "button",
+              "value": "={{$json[\"body\"][\"buttonsResponseMessage\"][\"message\"].toLowerCase()}}"
+            },
+            {
+              "name": "resposta-lista",
+              "value": "={{$json[\"body\"][\"listResponseMessage\"][\"title\"].toLowerCase()}}"
+            },
+            {
+              "name": "token",
+              "value": "2B2BBEEB2F4D0177835C394E"
+            },
+            {
+              "name": "instancia",
+              "value": "3B2A2C1CCEA10030D66996D3C7000108"
+            },
+            {
+              "name": "nome",
+              "value": "={{$json[\"body\"][\"senderName\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0b49502a-17a2-4f5f-ad87-7c6ce76f1c99",
+      "name": "TEXTO - BOTÃO - LISTA",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-button-list",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Agora que solucionamos sua dúvida, existe mais alguma outra que podemos ajudar?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"Sim, ainda tenho dúvidas ⚠️\",\n        \"label\": \"Sim, ainda tenho dúvidas ⚠️\"\n      },\n      {\n        \"id\": \"Estou pronto, quero comprar\",\n        \"label\": \"Estou pronto, quero comprar\"\n      }\n    ]\n  }\n}"
+      },
+      "id": "fbe1222b-0d7d-4dce-9a33-55d94683bdb4",
+      "name": "DÚVIDA SOLUCIONADA?",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Você recebe o acesso no e-mail. Você tem acesso vitalício, só precisa pagar uma vez e usar para sempre, além de receber todas as atualizações.\"\n}"
+      },
+      "id": "15ad94ac-d423-416e-859d-1ebe730446d9",
+      "name": "MSG VALOR PROMO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-button-actions",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n \"message\": \"Ihuuul!, {{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"nome\"]}}, agora basta clicar abaixo e será redirecionado para a página de compra👇🏻\",\n \"buttonActions\": [\n {\n \"id\": \"link_principal\",\n \"type\": \"URL\",\n \"url\": \"https://pay.kiwify.com.br/rxQAkj5\",\n \"label\": \"Comprar agora\"\n }\n ]\n}"
+      },
+      "id": "e73c10ab-3d2d-49c8-955a-1245368bf5b7",
+      "name": "BOTÃO AÇÃO - LINK HOTMART",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        840,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"O KIT com todos os 26 resumos, atualizações semanais e os 5 bônus exclusivos na promoção de semana de provas por R$147 reais.\\n\\n\"\n}"
+      },
+      "id": "de190bde-5ff3-4bb5-878c-8e2354afff2f",
+      "name": "MSG PARCELAMENTO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"resposta-lista\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "quais os materiais vou receber?"
+            },
+            {
+              "operation": "contains",
+              "value2": "Nenhuma dessas, preciso falar com um atendente",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "5bda5a92-b914-45bb-8d1e-ae0d1d803073",
+      "name": "RESPOSTAS LISTAS - CONTINUAÇÃO",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Resumos do Will\\n1. Cirurgia\\n2. Dentistica\\n3. Endodontia\\n4. Periodontia\\n5. Emergências médicas no consultório\\n6. Urgências odontológicas\\n7. Farmacologia\\n8. Radiologia\\n9. Prótese parcial removível\\n\\n10. Prótese total\\n11. Prótese fixa\\n12. Prontuário odontológico\\n13. Anestesiologia\\n14. Interpretação de achados radiográficas\\n15. Terapêutica medicamentosa para dentistas\\n16. Cariologia\\n17. Oclusão e DTM\\n18. Estomatologia e patologia oral\\n19. Doenças crônicas não transmissível\\n20. Fisiologia e anatomia humana\\n21. Materiais dentários\\n22. Pediatria\\n23. SUS e Saúde coletiva\\n24. Anatomia dentária\\n25. Ortodontia\\n26. Implantodontia (16/10)\\n\\nBÔNUS 1: planner de estudo, planner semanal e planner mensal.\\nBÔNUS 2: passo a passo do TCC descomplicado.\\nBÔNUS 3: cronograma detalhado de todas as matérias do curso no Trello.\\nBÔNUS 4: e-book - Como fechar orçamentos odontológicos.\\nBÔNUS 5: e-book - método cliente vendedor.\"\n}"
+      },
+      "id": "e5284a48-7a13-46a8-8e66-941f46e13914",
+      "name": "MSG IMPLATAÇÃO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Tudo bem, já direcionei você para um atendente\"\n}"
+      },
+      "id": "bbe3da64-a085-4851-9e8a-15117df844c2",
+      "name": "MSG IMPLATAÇÃO1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Pode! Cada um separadamente é R$ 27 reais, eu recomendo adquirir o KIT com todos os 26 resumos, atualizações semanais e os 5 bônus exclusivos na promoção de semana de provas por R$97 reais. Se ainda sim quiser separadamente, quais você quer?\"\n}"
+      },
+      "id": "008d86f0-fa57-469f-a8b6-669964b5d4e9",
+      "name": "MSG INDIVIDUAL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        160
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-09-16T13:18:00.357Z",
+      "updatedAt": "2022-09-16T13:18:00.357Z",
+      "id": "6",
+      "name": "🤖"
+    }
+  ],
+  "updatedAt": "2022-11-11T02:07:43.617Z"
+}
