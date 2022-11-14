@@ -1,0 +1,562 @@
+{
+  "active": false,
+  "connections": {
+    "Verificação de Evento": {
+      "main": [
+        [
+          {
+            "node": "Whatsapp Expert - Compra Aprovada",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whatsapp Expert - Abandono de Carrinho",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whatsapp Expert - Pedido de Reembolso",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whatsapp Expert - Cancelamento de Assinatura",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Hotmart": {
+      "main": [
+        [
+          {
+            "node": "Tratar Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tratar Dados": {
+      "main": [
+        [
+          {
+            "node": "Verificação de Evento",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Verificação de Evento 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificação de Evento 2": {
+      "main": [
+        [
+          {
+            "node": "Whatsapp Expert - Compra atrasada",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whatsapp Expert - Aguardando Pagamento",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whatsapp Expert - Compra completa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Whatsapp Expert - Compra expirada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Whatsapp Expert - Abandono de Carrinho": {
+      "main": [
+        [
+          {
+            "node": "Whatsapp Cliente - Abandono de Carrinho",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-21T01:45:34.242Z",
+  "hash": "ea3c22be585075b2c998b134ea7639c8",
+  "id": 14,
+  "name": "[AD] [HOTMART] - FLOW EXPERT",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7507c852-9f7e-4ff2-ba55-e70ff6a5db82",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "httpMethod": "POST",
+        "path": "hotmart",
+        "options": {}
+      },
+      "name": "Webhook Hotmart",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        1060
+      ],
+      "webhookId": "e6e127dc-5935-4bbd-9731-11ed3724a407",
+      "id": "85bb0f61-fb33-4dac-9ece-70f19da5177c",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "12",
+          "name": "Hotmart Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"Tratar Dados\"].json[\"evento\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "PURCHASE_APPROVED"
+            },
+            {
+              "value2": "PURCHASE_OUT_OF_SHOPPING_CART",
+              "output": 1
+            },
+            {
+              "value2": "PURCHASE_PROTEST",
+              "output": 2
+            },
+            {
+              "value2": "SUBSCRIPTION_CANCELLATION",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "name": "Verificação de Evento",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        160,
+        960
+      ],
+      "id": "28930124-e4e2-42e0-85c1-dbb7dff8f1c7"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"Tratar Dados\"].json[\"evento\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "PURCHASE_DELAYED"
+            },
+            {
+              "value2": "PURCHASE_BILLET_PRINTED",
+              "output": 1
+            },
+            {
+              "value2": "PURCHASE_COMPLETE",
+              "output": 2
+            },
+            {
+              "value2": "PURCHASE_EXPIRED",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "name": "Verificação de Evento 2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        160,
+        1160
+      ],
+      "id": "fd3bc722-7f70-4264-9304-a41e9c8c4ede"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "evento",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"event\"]}}"
+            },
+            {
+              "name": "api_de_whatsapp",
+              "value": "https://suAPIdeWhatsapp.com/"
+            },
+            {
+              "name": "telefone_expert",
+              "value": "5511999999999"
+            },
+            {
+              "name": "nome_produto",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"product\"][\"name\"]}}"
+            },
+            {
+              "name": "forma_pagamento",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"type\"]}}"
+            },
+            {
+              "name": "valor_compra",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"purchase\"][\"price\"][\"value\"]}}"
+            },
+            {
+              "name": "nome_cliente",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"buyer\"][\"name\"]}}"
+            },
+            {
+              "name": "email_cliente",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"buyer\"][\"email\"]}}"
+            },
+            {
+              "name": "telefone_cliente",
+              "value": "=55{{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"buyer\"][\"phone\"]}}"
+            },
+            {
+              "name": "assinatura_plano",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"subscription\"][\"plan\"][\"name\"]}}"
+            },
+            {
+              "name": "assinatura_nome_cliente",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"subscriber\"][\"name\"]}}"
+            },
+            {
+              "name": "assinatura_email_cliente",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"subscriber\"][\"email\"]}}"
+            },
+            {
+              "name": "assinatura_preco",
+              "value": "={{$node[\"Webhook Hotmart\"].json[\"body\"][\"data\"][\"actual_recurrence_value\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Tratar Dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        1060
+      ],
+      "id": "e6cba130-ea85-4ab1-9d02-ab02de6eb88c"
+    },
+    {
+      "parameters": {
+        "content": "##  Hotmart\n**1 - Webhook** Recebe dados da hotmart.\n**2 - Tratar Dados** Separa as principais informações.\n**3 - Verificação** Verifica qual é o evento\n**4 - Whatsapp Expert** Envia Mensagem para o expert",
+        "height": 340,
+        "width": 400
+      },
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        680
+      ],
+      "id": "6cfe49c4-621b-4320-9d5a-dc3efd3503dd"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=Olá! Parabéns 🎁 você acaba de fazer uma venda na Hotmart\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Forma de Pagamento:* {{$node[\"Tratar Dados\"].json[\"forma_pagamento\"]}}\n*Valor total da compra:* {{$node[\"Tratar Dados\"].json[\"valor_compra\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Compra Aprovada",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        440
+      ],
+      "id": "e00018c1-cfd8-4506-acb7-060e0ce4cbc3"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=🛒 Ocorreu um carrinho abandonado na Hotmart\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Telefone:* {{$node[\"Tratar Dados\"].json[\"telefone_cliente\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Abandono de Carrinho",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        620
+      ],
+      "id": "5ca0b94e-e656-47c1-b4d2-bf9b178097e5"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=😰 Oh não, Um novo *pedido de reembolso* na Hotmart.\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Forma de pagamento:* {{$node[\"Tratar Dados\"].json[\"forma_pagamento\"]}}\n*Valor da compra:* {{$node[\"Tratar Dados\"].json[\"valor_compra\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Pedido de Reembolso",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        800
+      ],
+      "id": "724abf7d-22b0-4454-99a8-ffe36f95654b"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=😫 que pena, houve um *Cancelamento de Assinatura* na Hotmart.\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*Nome:* {{$node[\"Tratar Dados\"].json[\"assinatura_nome_cliente\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"assinatura_email_cliente\"]}}\n*Plano:* {{$node[\"Tratar Dados\"].json[\"assinatura_plano\"]}}\n*Preço do Plano:* {{$node[\"Tratar Dados\"].json[\"assinatura_preco\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Cancelamento de Assinatura",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        980
+      ],
+      "id": "d1e10bf7-95b4-4f13-aa40-1afc83dc94ec"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=Uma nova compra na Hotmart está com *pagamento atrasado*\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Forma de pagamento:* {{$node[\"Tratar Dados\"].json[\"forma_pagamento\"]}}\n*Valor da compra:* {{$node[\"Tratar Dados\"].json[\"valor_compra\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Compra atrasada",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1160
+      ],
+      "id": "0d0c1fcc-4498-4e61-8189-f780ce6cbb43"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=Uma compra na Hotmart está *aguardando o pagamento do boleto*\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Forma de pagamento:* {{$node[\"Tratar Dados\"].json[\"forma_pagamento\"]}}\n*Valor da compra:* {{$node[\"Tratar Dados\"].json[\"valor_compra\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Aguardando Pagamento",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1340
+      ],
+      "id": "e92abc9d-3108-4dff-8f7d-05bb03e6a388"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=Uma *compra está completa* na Hotmart\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Forma de pagamento:* {{$node[\"Tratar Dados\"].json[\"forma_pagamento\"]}}\n*Valor da compra:* {{$node[\"Tratar Dados\"].json[\"valor_compra\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Compra completa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1520
+      ],
+      "id": "ff757568-82d5-4172-ac04-60e75c4598c6"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_expert\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=Uma *compra está expirada* na Hotmart\n\nSeguem alguns dados do pedido 👇:\n\n*Produto:* {{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}\n*E-mail:* {{$node[\"Tratar Dados\"].json[\"email_cliente\"]}}\n*Forma de pagamento:* {{$node[\"Tratar Dados\"].json[\"forma_pagamento\"]}}\n*Valor da compra:* {{$node[\"Tratar Dados\"].json[\"valor_compra\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Expert - Compra expirada",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1720
+      ],
+      "id": "6662db71-0e31-40a3-9b27-5c8fc1b9689d"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Tratar Dados\"].json[\"api_de_whatsapp\"]}}send-message",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "number",
+              "value": "={{$node[\"Tratar Dados\"].json[\"telefone_cliente\"]}}"
+            },
+            {
+              "name": "message",
+              "value": "=Olá *{{$node[\"Tratar Dados\"].json[\"nome_cliente\"]}}* vi que você não conseguiu finalizar a compra do curso *{{$node[\"Tratar Dados\"].json[\"nome_produto\"]}}*, não perca tempo e faça parte da nossa comunidade.\n\nTemos um 🎁 *Bônus Especial* para você finalizar a compra em 24 horas:\nVocê ganhará uma *assinatura do Elementor*.\n\nTambém tenho um cupom de desconto exclusivo de 10% para você *PROMO10* finalizar hoje a compra.\n\nTe vejo lá."
+            }
+          ]
+        }
+      },
+      "name": "Whatsapp Cliente - Abandono de Carrinho",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        620
+      ],
+      "id": "3fe5b4a4-17d4-435f-8afd-59e05028705f"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T19:51:00.273Z",
+      "updatedAt": "2022-08-22T19:51:00.273Z",
+      "id": "1",
+      "name": "🔥"
+    }
+  ],
+  "updatedAt": "2022-08-25T14:52:29.730Z"
+}
