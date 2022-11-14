@@ -1,0 +1,113 @@
+{
+  "active": false,
+  "connections": {
+    "Trello Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-07T17:03:37.557Z",
+  "hash": "77894d59875e6b892838a15038235afb",
+  "id": 69,
+  "name": "CRIATIVOS - TRAFEGO",
+  "nodes": [
+    {
+      "parameters": {
+        "id": "605a17bb7208415446167bde"
+      },
+      "id": "139d43bb-33a6-4f7c-89f5-523711fc3298",
+      "name": "Trello Trigger",
+      "type": "n8n-nodes-base.trelloTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        260
+      ],
+      "webhookId": "c65d494f-5aec-4a03-96ee-89cfff5202d5",
+      "credentials": {
+        "trelloApi": {
+          "id": "3",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "webhookUri": "https://discord.com/api/webhooks/1039225149939003403/3E9e2k27RAhSWFNXf37IgJ8Oqf4T8sP9DmG2dEeruysbPzXrvMDKHv-7dUX0a6yTR5R4",
+        "text": "=Nova demanda do {{ $item(\"0\").$node[\"Trello Trigger\"].json[\"action\"][\"memberCreator\"][\"fullName\"] }} pra criativo. ",
+        "options": {}
+      },
+      "id": "bf64590c-f9eb-42d4-a313-f82ef7db894b",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 1,
+      "position": [
+        780,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $item(\"0\").$node[\"Trello Trigger\"].json[\"action\"][\"type\"] }}",
+              "value2": "createCard"
+            }
+          ]
+        }
+      },
+      "id": "4f11fafe-ceec-486a-bffc-f62414fc4b9b",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        520,
+        260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0316a6b1-db09-4179-be0b-fc83226e82f4",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        780,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": {
+    "node:Trello Trigger": {}
+  },
+  "tags": [],
+  "updatedAt": "2022-11-07T19:47:52.197Z"
+}
