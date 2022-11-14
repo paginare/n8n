@@ -1,0 +1,385 @@
+{
+  "active": false,
+  "connections": {
+    "START ROBÔ": {
+      "main": [
+        [
+          {
+            "node": "TRATA DADOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TRATA DADOS": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "TEM DÚVIDA OU NÃO?1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA PERGUNTAS FREQUENTES",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA LINK HOTMART C UTM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "RESPOSTA CARRINHO PAGAMENTO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA LINK HOTMART C UTM": {
+      "main": [
+        [
+          {
+            "node": "ENVIA LINK HOTMART C UTM1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA LINK HOTMART C UTM1": {
+      "main": [
+        [
+          {
+            "node": "ENVIA LINK HOTMART C UTM2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-16T01:55:17.830Z",
+  "hash": "5397641bfae7ae522c0caab47091f72e",
+  "id": 28,
+  "name": "[TEMPLATE] - ROBO WPP [DW]",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d200f6bb-d208-43fe-8475-57bbbdfca5a0",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "automacao-curso",
+        "options": {}
+      },
+      "id": "6b36212d-f7a3-40b2-94fa-3e53ade78de4",
+      "name": "START ROBÔ",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        340,
+        300
+      ],
+      "webhookId": "a85b165e-4488-41d3-bb53-bef93a66238c"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "numero",
+              "value": "={{$json[\"body\"][\"receiver\"].replace(/\\D/g,'')}}"
+            },
+            {
+              "name": "texto",
+              "value": "={{$json[\"body\"][\"text\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "def2cee3-037d-4bec-aa54-459f84e2f615",
+      "name": "TRATA DADOS",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"TRATA DADOS\"].json[\"body\"][\"text\"].toLowerCase()}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "quero comprar"
+            },
+            {
+              "operation": "contains",
+              "value2": "tenho dúvidas sobre o curso",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "sim, ainda tenho dúvidas ⚠️",
+              "output": 1
+            },
+            {
+              "value2": "não, take my money 🤑",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "e07d5466-cb70-4eee-8327-30a5cb4d9259",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"TRATA DADOS\"].json[\"texto\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "não, porém preciso de ajuda com meu pagamento"
+            },
+            {
+              "operation": "contains",
+              "value2": "Não consegui pagar",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "dúvidas",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "461dea3e-d7ae-4615-8322-ed36af45041c",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://api.dw-api.com/send",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "="
+      },
+      "id": "0d399a5c-1928-4b9b-b437-ee423c3e6723",
+      "name": "ENVIA PERGUNTAS FREQUENTES",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"TRATA DADOS\"].json[\"numero\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "RFx9Wi9aJ1qGneaOoz6g"
+            },
+            {
+              "name": "msgtext",
+              "value": "Te vejo na comunidade🤘🏻"
+            }
+          ]
+        }
+      },
+      "id": "4811a75a-0658-4916-aba7-5743dba90409",
+      "name": "ENVIA LINK HOTMART C UTM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"TRATA DADOS\"].json[\"numero\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "RFx9Wi9aJ1qGneaOoz6g"
+            },
+            {
+              "name": "msgtext",
+              "value": "Segue abaixo o seu link de compra do curso👇🏻"
+            }
+          ]
+        }
+      },
+      "id": "f0c27abb-97c1-4e86-83f4-90d741b7245f",
+      "name": "ENVIA LINK HOTMART C UTM1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"TRATA DADOS\"].json[\"numero\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "RFx9Wi9aJ1qGneaOoz6g"
+            },
+            {
+              "name": "msgtext",
+              "value": "https://pay.hotmart.com/C74020979M"
+            }
+          ]
+        }
+      },
+      "id": "38061433-5188-43ba-8c72-0926ef2cf598",
+      "name": "ENVIA LINK HOTMART C UTM2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://api.dw-api.com/send",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n    \"sender\"  : \"558481521797\",\n    \"receiver\": \"{{$node[\"TRATA DADOS\"].json[\"numero\"]}}\",\n    \"msgtext\" : \"Entendi, vou te passar outro link para você efetuar o pagamento, você prefere o pagamento por cartão ou pix?\",\n    \"token\"   : \"RFx9Wi9aJ1qGneaOoz6g\",\n    \"buttons\" : {\n        \"replyButtons\": [\n                {\n                \"buttonId\": \"cartão\",\n                \"type\": 1,\n                \"buttonText\": {\n                    \"displayText\": \"Cartão 💳\"\n                }\n            }, {\n\"buttonId\": \"pix\",\n\"type\": 1,\n\"buttonText\": {\n\"displayText\": \"Pix 💵\"\n}\n}\n \t\t\n        ]\n    }\n}"
+      },
+      "id": "a6da349e-e44d-4917-89ed-95c29f57177a",
+      "name": "RESPOSTA CARRINHO PAGAMENTO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://api.dw-api.com/send",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n    \"sender\"  : \"558481521797\",\n    \"receiver\": \"{{$node[\"TRATA DADOS\"].json[\"numero\"]}}\",\n    \"msgtext\" : \"Que legal! Você possui alguma dúvida sobre o Notificações Lucrativas 🤖?\",\n    \"token\"   : \"RFx9Wi9aJ1qGneaOoz6g\",\n    \"buttons\" : {\n        \"replyButtons\": [\n                {\n                \"buttonId\": \"Sim, ainda tenho dúvidas ⚠️\",\n                \"type\": 1,\n                \"buttonText\": {\n                    \"displayText\": \"Sim, ainda tenho dúvidas ⚠️\"\n                }\n            }, {\n\"buttonId\": \"Não, take my money 🤑\",\n\"type\": 1,\n\"buttonText\": {\n\"displayText\": \"Não, take my money 🤑\"\n}\n}\n \t\t\n        ]\n    }\n}"
+      },
+      "id": "1378b839-142d-4f03-86e2-a3c061f6a862",
+      "name": "TEM DÚVIDA OU NÃO?1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        -120
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-09-16T13:18:00.357Z",
+      "updatedAt": "2022-09-16T13:18:00.357Z",
+      "id": "6",
+      "name": "🤖"
+    }
+  ],
+  "updatedAt": "2022-10-17T04:58:50.129Z"
+}
