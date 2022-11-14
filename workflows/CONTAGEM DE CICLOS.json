@@ -1,0 +1,67 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-19T17:34:47.938Z",
+  "hash": "0666a47fbf853fbb3bf90271191f3126",
+  "id": 53,
+  "name": "CONTAGEM DE CICLOS",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7e9a8ca1-5636-47b9-80df-7e53732c9fb6",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        180,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "//retorna o static data desse node (se precisar acessar em outros nodes é só trocar de 'node' pra 'global')\nconst staticData = getWorkflowStaticData('node');\n\n//acessa os dados da última execução\nconst lastExecution = staticData.lastExecution;\n\n//atualiza os dados da última execução somando +1\nstaticData.lastExecution += 1;\n\n//retorna o valor no item\nfor (item of items) {\n  item.json.valor = staticData.lastExecution;\n}\n\nreturn items;"
+      },
+      "id": "17cb0e75-c5a5-4f71-a5e0-2182e82759bc",
+      "name": "Function",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        640,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "testrun",
+        "options": {}
+      },
+      "id": "af999af7-911e-4050-9084-07fed6275fd7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        400,
+        240
+      ],
+      "webhookId": "e819950b-c8da-4fab-a844-fb14356428c0",
+      "typeVersion": 1
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-19T17:34:47.938Z"
+}
