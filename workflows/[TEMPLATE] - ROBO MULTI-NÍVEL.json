@@ -1,0 +1,680 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "checa numero",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "TEXTO - BOTÃO - LISTA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checa numero": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "novo?": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "adiciona numero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "mantem status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "adiciona numero": {
+      "main": [
+        [
+          {
+            "node": "confere status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mantem status": {
+      "main": [
+        [
+          {
+            "node": "confere status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "confere status": {
+      "main": [
+        [
+          {
+            "node": "CONFERE SETOR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "ENVIA SETORES",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TEXTO - BOTÃO - LISTA": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "novo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CONFERE SETOR": {
+      "main": [
+        [
+          {
+            "node": "captura setor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "altera setor": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "captura setor": {
+      "main": [
+        [
+          {
+            "node": "altera setor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "MSG COMERCIAL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MSG COMERCIAL1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MSG COMERCIAL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-09T13:33:51.813Z",
+  "hash": "754d54818823fe40aa1ceb2ea8337c29",
+  "id": 44,
+  "name": "[TEMPLATE] - ROBO MULTI-NÍVEL",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f909f098-327d-4b01-9888-98723f7b6afc",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "robo-novo",
+        "options": {}
+      },
+      "id": "f1cc2aa3-8ebd-4715-85ff-b9580c294460",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        140
+      ],
+      "webhookId": "07ab9491-f983-490a-adc7-3ae3b82ec04c"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "phone",
+              "value": "={{ $node[\"Webhook\"].json[\"body\"][\"phone\"] }}"
+            },
+            {
+              "name": "setor",
+              "value": "vazio"
+            },
+            {
+              "name": "status1",
+              "value": "off"
+            },
+            {
+              "name": "status2",
+              "value": "off"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d6307b19-5cdc-4c83-a147-c88b9bfdfe82",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        360,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "phone",
+              "value": "={{ $node[\"Webhook\"].json[\"body\"][\"phone\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c466097f-160f-42aa-aced-5007c574a4e1",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        360,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "1arz_bW7Iwcb5cxJlBSInaFrdRAF5aER5UR30X2bb-6o",
+        "options": {
+          "valueInputMode": "USER_ENTERED"
+        }
+      },
+      "id": "a3337742-6d65-4563-aaf8-bc0675d7e0ad",
+      "name": "adiciona numero",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        580,
+        120
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "lookup",
+        "sheetId": "1arz_bW7Iwcb5cxJlBSInaFrdRAF5aER5UR30X2bb-6o",
+        "lookupColumn": "phone",
+        "lookupValue": "={{ $json[\"body\"][\"phone\"] }}",
+        "options": {}
+      },
+      "id": "3847e604-e394-46fb-908d-f606c7e4666c",
+      "name": "checa numero",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        140
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"checa numero\"].json[\"phone\"]}}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "c0edcc6f-5aa2-4f94-ba41-a136afc94ab3",
+      "name": "novo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"confere status\"].json[\"setor\"]}}",
+              "value2": "vazio"
+            },
+            {
+              "value1": "={{$node[\"confere status\"].json[\"status1\"]}}",
+              "value2": "off"
+            },
+            {
+              "value1": "={{$node[\"confere status\"].json[\"status2\"]}}",
+              "value2": "off"
+            }
+          ]
+        }
+      },
+      "id": "ed25aefc-9e23-43af-ae82-9668eb773d6d",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1arz_bW7Iwcb5cxJlBSInaFrdRAF5aER5UR30X2bb-6o",
+        "key": "phone",
+        "options": {}
+      },
+      "id": "04dfa4a8-f732-4623-916e-6264b0deedf7",
+      "name": "mantem status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        580,
+        300
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "lookup",
+        "sheetId": "1arz_bW7Iwcb5cxJlBSInaFrdRAF5aER5UR30X2bb-6o",
+        "lookupColumn": "phone",
+        "lookupValue": "={{$node[\"Webhook\"].json[\"body\"][\"phone\"]}}",
+        "options": {}
+      },
+      "id": "aa3b6117-4c1f-4d3c-af5d-456970e7d676",
+      "name": "confere status",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        920,
+        220
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "numero",
+              "value": "={{$json[\"body\"][\"phone\"]}}"
+            },
+            {
+              "name": "texto",
+              "value": "={{$json[\"body\"][\"text\"][\"message\"].toLowerCase()}}"
+            },
+            {
+              "name": "button",
+              "value": "={{$json[\"body\"][\"buttonsResponseMessage\"][\"message\"].toLowerCase()}}"
+            },
+            {
+              "name": "resposta-lista",
+              "value": "={{$json[\"body\"][\"listResponseMessage\"][\"title\"].toLowerCase()}}"
+            },
+            {
+              "name": "token",
+              "value": "3F0C5FDA165654A355A4E14C"
+            },
+            {
+              "name": "instancia",
+              "value": "3B1C018FE037F0C08302DA965400693C"
+            },
+            {
+              "name": "nome",
+              "value": "={{$json[\"body\"][\"senderName\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d811b97d-8f91-434b-8dca-f132f393c0f1",
+      "name": "TEXTO - BOTÃO - LISTA",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "empty"
+      },
+      "id": "64a77027-bdd9-473b-891f-ba377a0274a8",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node[\"Webhook\"].json[\"body\"][\"listResponseMessage\"][\"title\"] }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "a4b069e9-8718-4018-b6ac-49be0318b453",
+      "name": "CONFERE SETOR",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1arz_bW7Iwcb5cxJlBSInaFrdRAF5aER5UR30X2bb-6o",
+        "key": "phone",
+        "options": {
+          "valueInputMode": "USER_ENTERED"
+        }
+      },
+      "id": "6e5b694b-ef3e-4bf1-a872-087ecef666ba",
+      "name": "altera setor",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        -120
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json[\"setor\"] }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "Comercial"
+            },
+            {
+              "value2": "Financeiro",
+              "output": 1
+            },
+            {
+              "value2": "Suporte",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "61625832-3af0-45e6-b602-f1d16c54af7f",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        -120
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "65407026-0810-4b45-ab87-7f3bdc87b146",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-option-list",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n\"phone\": \"{{$json[\"phone\"]}}\",\n\"message\": \"Olá {{$node[\"Webhook\"].json[\"body\"][\"senderName\"]}}, com qual setor deseja falar? \",\n\"optionList\": {\n\"title\": \"Setores\",\n\"buttonLabel\": \"Escolha abaixo\",\n\"options\": [\n{\n\"id\": \"1\",\n\"description\": \"\",\n\"title\": \"Comercial\"\n},\n{\n\"id\": \"2\",\n\"description\": \"\",\n\"title\": \"Financeiro\"\n},\n\n{\n\"id\": \"3\",\n\"description\": \"\",\n\"title\": \"Suporte\"\n}]}\n}"
+      },
+      "id": "b0fb999a-a068-4238-bcb9-147871f95a58",
+      "name": "ENVIA SETORES",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2020,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "setor",
+              "value": "={{ $node[\"Webhook\"].json[\"body\"][\"listResponseMessage\"][\"title\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d61e1609-c07b-4f18-8b19-888bee14620b",
+      "name": "captura setor",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Seja bem-vindo ao setor comercial, em breve você será atendido\"\n}"
+      },
+      "id": "24039405-ac0b-4cc8-8ce1-df8e13ac4ff0",
+      "name": "MSG COMERCIAL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Seja bem-vindo ao setor financeiro, em breve você será atendido\"\n}"
+      },
+      "id": "038ecee8-1d93-4271-8372-d689c11b70ae",
+      "name": "MSG COMERCIAL1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Seja bem-vindo ao setor de suporte, em breve você será atendido\"\n}"
+      },
+      "id": "379f5e35-717c-429a-bf1b-f9cf11917cb9",
+      "name": "MSG COMERCIAL2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        40
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-17T04:58:15.514Z"
+}
