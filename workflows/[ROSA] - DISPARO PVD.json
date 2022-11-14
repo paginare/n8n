@@ -1,0 +1,94 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2022-10-31T15:14:50.775Z",
+  "hash": "2c783f8142049593df942a3e2bd5206a",
+  "id": 60,
+  "name": "[ROSA] - DISPARO PVD",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8336ce1d-65b3-43f0-8fc7-3f7686ea1c78",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "sheetId": "1m4mGz2unSmlFCxXoRq12txpz2tLMLYxIqdS_WxTZlYI",
+        "options": {}
+      },
+      "id": "b2d45b95-0182-4138-8499-c159c56edfb1",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        100,
+        280
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B384B78AB65D0559B753601BC0FDEA2/token/B15100C297DEB3B9FA015172/send-text",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"phone\": \"55{{$json[\"whatsapp\"]}}\",\n\"message\":\"{{$json[\"nome\"]}} chegou o grande dia! Trouxe 25% de desconto para você! A oferta acabará em algumas horas e você não pode perder.\\n\\nBasta clicar neste link e escolher seu combo: encurtador.com.br/gtF13\" }",
+        "options": {}
+      },
+      "id": "a5b4b470-1d3e-486c-8c5c-bf20ee1445af",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        320,
+        280
+      ],
+      "alwaysOutputData": false,
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-11T14:19:04.676Z"
+}
