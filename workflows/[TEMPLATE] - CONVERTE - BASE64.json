@@ -1,0 +1,83 @@
+{
+  "active": false,
+  "connections": {
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "FunctionItem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-04T02:10:51.109Z",
+  "hash": "1b4686b31e2f2d95049bc2a781b367c2",
+  "id": 41,
+  "name": "[TEMPLATE] - CONVERTE - BASE64",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5d60c9ef-8a6f-449a-bcdb-00e0fedddce9",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        360,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "mensagem",
+              "value": "Texto pra transformar em base64"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        580,
+        420
+      ],
+      "id": "1c4bb038-2607-4499-8f62-dd1b3f204d8b"
+    },
+    {
+      "parameters": {
+        "functionCode": "item.mensagem_criptografada = Buffer.from(item.mensagem).toString('base64');\n\nreturn item;"
+      },
+      "name": "FunctionItem",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        780,
+        420
+      ],
+      "id": "4b439fc6-f8f8-4ef2-8f53-19ee2ca678e3"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-17T04:56:35.675Z"
+}
