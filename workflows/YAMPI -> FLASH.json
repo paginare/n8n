@@ -1,0 +1,633 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-11T18:45:40.486Z",
+  "hash": "9d9fb1692c4d3876aec25cd3b86eca57",
+  "id": 73,
+  "name": "YAMPI -> FLASH",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "flash-teste",
+        "options": {}
+      },
+      "id": "9efa869a-91d5-49a1-8626-cba404f6f860",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        60,
+        380
+      ],
+      "webhookId": "dbd7d40a-0928-4bda-a3ca-0a13365f216f"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json[\"body\"][\"resource\"][\"shipment_service\"] }}",
+              "value2": "FRETE_PADRAO"
+            }
+          ]
+        }
+      },
+      "id": "06638987-8d93-49d6-8920-3d12941e6af6",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webservice.flashpegasus.com.br/FlashPegasus/rest/padrao/importacao",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[{\n\"cliente_id\":7123,\n\"ctt_id\":9160,\n\"dna_hawb\":7,\n\"ccusto_id\":37138,\n\"tipo_enc_id\":21066,\n\"prod_flash_id\":157,\n\"frq_rec_id\":\"DSP\",\n\"ctt_ter_id\":null,\n\"tipo_merc_id\":null,\n\"num_enc_cli\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"number\"]}}\",\n\"num_enc_ter\":\"\",\n\"num_cliente\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"number\"]}}\",\n\"nome_rem\":\"LUCAS COMESTICOS LTDA\",\n\"endHawbs\":{\n\"nome_des\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"generic_name\"]}}\",\n\"logr_dest\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"street\"]}}\",\n\"bairro_des\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"neighborhood\"]}}\",\n\"num_des\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"number\"]}}\",\n\"compl_end_dest\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"complement\"]}}\",\n\"cid_dest\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"city\"]}}\",\n\"uf_dest\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"state\"]}}\",\n\"cep_dest\":{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"shipping_address\"][\"data\"][\"zip_code\"]}},\n\"fone1_des\":\"{{$node[\"Webhook\"].json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"]}}\",\n\"fone2_des\":\"\",\n\"fone3_des\":\"\"\n},\n\"depto_des\":\"\",\n\"cod_lote\":\"11112022\",\n\"peso_aferido\":null,\n\"peso_declarado\":0.03,\n\"qtde_itens\":\"1.0\",\n\"valor\": 319.90,\n\"endHawbs2\":{\n\"nome_des\":\"\",\n\"logr_dest\":\"\",\n\"bairro_des\":\"\",\n\"num_des\":\"\",\n\"compl_end_dest\":\"\",\n\"cid_dest\":\"\",\n\"uf_dest\":\"\",\n\"cep_dest\":null,\n\"fone1_des\":\"\",\n\"fone2_des\":\"\",\n\"fone3_des\":\"\"\n},\n\"depto_des_2\":\"\",\n\"id_local_rem\":39962,\n\"cpf_des\":\"82339822025\",\n\"cnpj_des\":\"\",\n\"ie_des\":\"\",\n\"email_des\":\"email@teste.com\",\n\"obs1\": \"\",\n\"obs2\": \"CAM-23M-01\",\n\"obs3\": \"MAS-M-01\",\n\"obs4\": \"QUANT: 01\",\n\"ge1\":\"\",\n\"ge2\":\"\",\n\"ge3\":\"\",\n\"ge4\":\"\",\n\"chave_nf\":\"111111111111\"\n}]",
+        "options": {}
+      },
+      "id": "7cbd5116-588c-4a76-9c47-a8761421293d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        800,
+        300
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "20",
+          "name": "Unnamed credential"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "api.paginare.com",
+            "user-agent": "PostmanRuntime/7.29.2",
+            "content-length": "12835",
+            "accept": "*/*",
+            "accept-encoding": "gzip",
+            "cdn-loop": "cloudflare",
+            "cf-connecting-ip": "191.135.61.81",
+            "cf-ipcountry": "BR",
+            "cf-ray": "768993549d7aa4a5-GRU",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.71.10.20",
+            "x-forwarded-host": "api.paginare.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "62b1569c2ff8",
+            "x-real-ip": "172.71.10.20"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "order.paid",
+            "time": "2022-11-11 16:44:59",
+            "merchant": {
+              "id": 15574,
+              "alias": "rosaselvagem"
+            },
+            "resource": {
+              "id": 68541899,
+              "merchant_id": 15574,
+              "customer_id": 117379627,
+              "status_id": 4,
+              "desire_status_id": [
+                8,
+                7,
+                5,
+                10,
+                6,
+                12,
+                9,
+                11
+              ],
+              "desire_status": [
+                "cancelled",
+                "delivered",
+                "handling_products",
+                "invoiced",
+                "on_carriage",
+                "ready_for_shipping",
+                "refused",
+                "shipment_exception"
+              ],
+              "promocode_id": 495845,
+              "marketplace_id": null,
+              "marketplace_account_id": null,
+              "authorized": true,
+              "sync_by_erp": false,
+              "has_recomm": false,
+              "has_upsell": false,
+              "is_upsell": false,
+              "delivered": false,
+              "number": 15574924444850,
+              "marketplace_partner_id": null,
+              "marketplace_sale_number": null,
+              "value_total": 242.1,
+              "value_products": 269,
+              "value_shipment": 0,
+              "value_tax": 0,
+              "value_discount": 26.9,
+              "shipment_cost": 0,
+              "shipment_service": "FRETE_PADRAO",
+              "shipment_service_id": "Envio Rosa",
+              "shipment_icon_url": null,
+              "shipment_quote_id": "19182419",
+              "track_code": null,
+              "track_url": null,
+              "b2w_label_url": null,
+              "days_delivery": 9,
+              "date_delivery": {
+                "date": "2022-11-24 00:00:00.000000",
+                "timezone_type": 3,
+                "timezone": "America/Sao_Paulo"
+              },
+              "cart_token": "0ce5b2e4-61f8-11ed-9b58-023670863dd2-636ea4176e49e",
+              "utm_source": "instagram",
+              "utm_campaign": "virginiaf",
+              "utm_content": null,
+              "utm_term": null,
+              "utm_medium": null,
+              "total_comments": 0,
+              "payments": [
+                {
+                  "alias": "pix",
+                  "name": "Pix",
+                  "icon_url": "https://icons.yampi.me/svg/pix.svg"
+                }
+              ],
+              "ip": "177.37.130.102",
+              "device": "mobile",
+              "reorder_url": "https://seguro.rosaselvagembrasil.com/cart/items?customerToken=3981bcb0-61f8-11ed-b044-4dfb2ec710f4&product_option_id[0]=18252182&quantity[0]=1&has_recomm[0]=0&redirectTo=checkout&skipToCheckout=1&store_token=6304d6f38948e3330fd244e6d6111c1406ffd38f",
+              "content_statement_url": "https://api.dooki.com.br/html/orders/content-statement/0ce5b2e4-61f8-11ed-9b58-023670863dd2-636ea4176e49e?id=def502001a5c552b820fe478c88abf577ad5455af07b3478e4ff62af68557b9a5d88de7676d1f6767413ea4e401217870e84e8512e30609abe0bf21c6cf2c3428d5795e7b4601e01a327d9901b6bb4c15b6ba8bbc0112ccfc89faaac",
+              "billet_whatsapp_link": "https://api.whatsapp.com/send?phone=5588998657845&text=",
+              "billet_whatsapp_app_link": "whatsapp://send?phone=5588998657845&text=",
+              "public_url": "https://api.dooki.com.br/v2/public/orders/0ce5b2e4-61f8-11ed-9b58-023670863dd2-636ea4176e49e",
+              "created_at": {
+                "date": "2022-11-11 16:42:39.000000",
+                "timezone_type": 3,
+                "timezone": "America/Sao_Paulo"
+              },
+              "updated_at": {
+                "date": "2022-11-11 16:44:47.000000",
+                "timezone_type": 3,
+                "timezone": "America/Sao_Paulo"
+              },
+              "status": {
+                "data": {
+                  "id": 4,
+                  "alias": "paid",
+                  "name": "Pagamento aprovado",
+                  "description": "O pedido foi pago/capturado"
+                }
+              },
+              "marketplace": {
+                "data": []
+              },
+              "customer": {
+                "data": {
+                  "id": 117379627,
+                  "merchant_id": 15574,
+                  "marketplace_id": null,
+                  "cluster_id": null,
+                  "active": true,
+                  "type": "f",
+                  "name": "Regiany Moreira Pinheiro dos Santos",
+                  "razao_social": null,
+                  "first_name": "Regiany",
+                  "last_name": "Santos",
+                  "generic_name": "Regiany Moreira Pinheiro dos Santos",
+                  "email": "regianymoreira41@gmail.com",
+                  "cnpj": null,
+                  "state_registration": null,
+                  "cpf": "06843998305",
+                  "birthday": null,
+                  "phone": {
+                    "full_number": "88998657845",
+                    "area_code": "88",
+                    "number": "998657845",
+                    "formated_number": "(88) 99865-7845",
+                    "whatsapp_link": "https://api.whatsapp.com/send?phone=5588998657845"
+                  },
+                  "social_driver": null,
+                  "social_id": null,
+                  "newsletter": false,
+                  "whatsapp": false,
+                  "utm_source": "instagram",
+                  "utm_campaign": "virginiaf",
+                  "ip": "177.37.130.102",
+                  "notes": null,
+                  "token": "3981bcb0-61f8-11ed-b044-4dfb2ec710f4",
+                  "login_url": "https://seguro.rosaselvagembrasil.com/auth/login/force?token=3981bcb0-61f8-11ed-b044-4dfb2ec710f4",
+                  "anonymized": false,
+                  "created_at": {
+                    "date": "2022-11-11 16:37:06.000000",
+                    "timezone_type": 3,
+                    "timezone": "America/Sao_Paulo"
+                  },
+                  "updated_at": {
+                    "date": "2022-11-11 16:37:06.000000",
+                    "timezone_type": 3,
+                    "timezone": "America/Sao_Paulo"
+                  }
+                }
+              },
+              "items": {
+                "data": [
+                  {
+                    "id": 81361179,
+                    "product_id": 4202496,
+                    "sku_id": 18252182,
+                    "bundle_id": null,
+                    "bundle_name": null,
+                    "price_cost": 0,
+                    "price": 269,
+                    "item_sku": "ROSA2LEVE3UN",
+                    "quantity": 1,
+                    "shipment_cost": 0,
+                    "gift": false,
+                    "gift_value": 0,
+                    "has_recomm": 0,
+                    "customizations": [],
+                    "is_digital": false,
+                    "sku": {
+                      "data": {
+                        "id": 18252182,
+                        "product_id": 4202496,
+                        "seller_id": null,
+                        "sku": "ROSA2LEVE3UN",
+                        "erp_id": null,
+                        "blocked_sale": false,
+                        "barcode": null,
+                        "title": "Rosa selvagem (Compre 2 e leve 3 und)",
+                        "availability": 1,
+                        "availability_soldout": -1,
+                        "days_availability_formated": "1 dia útil",
+                        "price_cost": 0,
+                        "price_sale": 441,
+                        "price_discount": 269,
+                        "width": 1,
+                        "height": 1,
+                        "length": 1,
+                        "weight": 0,
+                        "quantity_managed": false,
+                        "variations": [],
+                        "combinations": "18252182",
+                        "order": 0,
+                        "total_in_stock": 0,
+                        "total_orders": null,
+                        "allow_sell_without_customization": false,
+                        "image_reference_sku_id": null,
+                        "purchase_url": "https://seguro.rosaselvagembrasil.com/r/8BNXWE8TFY",
+                        "created_at": {
+                          "date": "2021-04-22 10:02:49.000000",
+                          "timezone_type": 3,
+                          "timezone": "America/Sao_Paulo"
+                        },
+                        "updated_at": {
+                          "date": "2022-11-08 22:13:48.000000",
+                          "timezone_type": 3,
+                          "timezone": "America/Sao_Paulo"
+                        },
+                        "customizations": {
+                          "data": []
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "marketplace_account": {
+                "data": []
+              },
+              "statuses": {
+                "data": [
+                  {
+                    "id": 3,
+                    "alias": "waiting_payment",
+                    "name": "Aguardando pagamento",
+                    "description": "Aguardando confirmação de pagamento",
+                    "details": null,
+                    "created_at": {
+                      "date": "2022-11-11 16:42:39.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    },
+                    "updated_at": {
+                      "date": "2022-11-11 16:42:39.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    }
+                  },
+                  {
+                    "id": 4,
+                    "alias": "paid",
+                    "name": "Pagamento aprovado",
+                    "description": "O pedido foi pago/capturado",
+                    "details": "Criado por Pagar.me",
+                    "created_at": {
+                      "date": "2022-11-11 16:44:47.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    },
+                    "updated_at": {
+                      "date": "2022-11-11 16:44:47.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    }
+                  }
+                ]
+              },
+              "shipping_address": {
+                "data": {
+                  "id": 66692043,
+                  "order_id": 68541899,
+                  "address_name": null,
+                  "receiver": "Regiany Moreira Pinheiro dos Santos",
+                  "zipcode": "63024070",
+                  "zip_code": "63024070",
+                  "street": "Rua Raimundo Pereira da Silva",
+                  "number": "40",
+                  "complement": null,
+                  "reference": null,
+                  "neighborhood": "São José",
+                  "full_address": "Rua Raimundo Pereira da Silva, 40 - São José",
+                  "city": "Juazeiro do Norte",
+                  "state": "CE",
+                  "uf": "CE",
+                  "country": "BR"
+                }
+              },
+              "promocode": {
+                "data": {
+                  "id": 495845,
+                  "code": "VIRGINIA10",
+                  "description": "@virginia - THALLYS",
+                  "customer_id": null,
+                  "active": true,
+                  "discount_type": "p",
+                  "newsletter": false,
+                  "ignore_promotion_products": false,
+                  "free_shipment": true,
+                  "abandoned_cart": false,
+                  "once_per_customer": false,
+                  "for_the_price_of": false,
+                  "cart_default": false,
+                  "accumulate": true,
+                  "min_value": "0.00",
+                  "items_count": 0,
+                  "value": "10.00",
+                  "price_products": "0.00",
+                  "product_quantity": 0,
+                  "quantity": 2147483647,
+                  "used": 5742,
+                  "expired": false,
+                  "payments_ids": [],
+                  "start_at": {
+                    "date": "2022-10-21 10:31:33.000000",
+                    "timezone_type": 3,
+                    "timezone": "America/Sao_Paulo"
+                  },
+                  "end_at": {
+                    "date": "2024-10-21 00:00:00.000000",
+                    "timezone_type": 3,
+                    "timezone": "America/Sao_Paulo"
+                  },
+                  "created_at": {
+                    "date": "2022-10-21 10:32:10.000000",
+                    "timezone_type": 3,
+                    "timezone": "America/Sao_Paulo"
+                  },
+                  "updated_at": {
+                    "date": "2022-11-11 16:42:39.000000",
+                    "timezone_type": 3,
+                    "timezone": "America/Sao_Paulo"
+                  }
+                }
+              },
+              "transactions": {
+                "data": [
+                  {
+                    "id": 82287854,
+                    "customer_id": 117379627,
+                    "payment_id": 43,
+                    "affiliation_id": 18486,
+                    "marketplace_id": null,
+                    "marketplace_account_id": null,
+                    "authorized": true,
+                    "captured": true,
+                    "cancelled": false,
+                    "gateway_transaction_id": "967414985",
+                    "gateway_order_id": null,
+                    "gateway_authorization_code": null,
+                    "gateway_billet_id": null,
+                    "amount": 242.1,
+                    "installments": 1,
+                    "installment_value": 242.1,
+                    "installment_formated": "1x de R$ 242,10",
+                    "bank_name": null,
+                    "bank_alias": null,
+                    "status": "paid",
+                    "error_message": null,
+                    "error_code": null,
+                    "truncated_card": null,
+                    "holder_name": null,
+                    "holder_document": null,
+                    "billet_url": null,
+                    "billet_barcode": null,
+                    "billet_date": null,
+                    "billet_our_number": null,
+                    "billet_document_number": null,
+                    "billet_whatsapp_link": "https://api.whatsapp.com/send?phone=5588998657845&text=",
+                    "antifraud_sale_id": null,
+                    "antifraud_status": null,
+                    "antifraud_score": null,
+                    "sent_to_antifraud": false,
+                    "total_logs": 0,
+                    "capture_date": null,
+                    "authorized_at": {
+                      "date": "2022-11-11 16:42:38.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    },
+                    "captured_at": {
+                      "date": "2022-11-11 16:44:47.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    },
+                    "cancelled_at": null,
+                    "can_be_captured": false,
+                    "can_be_cancelled": true,
+                    "created_at": {
+                      "date": "2022-11-11 16:42:39.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    },
+                    "updated_at": {
+                      "date": "2022-11-11 16:44:47.000000",
+                      "timezone_type": 3,
+                      "timezone": "America/Sao_Paulo"
+                    },
+                    "payment": {
+                      "data": {
+                        "id": 43,
+                        "alias": "pix",
+                        "name": "Pix",
+                        "has_config": false,
+                        "active_config": false,
+                        "is_credit_card": false,
+                        "is_deposit": false,
+                        "is_billet": false,
+                        "is_pix": true,
+                        "is_wallet": false,
+                        "icon_url": "https://icons.yampi.me/svg/card-pix.svg"
+                      }
+                    },
+                    "metadata": {
+                      "data": {
+                        "pix_expiration_date": "2022-11-11 17:12:38",
+                        "pix_qr_code": "00020101021226820014br.gov.bcb.pix2560pix.stone.com.br/pix/v2/d549f298-0c24-4d08-b26d-337a44baa2835204000053039865406242.105802BR5925NOVELINO ATACADO DE ESTIV6014RIO DE JANEIRO62290525b5555013128a48328436b142b63045C12"
+                      }
+                    }
+                  }
+                ]
+              },
+              "search": {
+                "data": {
+                  "payment_id": 43,
+                  "antifraud_status": null,
+                  "affiliation_id": 18486,
+                  "products_ids": [
+                    4202496
+                  ],
+                  "gateway_transaction_id": "967414985",
+                  "created_at": "2022-11-11",
+                  "updated_at": "2022-11-11",
+                  "captured_at": "2022-11-11",
+                  "cancelled_at": null,
+                  "date_delivery": "2022-11-24",
+                  "inventory_ids": [],
+                  "payment_method": "pix",
+                  "payment_retry": false
+                }
+              },
+              "services": {
+                "data": []
+              },
+              "spreadsheet": {
+                "data": [
+                  {
+                    "product": "Rosa selvagem (Compre 2 e leve 3 und)",
+                    "sku": "ROSA2LEVE3UN",
+                    "quantity": 1,
+                    "total_cost": 0,
+                    "total_item": 269,
+                    "customization": "",
+                    "payment_date": "11/11/2022 16:44",
+                    "cancelled_date": "",
+                    "customer": "Regiany Moreira Pinheiro dos Santos",
+                    "customer_email": "regianymoreira41@gmail.com",
+                    "customer_phone": "88998657845",
+                    "customer_document": "06843998305",
+                    "status": "Pagamento aprovado",
+                    "payment": "Pix",
+                    "credit_card": null,
+                    "delivered": 0,
+                    "shipping_address": "Rua Raimundo Pereira da Silva, 40 - Sao Jose",
+                    "shipping_street": "Rua Raimundo Pereira da Silva",
+                    "shipping_number": "40",
+                    "shipping_neighborhood": "Sao Jose",
+                    "shipping_complement": "",
+                    "shipping_city": "Juazeiro do Norte",
+                    "shipping_state": "Ceara",
+                    "shipping_zip_code": "63024070",
+                    "gateway_transaction_id": "967414985",
+                    "billet_barcode": null
+                  }
+                ]
+              },
+              "metadata": {
+                "data": [
+                  {
+                    "key": "cart_id",
+                    "value": "277146043"
+                  }
+                ]
+              },
+              "pix": {
+                "data": {
+                  "pix_qr_code": "00020101021226820014br.gov.bcb.pix2560pix.stone.com.br/pix/v2/d549f298-0c24-4d08-b26d-337a44baa2835204000053039865406242.105802BR5925NOVELINO ATACADO DE ESTIV6014RIO DE JANEIRO62290525b5555013128a48328436b142b63045C12",
+                  "pix_expiration_date": "2022-11-11 17:12:38"
+                }
+              },
+              "whatsapp": {
+                "data": {
+                  "abandoned_cart": null,
+                  "order_shipped": null,
+                  "billet": null,
+                  "pix": {
+                    "message": "Oi Regiany. O seu pedido foi reservado com sucesso.%0a%0a*1 - Rosa selvagem (Compre 2 e leve 3 und)*%0a%0aPara garantir os seus produtos, você precisa pagar o PIX o mais rápido possível, tá? Para pagar, copie e cole o texto abaixo no Aplicativo onde você configurou suas chaves PIX: %0a%0a00020101021226820014br.gov.bcb.pix2560pix.stone.com.br/pix/v2/d549f298-0c24-4d08-b26d-337a44baa2835204000053039865406242.105802BR5925NOVELINO ATACADO DE ESTIV6014RIO DE JANEIRO62290525b5555013128a48328436b142b63045C12",
+                    "link": "https://api.whatsapp.com/send?phone=5588998657845&text=Oi Regiany. O seu pedido foi reservado com sucesso.%0a%0a*1 - Rosa selvagem (Compre 2 e leve 3 und)*%0a%0aPara garantir os seus produtos, você precisa pagar o PIX o mais rápido possível, tá? Para pagar, copie e cole o texto abaixo no Aplicativo onde você configurou suas chaves PIX: %0a%0a00020101021226820014br.gov.bcb.pix2560pix.stone.com.br/pix/v2/d549f298-0c24-4d08-b26d-337a44baa2835204000053039865406242.105802BR5925NOVELINO ATACADO DE ESTIV6014RIO DE JANEIRO62290525b5555013128a48328436b142b63045C12"
+                  }
+                }
+              },
+              "whatsapp_app": {
+                "data": {
+                  "abandoned_cart": null,
+                  "order_shipped": null,
+                  "billet": null,
+                  "pix": {
+                    "message": "Oi Regiany. O seu pedido foi reservado com sucesso.%0a%0a*1 - Rosa selvagem (Compre 2 e leve 3 und)*%0a%0aPara garantir os seus produtos, você precisa pagar o PIX o mais rápido possível, tá? Para pagar, copie e cole o texto abaixo no Aplicativo onde você configurou suas chaves PIX: %0a%0a00020101021226820014br.gov.bcb.pix2560pix.stone.com.br/pix/v2/d549f298-0c24-4d08-b26d-337a44baa2835204000053039865406242.105802BR5925NOVELINO ATACADO DE ESTIV6014RIO DE JANEIRO62290525b5555013128a48328436b142b63045C12",
+                    "link": "whatsapp://send?phone=5588998657845&text=Oi Regiany. O seu pedido foi reservado com sucesso.%0a%0a*1 - Rosa selvagem (Compre 2 e leve 3 und)*%0a%0aPara garantir os seus produtos, você precisa pagar o PIX o mais rápido possível, tá? Para pagar, copie e cole o texto abaixo no Aplicativo onde você configurou suas chaves PIX: %0a%0a00020101021226820014br.gov.bcb.pix2560pix.stone.com.br/pix/v2/d549f298-0c24-4d08-b26d-337a44baa2835204000053039865406242.105802BR5925NOVELINO ATACADO DE ESTIV6014RIO DE JANEIRO62290525b5555013128a48328436b142b63045C12"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-12T02:23:26.621Z"
+}
