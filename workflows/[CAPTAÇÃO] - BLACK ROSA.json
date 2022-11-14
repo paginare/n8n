@@ -1,0 +1,181 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SEGUE INGRESSO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEGUE INGRESSO": {
+      "main": [
+        [
+          {
+            "node": "VIP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VIP": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-27T14:07:39.527Z",
+  "hash": "1b6e2d94c56d03bcb5a54d5b22d04400",
+  "id": 57,
+  "name": "[CAPTAÇÃO] - BLACK ROSA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "rosa-captacao",
+        "options": {}
+      },
+      "id": "e966ab48-4bb3-40cf-95dc-fb77cb971711",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        320
+      ],
+      "webhookId": "ce4e9616-7d05-4f35-a615-d1c1b77ae87d"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "1m4mGz2unSmlFCxXoRq12txpz2tLMLYxIqdS_WxTZlYI",
+        "options": {}
+      },
+      "id": "f82d3d05-4010-424d-8ccd-1e25f38f44fa",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        660,
+        120
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B384B78AB65D0559B753601BC0FDEA2/token/B15100C297DEB3B9FA015172/send-button-list",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"phone\": \"55{{$node[\"Set\"].json[\"body\"][\"whatsapp\"]}}\",\n  \"message\": \"Oie {{$node[\"Set\"].json[\"body\"][\"nome\"]}} 💖, você conseguiu salvar o meu contato?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"1\",\n        \"label\": \"Sim\"\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "id": "553ce3fd-c3d8-4dc4-8e24-1ba222dde4e5",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "nome",
+              "value": "={{$node[\"Webhook\"].json[\"body\"][\"nome\"]}}"
+            },
+            {
+              "name": "whatsapp",
+              "value": "={{$node[\"Webhook\"].json[\"body\"][\"whatsapp\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9e0a0535-936d-432c-8a50-d2e49710bc05",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B384B78AB65D0559B753601BC0FDEA2/token/B15100C297DEB3B9FA015172/send-image",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"phone\": \"55{{$node[\"Set\"].json[\"body\"][\"whatsapp\"]}}\",\n  \"image\": \"https://res.cloudinary.com/paginaredev/image/upload/c_fit,w_500,co_rgb:ffffff,l_text:arial_45_style_bold:{{$node[\"Set\"].json[\"body\"][\"nome\"]}},x_10,y_-73/v1666887171/ticket_1-1_pfla15.jpg\"\n}",
+        "options": {}
+      },
+      "id": "890efc80-6e76-4e08-ba1e-f7406c7a30e6",
+      "name": "VIP",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        860,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B384B78AB65D0559B753601BC0FDEA2/token/B15100C297DEB3B9FA015172/send-text",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"phone\": \"{{$json[\"whatsapp\"]}}\",\n  \"message\": \"Show de bola {{ $item(\"0\").$node[\"Webhook\"].json[\"body\"][\"nome\"] }}! Aqui está seu ingresso *VIP* para as promoções👇🏻\"\n}",
+        "options": {}
+      },
+      "id": "ed8245e1-0bb9-4031-a5f8-4467337fe774",
+      "name": "SEGUE INGRESSO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        660,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-01T14:55:58.210Z"
+}
