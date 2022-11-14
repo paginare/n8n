@@ -1,0 +1,510 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "🔎 CONSULTA DADOS NA API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 015": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 011": {
+      "main": [
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 012": {
+      "main": [
+        [
+          {
+            "node": "Item Lists2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 014": {
+      "main": [
+        [
+          {
+            "node": "Item Lists3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 010": {
+      "main": [
+        [
+          {
+            "node": "Item Lists4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 013": {
+      "main": [
+        [
+          {
+            "node": "Item Lists5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 016": {
+      "main": [
+        [
+          {
+            "node": "Item Lists6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists5": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists6": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔎 CONSULTA DADOS NA API1": {
+      "main": [
+        [
+          {
+            "node": "Item Lists7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists7": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-28T19:28:33.965Z",
+  "hash": "dca7db3091985964597cd39de3db0517",
+  "id": 36,
+  "name": "[TEMPLATE] [Z-API] - ENVIO DE MENSAGENS NO PVD",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "983c343f-66ed-428d-bf7f-5225aad40128",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -1500,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "1HDfLrFEyWB9WtswhPJAHTKQtinUCZmdBgSKGf1-VN_8",
+        "options": {
+          "valueInputMode": "USER_ENTERED"
+        }
+      },
+      "id": "f6835ad6-be0b-459c-a950-91c048a73d09",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        900,
+        1000
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "47a2b304-5f95-4220-a4b1-c2751b21dce7",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363025728520418-group",
+        "options": {}
+      },
+      "id": "11f3089f-27ca-403d-bb4b-2467a64568b3",
+      "name": "GRUPO 015",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "95c1a27b-46d6-44fb-8029-acb82e70bbf9",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026510185136-group",
+        "options": {}
+      },
+      "id": "f887226a-8386-4c1c-95c1-7d321f82c300",
+      "name": "GRUPO 011",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "432f0ee8-278f-4e44-8d96-5412ce9ed0c1",
+      "name": "Item Lists2",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363027304404326-group",
+        "options": {}
+      },
+      "id": "cd51ae9a-abc9-4ebe-9b6a-3eccaeb70ef3",
+      "name": "GRUPO 012",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "ec6d5231-4911-4154-b961-7cf8e4cd9fb7",
+      "name": "Item Lists3",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363044675210637-group",
+        "options": {}
+      },
+      "id": "839880c6-fcca-4f6c-a73e-35e7a21cf440",
+      "name": "GRUPO 014",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "c6aef770-4c33-4981-bfa7-d0afc2df217e",
+      "name": "Item Lists4",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026738668546-group",
+        "options": {}
+      },
+      "id": "fc907881-1648-4971-a546-507ce31309ab",
+      "name": "GRUPO 010",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "c6e402ef-3a61-4a7d-9972-68334bb0c4a1",
+      "name": "Item Lists5",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026738668546-group",
+        "options": {}
+      },
+      "id": "db6537b4-2305-4151-9629-b110e8c87c65",
+      "name": "GRUPO 013",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "5b66e76f-26f6-4a17-9bfb-80031fab07e5",
+      "name": "Item Lists6",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        300,
+        1720
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026738668546-group",
+        "options": {}
+      },
+      "id": "6045c5f7-e287-4e28-a478-93f6953d6322",
+      "name": "GRUPO 016",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1720
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/history?transaction_status=APPROVED",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "f0ba37e2-74cf-4489-b3ae-d2311396a13d",
+      "name": "🔎 CONSULTA DADOS NA API1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -1280,
+        1040
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "10",
+          "name": "[HOTMART] - [KM2]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "=items",
+        "include": "allOtherFields",
+        "options": {}
+      },
+      "id": "e34d3448-271a-4c5c-9e8d-d6d9ced28497",
+      "name": "Item Lists7",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1Rz3Y0hHVhkBYiYu4vM0ASTt3umaQQxQ1pdlRJ7M1SQU",
+        "key": "={{$node[\"Item Lists7\"].json[\"items\"][\"purchase\"][\"transaction\"]}}",
+        "options": {}
+      },
+      "id": "0149b9cb-3c16-4174-bbf8-3eb63a655f37",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        -760,
+        1040
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "11",
+          "name": "Unnamed credential"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-09-27T22:10:30.493Z",
+      "updatedAt": "2022-09-27T22:10:30.493Z",
+      "id": "8",
+      "name": "💭🟢"
+    }
+  ],
+  "updatedAt": "2022-10-18T13:08:04.850Z"
+}
