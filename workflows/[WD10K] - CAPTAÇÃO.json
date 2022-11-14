@@ -1,0 +1,154 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ActiveCampaign",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-25T17:25:10.131Z",
+  "hash": "1b49556f73edaf75993ef154a5a80010",
+  "id": 55,
+  "name": "[WD10K] - CAPTAÇÃO",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wd10k",
+        "options": {}
+      },
+      "id": "01e2636e-9909-4703-af65-0f1aa5ad1fdf",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        160,
+        100
+      ],
+      "webhookId": "216450ee-6386-40bf-bccd-a60438d3000d"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "1jR-Inm2gky1Qrxzp3KSJPaMuTzzVSxMxqSe1mWbnH1M",
+        "options": {}
+      },
+      "id": "4a028ec1-c614-40bb-9bb7-0422a98069c9",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        740,
+        140
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "nome",
+              "value": "={{ $json[\"body\"][\"nome\"] }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json[\"body\"][\"email\"] }}"
+            },
+            {
+              "name": "whatsapp",
+              "value": "=55{{$json[\"body\"][\"whatsapp\"].replace(/\\D/g,'')}}"
+            },
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B36CE75F08AB01D96AED688574856B5/token/00D0D8CAB940BBFB6A20924B/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8e6df4e1-96ec-46bb-ada7-9f748d069c19",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        380,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "email": "={{$node[\"Set\"].json[\"email\"]}}",
+        "updateIfExists": true,
+        "additionalFields": {
+          "firstName": "={{$node[\"Set\"].json[\"nome\"]}}"
+        }
+      },
+      "id": "350ee6e1-d25f-44a1-b7c2-4b7769891202",
+      "name": "ActiveCampaign",
+      "type": "n8n-nodes-base.activeCampaign",
+      "typeVersion": 1,
+      "position": [
+        740,
+        340
+      ],
+      "credentials": {
+        "activeCampaignApi": {
+          "id": "16",
+          "name": "ActiveCampaign account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "56"
+      },
+      "id": "ef5abb47-5d74-4d29-ac9a-66ca5ce83edf",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        760,
+        -120
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-01T23:56:07.549Z"
+}
