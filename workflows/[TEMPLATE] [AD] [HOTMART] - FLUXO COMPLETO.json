@@ -1,0 +1,592 @@
+{
+  "active": false,
+  "connections": {
+    "HOTMART ENVIA WEBHOOK": {
+      "main": [
+        [
+          {
+            "node": "É CARRINHO?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É CARRINHO?": {
+      "main": [
+        [
+          {
+            "node": "🔎 CAÇA TELEFONE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🛒 CARRINHO ABANDONADO": {
+      "main": [
+        []
+      ]
+    },
+    "✅ APROVADO": {
+      "main": [
+        []
+      ]
+    },
+    "❌ CANCELADO": {
+      "main": [
+        []
+      ]
+    },
+    "📃 BOLETO": {
+      "main": [
+        [
+          {
+            "node": "📃 ENVIA CÓDIGO DE BARRA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💸 PIX": {
+      "main": [
+        [
+          {
+            "node": "💸 ENVIA COPIA E COLA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📮 FILTRA SITUAÇÃO": {
+      "main": [
+        [
+          {
+            "node": "✅ APROVADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "❌ CANCELADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "BOLETO OU PIX ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔎 CONSULTA DADOS NA API": {
+      "main": [
+        [
+          {
+            "node": "📮 FILTRA SITUAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔎 CAÇA TELEFONE": {
+      "main": [
+        [
+          {
+            "node": "🛒 CARRINHO ABANDONADO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOLETO OU PIX ?": {
+      "main": [
+        [
+          {
+            "node": "📃 BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "💸 PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR": {
+      "main": [
+        [
+          {
+            "node": "🔎 CONSULTA DADOS NA API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-22T22:02:47.172Z",
+  "hash": "fad08c76645bf8cd8731e965b4b3c0e9",
+  "id": 16,
+  "name": "[TEMPLATE] [AD] [HOTMART] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5c6118d9-9f13-4d7a-a3c5-eac5de5bd19a",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nome-do-webhook",
+        "options": {}
+      },
+      "id": "0b8a0378-5af2-418d-aeb7-231d564f1e2f",
+      "name": "HOTMART ENVIA WEBHOOK",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        120,
+        160
+      ],
+      "webhookId": "cb68090f-fa54-4a64-ad0e-70048daa039f"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"event\"]}}",
+              "value2": "PURCHASE_OUT_OF_SHOPPING_CART"
+            }
+          ]
+        }
+      },
+      "id": "d0ac310b-0629-4a29-bdec-1df0ceed43a7",
+      "name": "É CARRINHO?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        340,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"phone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$json[\"body\"][\"data\"][\"buyer\"][\"name\"]}}! Tudo bem?"
+            },
+            {
+              "name": "sender",
+              "value": "numero-do-remetente"
+            },
+            {
+              "name": "token",
+              "value": "token-dw-api"
+            }
+          ]
+        }
+      },
+      "id": "9b992009-e9d9-4184-a1ad-fd6df25a48f7",
+      "name": "🛒 CARRINHO ABANDONADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        980,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Ae! Seja bem vindo {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}!"
+            },
+            {
+              "name": "sender",
+              "value": "numero-do-remetente"
+            },
+            {
+              "name": "token",
+              "value": "token-dw-api"
+            }
+          ]
+        }
+      },
+      "id": "7e643ddd-bb85-4b41-a519-0c622d38e074",
+      "name": "✅ APROVADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem?\n\nAqui é Vinicius Kolling, do WPFast e vi que sua compra foi cancelada.\n\nVou te enviar o link de compra por outro local que te dará acesso ao mesmo curso. Pode ser?"
+            },
+            {
+              "name": "sender",
+              "value": "555198607446"
+            },
+            {
+              "name": "token",
+              "value": "22jcSsZZ1NneYF7pGzyh"
+            }
+          ]
+        }
+      },
+      "id": "b3228d72-a4fe-45f9-a9c0-ca6e932acfa1",
+      "name": "❌ CANCELADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem?\n\nAqui é Fulano do Curso X e vi que você acabou de solicitar um pagamento via Boleto. \n\nÉ isso mesmo?\n\nSegue o código de barras em número para facilitar as coisas por ai."
+            },
+            {
+              "name": "sender",
+              "value": "555198607446"
+            },
+            {
+              "name": "token",
+              "value": "22jcSsZZ1NneYF7pGzyh"
+            }
+          ]
+        }
+      },
+      "id": "dc1b4b2c-12a2-4c21-9733-e26d1644b949",
+      "name": "📃 BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem?\n\nAqui é Fulano do Curso X e vi que você acabou de solicitar um pagamento via PIX. \n\nÉ isso mesmo?\n\nSegue o código que basta copiar e colar ai no seu banco!"
+            },
+            {
+              "name": "sender",
+              "value": "numero-do-remetente"
+            },
+            {
+              "name": "token",
+              "value": "token-dw-api"
+            }
+          ]
+        }
+      },
+      "id": "17035ba8-508c-4605-9369-818fff273d60",
+      "name": "💸 PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"status\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "APPROVED"
+            },
+            {
+              "value2": "CANCELLED",
+              "output": 1
+            },
+            {
+              "value2": "BILLET_PRINTED",
+              "output": 2
+            },
+            {
+              "value2": "WAITING_PAYMENT",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "4ee438a4-117e-4c0a-824c-bcb0627bf567",
+      "name": "📮 FILTRA SITUAÇÃO",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/users",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "8c2cc8ea-3012-4c8f-bf3f-c7ef654c163e",
+      "name": "🔎 CONSULTA DADOS NA API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        960,
+        320
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "1",
+          "name": "API - HOTMART - ANTONIO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "555198607446"
+            },
+            {
+              "name": "token",
+              "value": "22jcSsZZ1NneYF7pGzyh"
+            }
+          ]
+        }
+      },
+      "id": "11e06875-08bd-4e50-af4b-d4f8f34aa867",
+      "name": "💸 ENVIA COPIA E COLA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"billet_barcode\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "555198607446"
+            },
+            {
+              "name": "token",
+              "value": "22jcSsZZ1NneYF7pGzyh"
+            }
+          ]
+        }
+      },
+      "id": "f19e6fa4-93dd-406d-8950-9fd26a814ef5",
+      "name": "📃 ENVIA CÓDIGO DE BARRA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/history",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "buyer_email",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"email\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "025f0b24-cd09-4fb6-89db-d520a8e02249",
+      "name": "🔎 CAÇA TELEFONE",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        700,
+        -140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "1",
+          "name": "API - HOTMART - ANTONIO"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"boleto\"]}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "e2e64f7a-296a-4c44-8228-846156ec947f",
+      "name": "BOLETO OU PIX ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            },
+            {
+              "name": "boleto",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"billet_barcode\"]}}"
+            },
+            {
+              "name": "pix",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "50aa8550-5220-4dc1-a33d-b4ca3ae404c0",
+      "name": "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        680,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T19:51:00.273Z",
+      "updatedAt": "2022-08-22T19:51:00.273Z",
+      "id": "1",
+      "name": "🔥"
+    }
+  ],
+  "updatedAt": "2022-09-17T19:15:44.788Z"
+}
