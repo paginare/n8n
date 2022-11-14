@@ -160,34 +160,23 @@
     }
   },
   "createdAt": "2022-10-10T15:24:33.090Z",
-  "hash": "5f9cdea4018837523ffe4bd404ec095b",
+  "hash": "b3837a14b263eca295412df40f28d785",
   "id": 47,
   "name": "[WS] - ROBÔ ATENDIMENTO",
   "nodes": [
-    {
-      "parameters": {},
-      "id": "c11624bd-c9c2-4fe0-b5cf-b9b9f002070a",
-      "name": "Start",
-      "type": "n8n-nodes-base.start",
-      "typeVersion": 1,
-      "position": [
-        -1160,
-        620
-      ]
-    },
     {
       "parameters": {
         "httpMethod": "POST",
         "path": "ws-atendimento",
         "options": {}
       },
-      "id": "91842dfe-6ef2-45c3-ad38-3051632aeba0",
+      "id": "f35bf293-5378-4c68-97ec-b9a8f08ed7d3",
       "name": "START ROBÔ",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        -580,
-        660
+        -1580,
+        1020
       ],
       "webhookId": "fb477ad5-2ad0-474f-94b5-4477bf760526"
     },
@@ -296,13 +285,13 @@
         },
         "fallbackOutput": 3
       },
-      "id": "2b75740c-3e32-4552-b260-c65ced754635",
+      "id": "46ec53b9-0ea8-4222-be53-c417de8f40ee",
       "name": "É GATILHO OU BOTÃO?",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        -80,
-        660
+        -1080,
+        1020
       ]
     },
     {
@@ -324,13 +313,13 @@
         },
         "fallbackOutput": 3
       },
-      "id": "a9486204-112f-4a43-8c73-631c9ea993cd",
+      "id": "1545f472-8889-4045-bb52-3ffdb93e604c",
       "name": "RESPOSTAS BOTÕES",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        360,
-        680
+        -640,
+        1040
       ]
     },
     {
@@ -357,13 +346,13 @@
         },
         "fallbackOutput": 3
       },
-      "id": "5333b7ca-59a4-4934-8a90-634d9b179d20",
+      "id": "2a9a0e45-1233-41a1-839f-43103db4baa4",
       "name": "RESPOSTAS LISTAS",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        900,
-        720
+        -100,
+        1080
       ]
     },
     {
@@ -374,13 +363,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Não se preocupe! Vamos te ajudar 😉\",\n  \"optionList\": {\n    \"title\": \"Dúvidas frequentes\",\n    \"buttonLabel\": \"Escolha sua dúvida\",\n    \"options\": [\n      {\n        \"id\": \"1\",\n        \"description\": \"\",\n        \"title\": \"Posso comprar um resumo separadamente?\"\n      },\n      {\n        \"id\": \"2\",\n        \"description\": \"\",\n        \"title\": \"Como terei acesso?\"\n      },\n\n\t{\n\t\t\"id\": \"3\",\n\t\t\"description\": \"\",\n\t\t\"title\": \"Qual valor do KIT?\"\n},\n\t{\n\t\t\"id\": \"4\",\n\t\t\"description\": \"\",\n\t\t\"title\": \"Quais os materiais vou receber?\"\n},\n{\n\"id\": \"5\",\n\"description\": \"\",\n\"title\": \"Nenhuma dessas, preciso falar com um atendente\"\n}\n    ]\n  }\n}"
       },
-      "id": "e8a02db4-e6ec-44a2-9507-307d302dee45",
+      "id": "0931d7f2-b20e-4e35-abe9-19bdc061d5bd",
       "name": "ENVIA LISTA DÚVIDAS",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        580,
-        280
+        -420,
+        640
       ]
     },
     {
@@ -391,13 +380,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Que legal, {{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"nome\"]}}! Você possui alguma dúvida sobre o Resumos do Will?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"Sim, ainda tenho dúvidas ⚠️\",\n        \"label\": \"Sim, ainda tenho dúvidas ⚠️\"\n      },\n      {\n        \"id\": \"Quero comprar 🤑\",\n        \"label\": \"Quero comprar 🤑\"\n      }\n    ]\n  }\n}"
       },
-      "id": "1d0774a8-07fa-4a01-b3dd-8cc088c5fcf7",
+      "id": "a4dadb9d-b64f-4108-ae75-54570ce67f02",
       "name": "ENVIA BOTÃO - DÚVIDA OU NÃO",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        580,
-        40
+        -420,
+        400
       ]
     },
     {
@@ -436,13 +425,13 @@
         },
         "options": {}
       },
-      "id": "0b49502a-17a2-4f5f-ad87-7c6ce76f1c99",
+      "id": "9521507d-2d47-49f1-8def-9f6bef7f436a",
       "name": "TEXTO - BOTÃO - LISTA",
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        -340,
-        660
+        -1340,
+        1020
       ]
     },
     {
@@ -453,13 +442,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Agora que solucionamos sua dúvida, existe mais alguma outra que podemos ajudar?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"Sim, ainda tenho dúvidas ⚠️\",\n        \"label\": \"Sim, ainda tenho dúvidas ⚠️\"\n      },\n      {\n        \"id\": \"Estou pronto, quero comprar\",\n        \"label\": \"Estou pronto, quero comprar\"\n      }\n    ]\n  }\n}"
       },
-      "id": "fbe1222b-0d7d-4dce-9a33-55d94683bdb4",
+      "id": "e8825f2b-5760-40ab-aab1-ff3e2852abab",
       "name": "DÚVIDA SOLUCIONADA?",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        1960,
-        440
+        960,
+        800
       ]
     },
     {
@@ -470,13 +459,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Você recebe o acesso no e-mail. Você tem acesso vitalício, só precisa pagar uma vez e usar para sempre, além de receber todas as atualizações.\"\n}"
       },
-      "id": "15ad94ac-d423-416e-859d-1ebe730446d9",
+      "id": "f38d164a-0423-46ef-bbc8-d6b4ccf9950a",
       "name": "MSG VALOR PROMO",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        1460,
-        440
+        460,
+        800
       ]
     },
     {
@@ -487,13 +476,13 @@
         "options": {},
         "bodyParametersJson": "={\n \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n \"message\": \"Ihuuul!, {{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"nome\"]}}, agora basta clicar abaixo e será redirecionado para a página de compra👇🏻\",\n \"buttonActions\": [\n {\n \"id\": \"link_principal\",\n \"type\": \"URL\",\n \"url\": \"https://pay.kiwify.com.br/rxQAkj5\",\n \"label\": \"Comprar agora\"\n }\n ]\n}"
       },
-      "id": "e73c10ab-3d2d-49c8-955a-1245368bf5b7",
+      "id": "97ed0d85-67b0-40e0-b841-f1f700c89d6f",
       "name": "BOTÃO AÇÃO - LINK HOTMART",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        840,
-        460
+        -160,
+        820
       ]
     },
     {
@@ -504,13 +493,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"O KIT com todos os 26 resumos, atualizações semanais e os 5 bônus exclusivos na promoção de semana de provas por R$147 reais.\\n\\n\"\n}"
       },
-      "id": "de190bde-5ff3-4bb5-878c-8e2354afff2f",
+      "id": "e6d095ae-b506-41fa-821d-f1b07f05a525",
       "name": "MSG PARCELAMENTO",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        1440,
-        680
+        440,
+        1040
       ]
     },
     {
@@ -532,13 +521,13 @@
         },
         "fallbackOutput": 3
       },
-      "id": "5bda5a92-b914-45bb-8d1e-ae0d1d803073",
+      "id": "852f5ebd-96c8-4c5f-971a-ae5cc8459aac",
       "name": "RESPOSTAS LISTAS - CONTINUAÇÃO",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        1460,
-        1020
+        460,
+        1380
       ]
     },
     {
@@ -549,13 +538,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Resumos do Will\\n1. Cirurgia\\n2. Dentistica\\n3. Endodontia\\n4. Periodontia\\n5. Emergências médicas no consultório\\n6. Urgências odontológicas\\n7. Farmacologia\\n8. Radiologia\\n9. Prótese parcial removível\\n\\n10. Prótese total\\n11. Prótese fixa\\n12. Prontuário odontológico\\n13. Anestesiologia\\n14. Interpretação de achados radiográficas\\n15. Terapêutica medicamentosa para dentistas\\n16. Cariologia\\n17. Oclusão e DTM\\n18. Estomatologia e patologia oral\\n19. Doenças crônicas não transmissível\\n20. Fisiologia e anatomia humana\\n21. Materiais dentários\\n22. Pediatria\\n23. SUS e Saúde coletiva\\n24. Anatomia dentária\\n25. Ortodontia\\n26. Implantodontia (16/10)\\n\\nBÔNUS 1: planner de estudo, planner semanal e planner mensal.\\nBÔNUS 2: passo a passo do TCC descomplicado.\\nBÔNUS 3: cronograma detalhado de todas as matérias do curso no Trello.\\nBÔNUS 4: e-book - Como fechar orçamentos odontológicos.\\nBÔNUS 5: e-book - método cliente vendedor.\"\n}"
       },
-      "id": "e5284a48-7a13-46a8-8e66-941f46e13914",
+      "id": "680d2107-ba3a-483d-8dff-0977b0748421",
       "name": "MSG IMPLATAÇÃO",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        1920,
-        980
+        920,
+        1340
       ]
     },
     {
@@ -566,13 +555,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Tudo bem, já direcionei você para um atendente\"\n}"
       },
-      "id": "bbe3da64-a085-4851-9e8a-15117df844c2",
+      "id": "94371440-d27b-4081-9f1d-09a9e4536f6e",
       "name": "MSG IMPLATAÇÃO1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        1920,
-        1200
+        920,
+        1560
       ]
     },
     {
@@ -583,13 +572,13 @@
         "options": {},
         "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Pode! Cada um separadamente é R$ 27 reais, eu recomendo adquirir o KIT com todos os 26 resumos, atualizações semanais e os 5 bônus exclusivos na promoção de semana de provas por R$97 reais. Se ainda sim quiser separadamente, quais você quer?\"\n}"
       },
-      "id": "008d86f0-fa57-469f-a8b6-669964b5d4e9",
+      "id": "f87da4bc-2494-4643-9f13-9acce9f34e24",
       "name": "MSG INDIVIDUAL",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        1460,
-        160
+        460,
+        520
       ]
     }
   ],
@@ -604,5 +593,5 @@
       "name": "🤖"
     }
   ],
-  "updatedAt": "2022-11-11T02:07:43.617Z"
+  "updatedAt": "2022-11-14T03:13:39.774Z"
 }
