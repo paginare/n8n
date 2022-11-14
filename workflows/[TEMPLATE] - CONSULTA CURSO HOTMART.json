@@ -1,0 +1,145 @@
+{
+  "active": false,
+  "connections": {
+    "consulta cursos do aluno": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "consulta cursos do aluno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-17T04:55:53.241Z",
+  "hash": "441e4363b4ebd593e9e55a15b5bae9e4",
+  "id": 52,
+  "name": "[TEMPLATE] - CONSULTA CURSO HOTMART",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "050419bb-0c80-4395-861f-9cdd09ad11a8",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        160,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/users",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "buyer_email",
+              "value": "={{ $node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"email\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "3f0ff8a9-5a18-430c-bd3b-d4fe07ce3503",
+      "name": "consulta cursos do aluno",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        400,
+        220
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "1",
+          "name": "[HOTMART]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "cursos",
+              "value": "={{ $json[\"items\"][0][\"product\"][\"name\"] }},{{ $json[\"items\"][1][\"product\"][\"name\"] }},{{ $json[\"items\"][2][\"product\"][\"name\"] }},{{ $json[\"items\"][3][\"product\"][\"name\"] }},{{ $json[\"items\"][4][\"product\"][\"name\"] }},{{ $json[\"items\"][5][\"product\"][\"name\"] }},{{ $json[\"items\"][6][\"product\"][\"name\"] }},{{ $json[\"items\"][8][\"product\"][\"name\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "109edb45-d3c5-4214-b143-f8b915204b21",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        600,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json[\"cursos\"] }}",
+              "operation": "contains",
+              "value2": "nome do curso"
+            }
+          ]
+        }
+      },
+      "id": "225859fa-ead8-4510-9eee-dba46378cc66",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        800,
+        220
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T19:51:00.273Z",
+      "updatedAt": "2022-08-22T19:51:00.273Z",
+      "id": "1",
+      "name": "🔥"
+    }
+  ],
+  "updatedAt": "2022-10-17T04:55:57.366Z"
+}
