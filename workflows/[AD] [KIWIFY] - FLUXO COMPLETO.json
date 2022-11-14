@@ -1,0 +1,692 @@
+{
+  "active": false,
+  "connections": {
+    "Status": {
+      "main": [
+        [
+          {
+            "node": "Aguardando Pagamento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardando Pagamento": {
+      "main": [
+        [
+          {
+            "node": "Boleto ou Pix?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Negada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negada": {
+      "main": [
+        [
+          {
+            "node": "Negada - MSG1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aprovada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aprovada": {
+      "main": [
+        [
+          {
+            "node": "Apv -  MSG 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apv -  MSG 1": {
+      "main": [
+        [
+          {
+            "node": "APV - MSG 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negada - MSG1": {
+      "main": [
+        [
+          {
+            "node": "Negada - Msg 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boleto ou Pix?": {
+      "main": [
+        [
+          {
+            "node": "PIX - MSG 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Boleto - MSG 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PIX - MSG 1": {
+      "main": [
+        [
+          {
+            "node": "PIX - MSG 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boleto - MSG 1": {
+      "main": [
+        [
+          {
+            "node": "Boleto - MSG 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Carrinho": {
+      "main": [
+        [
+          {
+            "node": "Carrinho1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Carrinho1": {
+      "main": [
+        [
+          {
+            "node": "Carrinho2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🛒 Carrinho Abandonado": {
+      "main": [
+        [
+          {
+            "node": "Carrinho",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-19T14:37:42.350Z",
+  "hash": "153cdfe343514607847435e0bb82834d",
+  "id": 9,
+  "name": "[AD] [KIWIFY] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a2d3616f-e03b-44d1-adfe-591e11af9994",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"Status\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\nAqui é Antonio, do Notificações Lucrativas, vi aqui que você acabou de solicitar o pagamento via pix.\n\nSegue o código copia e cola:"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "7272bd21-f59c-4f04-86f6-2960357e48e5",
+      "name": "PIX - MSG 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        540,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"pix_code\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "65fb6508-bce6-45ca-af8c-bbc0988eb77b",
+      "name": "PIX - MSG 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        820,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"payment_method\"]}}",
+              "value2": "pix"
+            }
+          ]
+        }
+      },
+      "id": "f5ce1434-3871-4f42-80fc-0bc7044d0494",
+      "name": "Boleto ou Pix?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        320,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"Status\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\nAqui é Antonio, do Notificações Lucrativas, vi aqui que você acabou de solicitar o pagamento via boleto.\n\nSegue o código do seu boleto:"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "d4812b3c-33c5-4338-ab9a-f581cc33c874",
+      "name": "Boleto - MSG 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        540,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"boleto_barcode\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "751a680d-6d4b-4ec4-a2c9-67859ad8c6f5",
+      "name": "Boleto - MSG 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        820,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "refused"
+            }
+          ]
+        }
+      },
+      "id": "08317667-d313-4e5f-bba0-93e091d55cad",
+      "name": "Negada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        340,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "waiting_payment"
+            }
+          ]
+        }
+      },
+      "id": "4faac6da-83c7-4ba4-af66-80706da51b8f",
+      "name": "Aguardando Pagamento",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        160,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"Status\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\nAqui é Antonio, do Notificações Lucrativas, vi aqui que infelizmente sua compra foi cancelada."
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "1f9d07ae-9dff-4bcb-bb3a-652a70f54e0b",
+      "name": "Negada - MSG1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        560,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "="
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "536c414e-05d3-44c9-a2cf-87bbfeb5de89",
+      "name": "Negada - Msg 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        800,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "paid"
+            }
+          ]
+        }
+      },
+      "id": "9f0cf9e5-e11a-4fc4-b199-6ebcc9b2de2f",
+      "name": "Aprovada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        560,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"Status\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\nAqui é Antonio, do Notificações Lucrativas, vi aqui que você acabou de solicitar o pagamento via boleto.\n\nSegue o código do seu boleto:"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "20349fc2-70de-4e7c-8d79-3297a4ff3a90",
+      "name": "Apv -  MSG 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        820,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"Customer\"][\"mobile\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$node[\"Status\"].json[\"body\"][\"boleto_barcode\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "42ad0dac-b06d-491a-a224-7c3b24ed5199",
+      "name": "APV - MSG 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🛒 Carrinho Abandonado\"].json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Fala {{$node[\"Status\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "78af8938-502a-4e3f-a93f-3183c7495e0e",
+      "name": "Carrinho",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        320,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🛒 Carrinho Abandonado\"].json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Aqui é Antonio, do Notificações Lucrativas, vi aqui que você chegou até nosso checkout mas por algum motivo não conseguiu finalizar a inscrição."
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "9b010f05-aee6-46de-9cb0-ef796080f6be",
+      "name": "Carrinho1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        560,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$node[\"🛒 Carrinho Abandonado\"].json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Tem algo que podemos lhe ajudar?"
+            },
+            {
+              "name": "sender",
+              "value": "558481521797"
+            },
+            {
+              "name": "token",
+              "value": "p9Hry6rD2YKtATLZEIlf"
+            }
+          ]
+        }
+      },
+      "id": "6a88d3cf-52db-4266-ad4b-84eedc1367ed",
+      "name": "Carrinho2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        760,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiwify-teste",
+        "options": {}
+      },
+      "id": "3208aae2-761a-489a-a8d2-d57175f76cae",
+      "name": "Status",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        300
+      ],
+      "webhookId": "92093bbd-cb67-4967-a152-0b76070eeba5"
+    },
+    {
+      "parameters": {},
+      "id": "c40676cf-817c-4055-8ab6-f80dc8504552",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        920,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiwify-teste-c",
+        "options": {}
+      },
+      "id": "89ab99ac-c669-464c-b28c-5c97fa21f746",
+      "name": "🛒 Carrinho Abandonado",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        60,
+        1160
+      ],
+      "webhookId": "92093bbd-cb67-4967-a152-0b76070eeba5"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T22:55:17.226Z",
+      "updatedAt": "2022-08-22T22:55:17.226Z",
+      "id": "3",
+      "name": "🥝"
+    }
+  ],
+  "updatedAt": "2022-08-25T14:52:23.372Z"
+}
