@@ -1,0 +1,281 @@
+{
+  "active": false,
+  "connections": {
+    "Monitora pedidos atualizados": {
+      "main": [
+        [
+          {
+            "node": "Formata num wpp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedido Pendente?": {
+      "main": [
+        [
+          {
+            "node": "Envia WhatsApp Pagamento Pendente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formata num wpp": {
+      "main": [
+        [
+          {
+            "node": "Pedido Pendente?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Pedido Pago?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedido Pago?": {
+      "main": [
+        [
+          {
+            "node": "Envia WhatsApp Pagamento Pendente1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-02T02:07:44.988Z",
+  "hash": "c3db7de09e58ac9c3f49519631f567af",
+  "id": 40,
+  "name": "[TEMPLATE] - WOOCOMMERCE",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "160c4f27-af43-4f51-b7e1-5657beae64aa",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "event": "order.updated"
+      },
+      "name": "Monitora pedidos atualizados",
+      "type": "n8n-nodes-base.wooCommerceTrigger",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        620
+      ],
+      "webhookId": "1df06780-dd02-4d5d-8ec9-459c08554a9f",
+      "id": "16cd86f2-2911-4681-bda3-27a02825225a",
+      "credentials": {
+        "wooCommerceApi": {
+          "id": "16",
+          "name": "WooCommerce Autotic"
+        }
+      },
+      "notes": "Monitora cada atualização de pedido no Woocommerce."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"status\"]}}",
+              "value2": "pending"
+            },
+            {
+              "value1": "={{$json[\"status\"]}}",
+              "value2": "on-hold"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "name": "Pedido Pendente?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        360,
+        360
+      ],
+      "id": "206fb092-aafd-4d0b-b5ad-1eb1ee26078f",
+      "notes": "Filtra apenas pedidos pendentes."
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://teste.uzapi.com.br:3333/sendText",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "session",
+              "value": "autotic"
+            },
+            {
+              "name": "number",
+              "value": "=55{{$node[\"Formata num wpp\"].json[\"fwpp\"]}}"
+            },
+            {
+              "name": "text",
+              "value": "=Olá {{$node[\"Monitora pedidos atualizados\"].json[\"billing\"][\"first_name\"]}}\n\nRecebemos seu pedido! Assim que nosso sistema reconhecer seu pagamento, você receberá acesso do seu produto por aqui."
+            }
+          ]
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "sessionkey",
+              "value": "autotic"
+            }
+          ]
+        }
+      },
+      "name": "Envia WhatsApp Pagamento Pendente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        700,
+        200
+      ],
+      "id": "b46650c5-bdee-48dd-869a-60f1eda8a742",
+      "notes": "Envia mensagem no whatsapp do cliente, avisando que o pagamento não foi identificado ainda."
+    },
+    {
+      "parameters": {
+        "functionCode": "var num = $node[\"Monitora pedidos atualizados\"].json[\"billing\"][\"cellphone\"];\nfwpp = num.replace(/[^0-9]+/g,'');\nitem.fwpp = fwpp\nreturn item;"
+      },
+      "name": "Formata num wpp",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        100,
+        620
+      ],
+      "id": "cefda995-0e4c-4de2-9662-0395946bc902",
+      "notes": "Formata o número de whatsapp do comprador, removendo espaços e caracteres especiais."
+    },
+    {
+      "parameters": {},
+      "id": "d9974f5c-ad15-4126-8ed7-edf59c062d16",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        700,
+        460
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fd4179a8-1081-4acb-9f06-e688d2b542b6",
+      "name": "NoOp1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"status\"]}}",
+              "value2": "completed"
+            }
+          ]
+        }
+      },
+      "name": "Pedido Pago?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        860
+      ],
+      "id": "378bd4f6-a0a3-43a6-9f97-6e5e3cf4a059",
+      "notes": "Filtra apenas pedidos concuídos."
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://teste.uzapi.com.br:3333/sendText",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "session",
+              "value": "autotic"
+            },
+            {
+              "name": "number",
+              "value": "=55{{$node[\"Formata num wpp\"].json[\"fwpp\"]}}"
+            },
+            {
+              "name": "text",
+              "value": "=Olá {{$node[\"Monitora pedidos atualizados\"].json[\"billing\"][\"first_name\"]}}\n\nRecebemos seu pedido! Assim que nosso sistema reconhecer seu pagamento, você receberá acesso do seu produto por aqui."
+            }
+          ]
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "sessionkey",
+              "value": "autotic"
+            }
+          ]
+        }
+      },
+      "name": "Envia WhatsApp Pagamento Pendente1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        640,
+        760
+      ],
+      "id": "cb0133ce-64be-47ac-93d1-5c7492d87e2a",
+      "notes": "Envia mensagem no whatsapp do cliente, avisando que o pagamento não foi identificado ainda."
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-09-27T22:10:30.493Z",
+      "updatedAt": "2022-09-27T22:10:30.493Z",
+      "id": "8",
+      "name": "💭🟢"
+    }
+  ],
+  "updatedAt": "2022-10-17T04:57:14.568Z"
+}
