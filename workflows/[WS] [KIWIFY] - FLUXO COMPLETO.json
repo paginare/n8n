@@ -1,0 +1,464 @@
+{
+  "active": true,
+  "connections": {
+    "Status": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardando Pagamento": {
+      "main": [
+        [
+          {
+            "node": "Boleto ou Pix?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Negada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negada": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO CANCELADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aprovada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aprovada": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO APROVADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boleto ou Pix?": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO PIX",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA TEXTO BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🛒 Carrinho Abandonado": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Aguardando Pagamento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "MSG 🛒",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO PIX": {
+      "main": [
+        [
+          {
+            "node": "ENVIA PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO BOLETO": {
+      "main": [
+        [
+          {
+            "node": "ENVIA BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-09T23:33:59.392Z",
+  "hash": "07e60a707e72e7b53b991f4b980847a8",
+  "id": 45,
+  "name": "[WS] [KIWIFY] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "99598536-9c01-4e4d-96a1-1d0257446f5e",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"payment_method\"]}}",
+              "value2": "pix"
+            }
+          ]
+        }
+      },
+      "id": "ab482d4c-f589-4f57-a2a6-53cae217131a",
+      "name": "Boleto ou Pix?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        420,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "refused"
+            }
+          ]
+        }
+      },
+      "id": "f73617e6-2ef0-45c4-bfa4-9afd61489615",
+      "name": "Negada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        340,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "waiting_payment"
+            }
+          ]
+        }
+      },
+      "id": "ba3e3f01-feed-4f3c-b4f0-33aaba56bdab",
+      "name": "Aguardando Pagamento",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        160,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "paid"
+            }
+          ]
+        }
+      },
+      "id": "b09dc1d2-dcd2-48d8-a421-f35acb071a2f",
+      "name": "Aprovada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        560,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ws-kiwify",
+        "options": {}
+      },
+      "id": "478a9eaa-5b13-4107-8a51-bc398aa85901",
+      "name": "Status",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        300
+      ],
+      "webhookId": "f323e2d4-f1c9-4eb2-8072-39d160756bae"
+    },
+    {
+      "parameters": {},
+      "id": "468ae0cd-0e35-40b6-804a-5600ace68439",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        920,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ws-kiwify-carrinho",
+        "options": {}
+      },
+      "id": "782444d8-b0a8-494b-88e3-76e5ff9bd903",
+      "name": "🛒 Carrinho Abandonado",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        1020
+      ],
+      "webhookId": "eb7b99ce-a936-4a08-b0ec-cb32625d66f4"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2A2C1CCEA10030D66996D3C7000108/token/2B2BBEEB2F4D0177835C394E/"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json[\"body\"][\"Customer\"][\"mobile\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "36c3f2d8-a681-4796-bd7d-7dd57f5ea8bc",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2A2C1CCEA10030D66996D3C7000108/token/2B2BBEEB2F4D0177835C394E/"
+            },
+            {
+              "name": "phone",
+              "value": "=55{{$node[\"🛒 Carrinho Abandonado\"].json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c9dc58b9-2b6a-4e1a-8dc0-dca9650a13fb",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"name\"]}}, tudo bem?\\nAqui é o Will dos resumos de odonto, notei que por algum motivo você chegou até nosso checkout porem não finalizou sua compra. Por isso vou te dar um desconto IMPERDÍVEL pra acabar com suas dúvidas, acessa esse link: https://pay.kiwify.com.br/F2hXa2r\\n\\nPosso te ajudar com mais alguma coisa?\"\n}"
+      },
+      "id": "7518ebb8-06b2-4b8f-9e0c-adfd743a15fc",
+      "name": "MSG 🛒",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{ $node[\"Set\"].json[\"phone\"] }}\",\n  \"message\": \"{{ $node[\"Set\"].json[\"body\"][\"pix_code\"] }}\"\n}"
+      },
+      "id": "c7f3f99b-c9db-4daf-b1fb-44e1824131b4",
+      "name": "ENVIA PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        900,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem?\\nAqui é o Will dos resumos de odonto, vi que você acabou de solicitar um pagamento via PIX.\\n\\nÉ isso mesmo?\\n\\nSegue o código que basta copiar e colar ai no seu banco! Tem muita coisa boa te esperando na minha plataforma!\"\n}"
+      },
+      "id": "b4cd849e-25c1-4a9f-8c43-f977f902709c",
+      "name": "ENVIA TEXTO PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        660,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{ $node[\"Set\"].json[\"phone\"] }}\",\n  \"message\": \"{{ $node[\"Set\"].json[\"body\"][\"boleto_barcode\"] }}\"\n}"
+      },
+      "id": "c99a6bf2-fb73-4e45-8bf9-e310749c7dc7",
+      "name": "ENVIA BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        920,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem?\\nAqui é o Will dos resumos de odonto, vi que você acabou de solicitar um pagamento via Boleto.\\n\\nÉ isso mesmo?\\n\\nSegue o código de barras em número para facilitar as coisas por aí. Tem muita coisa boa te esperando na minha plataforma!\"\n}"
+      },
+      "id": "12839d8f-fe89-42f2-ae43-bf82d71f5c5b",
+      "name": "ENVIA TEXTO BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        660,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Parabéns! Seja bem-vindo(a) {{$json[\"body\"][\"Customer\"][\"full_name\"]}}!\\n\\nAgora você faz parte da plataforma Odonto com WIll.\\nCaso você queira participar do nosso grupo de whatsapp clica aqui: \\n\\nhttps://resumosdowill.com/grupo\"\n}"
+      },
+      "id": "908b32c1-e1c1-4ed8-b34d-571c690cef5f",
+      "name": "ENVIA TEXTO APROVADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        920,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem?\\nAqui é Will dos resumos de odonto, vi que sua compra foi cancelada.\\n\\nVou te dar um desconto IMPERDÍVEL pra acabar com suas dúvidas, acessa esse link: https://pay.kiwify.com.br/F2hXa2r\"\n}"
+      },
+      "id": "fd0addd1-b81f-4a39-97f2-61321d6cb877",
+      "name": "ENVIA TEXTO CANCELADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        700,
+        440
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T22:55:17.226Z",
+      "updatedAt": "2022-08-22T22:55:17.226Z",
+      "id": "3",
+      "name": "🥝"
+    }
+  ],
+  "updatedAt": "2022-10-12T14:03:41.479Z"
+}
