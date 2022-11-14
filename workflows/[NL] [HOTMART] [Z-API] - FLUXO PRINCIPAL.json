@@ -1,0 +1,842 @@
+{
+  "active": false,
+  "connections": {
+    "HOTMART ENVIA WEBHOOK": {
+      "main": [
+        [
+          {
+            "node": "PARÂMETROS API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É CARRINHO?": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - MSG 🛒 - INICIAL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📮 FILTRA SITUAÇÃO": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - APROVADO 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[TEXTO] - CANCELADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "BOLETO OU PIX ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔎 CONSULTA DADOS NA API": {
+      "main": [
+        [
+          {
+            "node": "salva telefone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOLETO OU PIX ?": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[TEXTO] - PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR": {
+      "main": [
+        [
+          {
+            "node": "🔎 CONSULTA DADOS NA API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - MSG 🛒 - INICIAL": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - MSG 🛒 - INICIAL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - MSG 🛒 - INICIAL1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - APROVADO 1": {
+      "main": [
+        [
+          {
+            "node": "[ADC GRUPO] - APROVADO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[ADC GRUPO] - APROVADO": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - APROVADO ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - CANCELADO": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - CANCELADO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - CANCELADO1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PARÂMETROS API": {
+      "main": [
+        [
+          {
+            "node": "É CARRINHO?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - BOLETO": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - CÓDIGO DO BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - PIX": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "[BOTÃO COPIA] - CÓDIGO PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "[BOTÃO] - DÚVIDA OU PAGAMENTO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "[BOTÃO] - DÚVIDA OU NÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[BOTÃO COPIA] - CÓDIGO PIX": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - MSG IPHONE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - MSG IPHONE": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - PIX1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - APROVADO ": {
+      "main": [
+        [
+          {
+            "node": "[MENCIONA NO GRUPO] - APROVADO 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "salva telefone": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "📮 FILTRA SITUAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-19T14:15:06.692Z",
+  "hash": "d8379f5846b0eb5b3fc0996e07230baa",
+  "id": 32,
+  "name": "[NL] [HOTMART] [Z-API] - FLUXO PRINCIPAL",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "15bcea69-812c-48b1-a44e-31ec5b7d6b19",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -1120,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hotmart",
+        "options": {}
+      },
+      "id": "8a772582-6bf2-4b4b-9826-f9107957e76e",
+      "name": "HOTMART ENVIA WEBHOOK",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        80
+      ],
+      "webhookId": "92da31ac-a679-423e-9021-f2f24156f7c2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"event\"]}}",
+              "value2": "PURCHASE_OUT_OF_SHOPPING_CART"
+            }
+          ]
+        }
+      },
+      "id": "2d8293f3-ed09-49b4-a0fd-5347e95ef817",
+      "name": "É CARRINHO?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"status\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "APPROVED"
+            },
+            {
+              "value2": "CANCELLED",
+              "output": 1
+            },
+            {
+              "value2": "BILLET_PRINTED",
+              "output": 2
+            },
+            {
+              "value2": "WAITING_PAYMENT",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "a94316f4-fa35-4959-ae66-8ff1a2ecfce0",
+      "name": "📮 FILTRA SITUAÇÃO",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/users",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "b582a205-b678-472a-bcd4-47ec45fe0ba7",
+      "name": "🔎 CONSULTA DADOS NA API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        420,
+        300
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "9",
+          "name": "[HOTMART] - ANTONIO DUARTE"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"boleto\"]}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "9d0dc137-863d-43ef-9a30-db839b1f7c48",
+      "name": "BOLETO OU PIX ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            },
+            {
+              "name": "boleto",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"billet_barcode\"]}}"
+            },
+            {
+              "name": "pix",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ad41b82d-528c-4379-bc82-7740ddde8ee7",
+      "name": "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        140,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "token",
+              "value": "3F0C5FDA165654A355A4E14C"
+            },
+            {
+              "name": "instancia",
+              "value": "3B1C018FE037F0C08302DA965400693C"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "537fe27d-976e-4370-ba88-2470c7a56082",
+      "name": "PARÂMETROS API",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"55{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"phone\"]}}\",\n  \"message\": \"Fala {{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"name\"]}}, tudo bem?\"\n}"
+      },
+      "id": "ef89a47b-04b4-46dc-ae6c-983ab54116fd",
+      "name": "[TEXTO] - MSG 🛒 - INICIAL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        160,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"55{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"phone\"]}}\",\n  \"message\": \"Vi aqui que você chegou bem pertinho de comprar o curso, mas por algum motivo não conseguiu.\"\n}"
+      },
+      "id": "506cd747-4da0-4936-a6d0-5857823c5f66",
+      "name": "[TEXTO] - MSG 🛒 - INICIAL1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        420,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}, tudo bem?\\n\\nEstou passando pra avisar que deu tudo certo com a sua compra!\"\n}"
+      },
+      "id": "4f40fde7-392e-45c5-b3d1-239b6220f399",
+      "name": "[TEXTO] - APROVADO 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/add-participant",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n    \"groupId\": \"120363025969842682-group\",\n    \"phones\": [\"{{$node[\"salva telefone\"].json[\"telefone\"]}}\"]\n  }"
+      },
+      "id": "95a9f10e-0773-478f-80ae-de40958d1cbf",
+      "name": "[ADC GRUPO] - APROVADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"E se todos os meus 🤖 estiverem trabalhando, você já deve ter sido adicionado no nosso grupo de suporte aqui no whatsapp. Lembrando que é essencial que *todas* as aulas sejam assistidas, pois as dúvidas básicas são respondidas nas aulas.\"\n}"
+      },
+      "id": "9943d6f4-e9ca-475f-bbfc-d4ba896cf3a0",
+      "name": "[TEXTO] - APROVADO ",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2100,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem?\\n\\nVi que infelizmente sua compra não foi aprovada...\"\n}"
+      },
+      "id": "be116d20-393c-422e-be8d-2b7c63fa8bf9",
+      "name": "[TEXTO] - CANCELADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem\\n\\nVi que infelizmente sua compra não foi aprovada...\"\n}"
+      },
+      "id": "62684892-6770-4e78-9857-86fafb1ff991",
+      "name": "[TEXTO] - CANCELADO1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem?\n\nEstou passando aqui só pra te enviar o seu código de barras do seu boleto pra compra do curso, combinado?\"\n}"
+      },
+      "id": "2e9896de-8751-4882-a821-c5ff1284539d",
+      "name": "[TEXTO] - BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"billet_barcode\"]}}\"\n}"
+      },
+      "id": "cddb27f0-f264-41db-a375-224d5d64f5d1",
+      "name": "[TEXTO] - CÓDIGO DO BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Fala {{$node[\"🔎 CONSULTA DADOS NA API\"].json[\"items\"][0][\"users\"][1][\"user\"][\"name\"]}}! Tudo bem?\\n\\nEstou passando aqui só pra te enviar o seu código pix, para pagamento do curso. Basta clicar no botão que ele vai copiar o código e você cola no seu banco\"\n}"
+      },
+      "id": "418f6b6e-5270-46be-a37a-80d7b9ff6999",
+      "name": "[TEXTO] - PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-button-list",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Você ficou com alguma dúvida 🤖?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"Sim, ainda tenho dúvidas ⚠️\",\n        \"label\": \"Sim, ainda tenho dúvidas ⚠️\"\n      },\n      {\n        \"id\": \"Não, porém preciso de ajuda com meu pagamento\",\n        \"label\": \"Não, porém preciso de ajuda com meu pagamento\"\n      }\n    ]\n  }\n}"
+      },
+      "id": "53faec3d-9ee8-4cc5-b5b6-6888fc0b1a14",
+      "name": "[BOTÃO] - DÚVIDA OU PAGAMENTO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-button-list",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"55{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"phone\"]}}\",\n  \"message\": \"Você ficou com alguma dúvida 🤖?\",\n  \"buttonList\": {\n    \"buttons\": [\n      {\n        \"id\": \"Sim, ainda tenho dúvidas ⚠️\",\n        \"label\": \"Sim, ainda tenho dúvidas ⚠️\"\n      },\n      {\n        \"id\": \"Não, só não vou comprar agora...\",\n        \"label\": \"Não, só não vou comprar agora...\"\n      }\n    ]\n  }\n}"
+      },
+      "id": "c432a8c3-0601-429f-b332-19311f65dd4f",
+      "name": "[BOTÃO] - DÚVIDA OU NÃO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "ff2e316d-2ec7-4697-8750-0e1aa2485848",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        780
+      ],
+      "webhookId": "4c9ff295-751c-4aa0-bc97-4c779feeab1e"
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "68121d6f-0c7a-470a-9019-578d89270330",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        300
+      ],
+      "webhookId": "4c9ff295-751c-4aa0-bc97-4c779feeab1e"
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "07537c02-76fd-412a-ac9b-2d77aef775ef",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        900,
+        -120
+      ],
+      "webhookId": "4c9ff295-751c-4aa0-bc97-4c779feeab1e"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-button-actions",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n    \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n    \"message\": \"Caso você use android, só clicar no botão abaixo👇🏻\",\n    \"buttonActions\": [\n        {\n            \"id\": \"qrpix\",\n            \"type\": \"URL\",\n            \"url\": \"https://www.whatsapp.com/otp/copy/{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}\",\n            \"label\": \"Pix Copia e Cola\"\n        }\n\n    ]\n}"
+      },
+      "id": "27659898-ea7c-4b8f-95e9-71f2602f3c41",
+      "name": "[BOTÃO COPIA] - CÓDIGO PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Caso você use iphone, é só copiar abaixo 👇🏻\"\n}"
+      },
+      "id": "70e61597-19bd-491f-992e-2af0d33fbae3",
+      "name": "[TEXTO] - MSG IPHONE",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2600,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"55{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}\"\n}"
+      },
+      "id": "f0bfa531-e54c-4ab7-a9a4-6a7eeb9eebc8",
+      "name": "[TEXTO] - PIX1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"120363025969842682-group\",\n  \"message\": \"Bem-vindo @{{$node[\"salva telefone\"].json[\"telefone\"]}}\\n\\nQualquer Dúvida estamos a disposição\",\n  \"mentioned\": [55{{$node[\"salva telefone\"].json[\"telefone\"]}}]\n}"
+      },
+      "id": "aa6fca3b-9f39-4f3f-9581-06c09c25ee4f",
+      "name": "[MENCIONA NO GRUPO] - APROVADO 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "telefone",
+              "value": "=55{{$json[\"items\"][0][\"users\"][1][\"user\"][\"cellphone\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d7eaff79-d357-4700-9848-fcc2d3c20ab0",
+      "name": "salva telefone",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        660,
+        540
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "82e8bdbd-3c9a-426b-9746-aa6465f4431c",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        900,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T19:51:00.273Z",
+      "updatedAt": "2022-08-22T19:51:00.273Z",
+      "id": "1",
+      "name": "🔥"
+    }
+  ],
+  "updatedAt": "2022-10-18T13:08:31.433Z"
+}
