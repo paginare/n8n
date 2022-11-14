@@ -1,0 +1,26 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2022-10-21T01:10:56.705Z",
+  "hash": "57ba710d1053ece2402b91e37fe9f8dd",
+  "id": 54,
+  "name": "FLOW GURU",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0a86cdb6-1550-44f2-b154-b80eef2c16d0",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        180,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-21T01:10:56.705Z"
+}
