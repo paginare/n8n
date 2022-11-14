@@ -1,0 +1,1006 @@
+{
+  "active": true,
+  "connections": {
+    "🛒 Carrinho Abandonado - TRELLO": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PRINCIPAL - TRELLO": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PRINCIPAL - Carrossel": {
+      "main": [
+        [
+          {
+            "node": "Set3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🛒 Carrinho Abandonado - Carrossel": {
+      "main": [
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "MSG 🛒",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO PIX": {
+      "main": [
+        [
+          {
+            "node": "ENVIA PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boleto ou Pix?2": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO PIX",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA TEXTO BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negada2": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO CANCELADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aprovada2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardando Pagamento2": {
+      "main": [
+        [
+          {
+            "node": "Boleto ou Pix?2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Negada2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aprovada2": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO APROVADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG 🛒": {
+      "main": [
+        [
+          {
+            "node": "MSG 🛒1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Aguardando Pagamento2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO CANCELADO": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO CANCELADO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO BOLETO": {
+      "main": [
+        [
+          {
+            "node": "ENVIA BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set2": {
+      "main": [
+        [
+          {
+            "node": "MSG 🛒2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG 🛒2": {
+      "main": [
+        [
+          {
+            "node": "MSG 🛒3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO PIX1": {
+      "main": [
+        [
+          {
+            "node": "ENVIA PIX1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO CANCELADO2": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO CANCELADO3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boleto ou Pix?": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO PIX1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ENVIA TEXTO BOLETO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aprovada": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO APROVADO1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA TEXTO BOLETO1": {
+      "main": [
+        [
+          {
+            "node": "ENVIA BOLETO1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardando Pagamento": {
+      "main": [
+        [
+          {
+            "node": "Boleto ou Pix?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Negada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set3": {
+      "main": [
+        [
+          {
+            "node": "Aguardando Pagamento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negada": {
+      "main": [
+        [
+          {
+            "node": "ENVIA TEXTO CANCELADO2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aprovada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-27T16:48:44.778Z",
+  "hash": "ce03fd213db1948983074ff9984732dc",
+  "id": 18,
+  "name": "[AM] [KIWIFY] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d05d4216-1e33-40de-bc00-7592c6538fb2",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        1680
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiwify-alef-trello-carrinho",
+        "options": {}
+      },
+      "id": "61723a38-99c1-48b0-ab91-3b8e62dd1aea",
+      "name": "🛒 Carrinho Abandonado - TRELLO",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        1520
+      ],
+      "webhookId": "8ecb3a5a-8c02-4503-9bd1-423e176a9006"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiwify-alef-trello",
+        "options": {}
+      },
+      "id": "f63f665f-7264-4238-8968-df341404003a",
+      "name": "PRINCIPAL - TRELLO",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        520,
+        1760
+      ],
+      "webhookId": "b26e3046-17ca-4ce3-b947-dca072bb7ee2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiwify-alef-carrossel",
+        "options": {}
+      },
+      "id": "f33d858a-20ee-4655-94d1-8152a49715a9",
+      "name": "PRINCIPAL - Carrossel",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        200,
+        2920
+      ],
+      "webhookId": "b26e3046-17ca-4ce3-b947-dca072bb7ee2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "kiwify-alef-carrossel-carrinho",
+        "options": {}
+      },
+      "id": "e7024c54-cf72-409b-8af6-bd3ddc784a88",
+      "name": "🛒 Carrinho Abandonado - Carrossel",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        3640
+      ],
+      "webhookId": "8ecb3a5a-8c02-4503-9bd1-423e176a9006"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2D3DE4FB7B3039EA42A2CB4232B497/token/66A178126C3B7CF21E9FE5BB/"
+            },
+            {
+              "name": "phone",
+              "value": "=55{{$json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e945089a-84f6-44d9-b5d5-fdda4b16e627",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        680,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"name\"]}}, tudo bem?\"\n}"
+      },
+      "id": "ffd82546-f5cb-4f50-802f-3d9b2dc2ef0b",
+      "name": "MSG 🛒",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        920,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{ $node[\"Set\"].json[\"phone\"] }}\",\n  \"message\": \"{{ $node[\"Set\"].json[\"body\"][\"pix_code\"] }}\"\n}"
+      },
+      "id": "f749d7a1-fd91-4cde-899a-472f2f8512a8",
+      "name": "ENVIA PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\nAqui é o Alef, do Trello Dsgn 2.0 , vi aqui que você acabou de solicitar o pagamento via pix.\\n\\nSegue o código copia e cola:\"\n}"
+      },
+      "id": "60f8f51f-666e-4769-8996-36ebf30e2fe5",
+      "name": "ENVIA TEXTO PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{ $node[\"Set\"].json[\"phone\"] }}\",\n  \"message\": \"{{ $node[\"Set\"].json[\"body\"][\"boleto_barcode\"] }}\"\n}"
+      },
+      "id": "7c47f764-65e1-4c78-b1f1-6fd63d10e378",
+      "name": "ENVIA BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        1640
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\n\\nAqui é o Alef 🥃, seu pagamento foi aprovado! E vim te dar as boas vindas.\"\n}"
+      },
+      "id": "78424f4e-390f-461a-8e2a-9c2d472708c8",
+      "name": "ENVIA TEXTO APROVADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        2100
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\n\\nAqui é o Alef, do Trello Dsgn 2.0, vi aqui que infelizmente sua compra foi cancelada.\"\n}"
+      },
+      "id": "5bca7d84-cc72-4a3f-bf37-e4258a8a2a30",
+      "name": "ENVIA TEXTO CANCELADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1720,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"payment_method\"]}}",
+              "value2": "pix"
+            }
+          ]
+        }
+      },
+      "id": "908e3ef8-74b3-4924-8939-caccf144618a",
+      "name": "Boleto ou Pix?2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "refused"
+            }
+          ]
+        }
+      },
+      "id": "692f1c78-9c59-4d4e-869c-a7cfd6141877",
+      "name": "Negada2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        1920
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "waiting_payment"
+            }
+          ]
+        }
+      },
+      "id": "cd220dcc-c202-40eb-a56b-d4f25068f46c",
+      "name": "Aguardando Pagamento2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        1760
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "paid"
+            }
+          ]
+        }
+      },
+      "id": "4db295d8-4efa-4d07-b280-164b3ac3d5d7",
+      "name": "Aprovada2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        2120
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a8be87b3-1017-442a-92ad-887c3d4bbcba",
+      "name": "NoOp2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        2360
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set1\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set1\"].json[\"phone\"]}}\",\n  \"message\": \"Aqui é Alef, do Trello Dsgn 2.0, vi aqui que você chegou até nosso checkout mas por algum motivo não conseguiu finalizar a inscrição.\\n\\nTem algo que podemos lhe ajudar?\"\n}"
+      },
+      "id": "3643e9b3-c121-4352-8829-ab50943e4df1",
+      "name": "MSG 🛒1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2D3DE4FB7B3039EA42A2CB4232B497/token/66A178126C3B7CF21E9FE5BB/"
+            },
+            {
+              "name": "phone",
+              "value": "={{$json[\"body\"][\"phone\"].replace(/\\D/g,'')}} {{ $json[\"body\"][\"Customer\"][\"mobile\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "91f48259-2d38-4cd8-8387-3a7c43b5276e",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        840,
+        1760
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Responde a essa mensagem aqui que já vamos te ajudar.\"\n}"
+      },
+      "id": "864ea6c7-aad6-4179-850d-a6cec6f810fe",
+      "name": "ENVIA TEXTO CANCELADO1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\nAqui é o Alef, do Trello Dsgn 2.0 , vi aqui que você acabou de solicitar o pagamento via boleto.\\n\\nSegue o código de barras:\"\n}"
+      },
+      "id": "c087404c-3213-4124-9cc7-de66ff2f6c0f",
+      "name": "ENVIA TEXTO BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        1640
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2D3DE4FB7B3039EA42A2CB4232B497/token/66A178126C3B7CF21E9FE5BB/"
+            },
+            {
+              "name": "phone",
+              "value": "=55{{$json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0e52137b-7e37-4f4c-857e-1a96da4d0bfb",
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        540,
+        3640
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"name\"]}}, tudo bem?\"\n}"
+      },
+      "id": "781d63d5-9c56-4025-8e8f-da696a66801d",
+      "name": "MSG 🛒2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        780,
+        3640
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set2\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set2\"].json[\"phone\"]}}\",\n  \"message\": \"Aqui é Alef, do Carrossel Perfeito, vi aqui que você chegou até nosso checkout mas por algum motivo não conseguiu finalizar a inscrição.\\n\\nTem algo que podemos lhe ajudar?\"\n}"
+      },
+      "id": "c46dbf71-fd1b-4286-b29d-5cf117d17626",
+      "name": "MSG 🛒3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        3640
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set3\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{ $node[\"Set3\"].json[\"phone\"] }}\",\n  \"message\": \"{{ $node[\"Set3\"].json[\"body\"][\"pix_code\"] }}\"\n}"
+      },
+      "id": "1f5d5132-6b9a-4bab-8759-e098e2727476",
+      "name": "ENVIA PIX1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        2560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set3\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set3\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\nAqui é o Alef, do Trello Dsgn 2.0 , vi aqui que você acabou de solicitar o pagamento via pix.\\n\\nSegue o código copia e cola:\"\n}"
+      },
+      "id": "2d4ec2f2-f9fc-482c-84e2-db115ae84186",
+      "name": "ENVIA TEXTO PIX1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        2560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set3\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{ $node[\"Set3\"].json[\"phone\"] }}\",\n  \"message\": \"{{ $node[\"Set3\"].json[\"body\"][\"boleto_barcode\"] }}\"\n}"
+      },
+      "id": "3ef0fd84-62c0-41a6-aab2-4f3c29686764",
+      "name": "ENVIA BOLETO1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        2800
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set3\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set3\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\n\\nAqui é o Alef 🥃, seu pagamento foi aprovado! E vim te dar as boas vindas.\"\n}"
+      },
+      "id": "f6f64f51-96f2-4a35-b48a-3a9f0d989c07",
+      "name": "ENVIA TEXTO APROVADO1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        3260
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set3\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\n\\nAqui é o Alef, do Trello Dsgn 2.0, vi aqui que infelizmente sua compra foi cancelada.\"\n}"
+      },
+      "id": "f3aba75f-be93-424d-89e6-d6d1094ffbba",
+      "name": "ENVIA TEXTO CANCELADO2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        3060
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"payment_method\"]}}",
+              "value2": "pix"
+            }
+          ]
+        }
+      },
+      "id": "39128162-f870-45f8-b847-b2e8d6faf782",
+      "name": "Boleto ou Pix?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        2780
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "paid"
+            }
+          ]
+        }
+      },
+      "id": "7c86a919-881d-472e-a939-b99397237bcf",
+      "name": "Aprovada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        3280
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2d001bb3-d3e2-4eb6-8096-cd6ddbf0ea08",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        3520
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{ $node[\"Set3\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set3\"].json[\"phone\"]}}\",\n  \"message\": \"Responde a essa mensagem aqui que já vamos te ajudar.\"\n}"
+      },
+      "id": "01e57518-6a35-4378-b11d-ad5040f9d980",
+      "name": "ENVIA TEXTO CANCELADO3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        3060
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set3\"].json[\"url\"] }}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"Set3\"].json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"body\"][\"Customer\"][\"full_name\"]}}! Tudo bem? 🙋🏻‍♂️\\nAqui é o Alef, do Trello Dsgn 2.0 , vi aqui que você acabou de solicitar o pagamento via boleto.\\n\\nSegue o código de barras:\"\n}"
+      },
+      "id": "3d387f22-11e7-44ef-8515-9df91b61be04",
+      "name": "ENVIA TEXTO BOLETO1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1340,
+        2800
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "waiting_payment"
+            }
+          ]
+        }
+      },
+      "id": "5fc4cd9a-3252-41b1-b9dc-b8fc0aef58a8",
+      "name": "Aguardando Pagamento",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        840,
+        2920
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2D3DE4FB7B3039EA42A2CB4232B497/token/66A178126C3B7CF21E9FE5BB/"
+            },
+            {
+              "name": "phone",
+              "value": "={{$json[\"body\"][\"phone\"].replace(/\\D/g,'')}} {{ $json[\"body\"][\"Customer\"][\"mobile\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "108f7460-6ca6-4ac0-84e3-031890455856",
+      "name": "Set3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        500,
+        2920
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"PRINCIPAL - TRELLO\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "refused"
+            }
+          ]
+        }
+      },
+      "id": "f0db2963-b89e-4d15-916a-1ac6a9741fa8",
+      "name": "Negada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        3080
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T22:55:17.226Z",
+      "updatedAt": "2022-08-22T22:55:17.226Z",
+      "id": "3",
+      "name": "🥝"
+    }
+  ],
+  "updatedAt": "2022-10-14T00:00:54.923Z"
+}
