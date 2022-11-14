@@ -1,0 +1,127 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-28T16:21:27.364Z",
+  "hash": "dd37ef9aac38f8f3348e9f255269b6c9",
+  "id": 59,
+  "name": "[ROSA] - RESPOSTA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wpp-rosa",
+        "options": {}
+      },
+      "id": "da324212-35ce-4e1a-b0d2-4582bc8d6ee7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        460,
+        280
+      ],
+      "webhookId": "64ca3e50-9aa9-4024-815f-450d85ce0de6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"text\"][\"message\"] }}",
+              "operation": "contains",
+              "value2": "sim"
+            },
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"text\"][\"message\"] }}",
+              "operation": "contains",
+              "value2": "já"
+            },
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"text\"][\"message\"] }}",
+              "operation": "contains",
+              "value2": "Sim"
+            },
+            {
+              "value1": "={{ $node[\"Webhook\"].json[\"body\"][\"buttonsResponseMessage\"][\"message\"] }}",
+              "operation": "contains",
+              "value2": "Sim"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "4f906408-7271-4400-ae2d-9adbbdd6cd1f",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "53a0607e-a29a-44cb-bd51-1476e1e8aeec",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        940,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B384B78AB65D0559B753601BC0FDEA2/token/B15100C297DEB3B9FA015172/send-button-list",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"phone\": \"55{{$json[\"whatsapp\"]}}\",\n\"video\": \"https://paginare.com/wp-content/uploads/2022/10/emoji1.mp4\",\n\"caption\": \"{{$json[\"nome\"]}}, assiste aqui👆🏻\"\n}",
+        "options": {}
+      },
+      "id": "73474ab6-ebd4-4235-b791-08d8eb34f440",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        960,
+        200
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-31T16:19:56.571Z"
+}
