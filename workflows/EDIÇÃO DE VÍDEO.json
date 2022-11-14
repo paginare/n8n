@@ -1,0 +1,95 @@
+{
+  "active": false,
+  "connections": {
+    "Trello Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-07T17:18:49.911Z",
+  "hash": "81947200d234a417419612db1d7a8a5c",
+  "id": 70,
+  "name": "EDIÇÃO DE VÍDEO",
+  "nodes": [
+    {
+      "parameters": {
+        "id": "615ee4dfa66f408ef70dea9a"
+      },
+      "id": "d4a10089-ef5d-43e7-b7e6-7aa6803cd607",
+      "name": "Trello Trigger",
+      "type": "n8n-nodes-base.trelloTrigger",
+      "typeVersion": 1,
+      "position": [
+        260,
+        260
+      ],
+      "webhookId": "e4f5c587-be1d-48e1-ae95-284fdaec3984",
+      "credentials": {
+        "trelloApi": {
+          "id": "3",
+          "name": "Trello account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "webhookUri": "https://discord.com/api/webhooks/1039225149939003403/3E9e2k27RAhSWFNXf37IgJ8Oqf4T8sP9DmG2dEeruysbPzXrvMDKHv-7dUX0a6yTR5R4",
+        "text": "=Nova demanda do {{ $item(\"0\").$node[\"Trello Trigger\"].json[\"action\"][\"memberCreator\"][\"fullName\"] }} pra edição.",
+        "options": {}
+      },
+      "id": "b3de1cfe-0a50-46c1-ac9d-765897135d7b",
+      "name": "Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 1,
+      "position": [
+        780,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $item(\"0\").$node[\"Trello Trigger\"].json[\"action\"][\"type\"] }}",
+              "value2": "createCard"
+            }
+          ]
+        }
+      },
+      "id": "cfceef7f-0a31-4291-8e1f-679024fef927",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        520,
+        260
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": {
+    "node:Trello Trigger": {}
+  },
+  "tags": [],
+  "updatedAt": "2022-11-07T19:47:53.240Z"
+}
