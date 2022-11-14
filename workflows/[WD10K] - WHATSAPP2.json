@@ -1,0 +1,165 @@
+{
+  "active": false,
+  "connections": {
+    "MSG SAUDAÇÃO": {
+      "main": [
+        [
+          {
+            "node": "ADICIONA NO GRUPO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ADICIONA NO GRUPO": {
+      "main": [
+        [
+          {
+            "node": "ENVIA EBOOK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Called By Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "MSG SAUDAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA EBOOK": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "MSG LINK DO GRUPO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-01T23:56:57.173Z",
+  "hash": "47a7bcdd61949a51985334deb81c76d2",
+  "id": 62,
+  "name": "[WD10K] - WHATSAPP2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d4caf00c-fae1-4b6f-a5ea-b753753e2097",
+      "name": "When Called By Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"message\": \"{{$node[\"When Called By Another Workflow\"].json[\"nome\"]}} cheguei aqui com o seu ebook!\\n\\nAbaixo estou te enviando ele agora o: *Segredo Revelado - A estrutura de uma página de perpétuo de 7 Dígitos*\\n\\nDepois da leitura, tira uma foto e posta no instagram marcando o _@viniciuskolling_, pode ser?\"\n}"
+      },
+      "id": "3c0cb271-6000-4fa2-abc1-6a97f8bf1527",
+      "name": "MSG SAUDAÇÃO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        740,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}add-participant",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n    \"groupId\": \"120363028165101436-group\",\n    \"phones\": [\"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\"]\n  }"
+      },
+      "id": "6186b2c4-3947-4415-b9b8-1f4df0c025a6",
+      "name": "ADICIONA NO GRUPO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        940,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-document/pdf",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"document\": \"https://paginare.com/wp-content/uploads/2022/10/Segredo-Revelado.pdf\",\n  \"fileName\": \"O Segredo Revelado - Landing Pages de 7 Dígitos - Vinicius Kolling\"\n}"
+      },
+      "id": "4cc2bd07-b9a3-45b9-a4f3-3bd9966e591c",
+      "name": "ENVIA EBOOK",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 20,
+        "unit": "seconds"
+      },
+      "id": "a444ee63-1575-46bd-baac-c56f7b6c5c3e",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        380
+      ],
+      "webhookId": "3968555b-7413-40ea-93d7-bc5157e69f17"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"message\": \"Caso você não esteja no grupo ainda, pode entrar por aqui: https://chat.whatsapp.com/CE9xYfu6di2FmbvazElp3T\"\n}"
+      },
+      "id": "5d4c58e3-b5db-4dc1-ac73-ab9f213546e0",
+      "name": "MSG LINK DO GRUPO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1560,
+        380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-02T00:08:07.107Z"
+}
