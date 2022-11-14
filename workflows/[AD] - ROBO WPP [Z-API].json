@@ -28,7 +28,13 @@
             "index": 0
           }
         ],
-        [],
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "RESPOSTAS BOTÕES",
@@ -296,10 +302,21 @@
           }
         ]
       ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "MSG IMPLATAÇÃO2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-09-18T19:18:36.155Z",
-  "hash": "c21e62593f2ee8d4b25d3241be41f0b5",
+  "hash": "23168ae51467785d2ca0cb5385f7b5c5",
   "id": 31,
   "name": "[AD] - ROBO WPP [Z-API]",
   "nodes": [
@@ -415,6 +432,10 @@
             {
               "operation": "contains",
               "value2": "quero"
+            },
+            {
+              "value2": "fb",
+              "output": 2
             }
           ]
         },
@@ -998,6 +1019,43 @@
         1580,
         280
       ]
+    },
+    {
+      "parameters": {
+        "sheetId": "12SVl92XfJzkzr7P0o6D4RPWD4tmZfwVFpnolwM_1RnU",
+        "options": {}
+      },
+      "id": "b729eab6-fb0b-4d67-aa2d-e212362f2d67",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        400,
+        1240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"instancia\"]}}/token/{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"TEXTO - BOTÃO - LISTA\"].json[\"numero\"]}}\",\n  \"message\": \"Valor total gasto: R${{ $item(\"0\").$node[\"Google Sheets\"].json[\"Valor Gasto\"] }}\\n\\nAlcance: {{ $item(\"0\").$node[\"Google Sheets\"].json[\"Impressões\"] }}\\n\\nCliques no link: {{ $item(\"0\").$node[\"Google Sheets\"].json[\"Cliques no Link\"] }}\\n\\n\"\n}"
+      },
+      "id": "9414edf2-20ea-4bb5-8b70-fb36fdeb145c",
+      "name": "MSG IMPLATAÇÃO2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1240
+      ]
     }
   ],
   "pinData": {},
@@ -1011,5 +1069,5 @@
       "name": "🤖"
     }
   ],
-  "updatedAt": "2022-10-24T16:46:47.137Z"
+  "updatedAt": "2022-11-14T03:20:59.300Z"
 }
