@@ -1,0 +1,154 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "MSG 🛒",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-10T15:11:28.706Z",
+  "hash": "c565f2ee06c5d6b58e562f426fc78168",
+  "id": 46,
+  "name": "[TEMPLATE] - ENVIO MSG WPP PELA PLANILHA",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b7f9fc3a-6dbd-4ff2-9cd9-c30e5e1a3c32",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        60,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "sheetId": "1Am2EZQ1-0jWZV4NxoEROnnJHvUwWgQVm",
+        "options": {}
+      },
+      "id": "4630160d-236c-48fb-8393-3619881ec718",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        300,
+        240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set1\"].parameter[\"values\"][\"string\"][0][\"value\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n  \"message\": \"Fala {{$json[\"nome\"]}}, tudo bem?\\nAqui é o Will dos resumos de odonto, notei que por algum motivo você chegou até nosso checkout porem não finalizou sua compra. \\n\\nPosso te ajudar com algo?\"\n}"
+      },
+      "id": "cc7634b0-26a0-4da7-ab01-bd7bc9c29213",
+      "name": "MSG 🛒",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        240
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B2A2C1CCEA10030D66996D3C7000108/token/2B2BBEEB2F4D0177835C394E/"
+            },
+            {
+              "name": "phone",
+              "value": "=55{{$json[\"phone\"].replace(/\\D/g,'')}}"
+            },
+            {
+              "name": "nome",
+              "value": "={{ $json[\"nome\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1e9920a0-d569-4e4d-8faf-eb0e80b08ba7",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        540,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "bcb8a92d-5244-420a-af23-cb90cf3d6371",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        740,
+        240
+      ],
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-24T18:21:14.612Z"
+}
