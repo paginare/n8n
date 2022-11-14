@@ -1,0 +1,59 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-09T18:57:10.347Z",
+  "hash": "1707d1180f5973295865fddb713e1da4",
+  "id": 72,
+  "name": "FB DATA",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "bf286953-3dda-4f87-937f-4e9bf1e96445",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "=v15.0",
+        "node": "act_594046525115981/insights?level=ad&fields=campaign_name,adset_name,ad_name,impressions,reach,clicks,actions,spend,conversions,cpc,cpm,ctr",
+        "options": {}
+      },
+      "id": "0fa495a8-c1c2-4f2d-b655-2ebf1827f00a",
+      "name": "Facebook Graph API",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        620,
+        340
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "19",
+          "name": "Facebook Graph account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-09T19:02:43.889Z"
+}
