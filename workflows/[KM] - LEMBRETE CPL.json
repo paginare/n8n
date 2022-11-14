@@ -1,0 +1,802 @@
+{
+  "active": false,
+  "connections": {
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 015": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches1": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 011": {
+      "main": [
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists2": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches2": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 012": {
+      "main": [
+        [
+          {
+            "node": "Item Lists2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists3": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches3": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 014": {
+      "main": [
+        [
+          {
+            "node": "Item Lists3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists4": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches4": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 010": {
+      "main": [
+        [
+          {
+            "node": "Item Lists4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists5": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches5": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 013": {
+      "main": [
+        [
+          {
+            "node": "Item Lists5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists6": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches6": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO e IMAGEM] - É AMANHA6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GRUPO 016": {
+      "main": [
+        [
+          {
+            "node": "Item Lists6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA1": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA6": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA5": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA3": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA2": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO e IMAGEM] - É AMANHA4": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "GRUPO 010",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GRUPO 011",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GRUPO 012",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GRUPO 013",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GRUPO 014",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GRUPO 015",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GRUPO 016",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-27T21:33:29.819Z",
+  "hash": "5035cdaf2b2e254b5aa3523cc8143c4d",
+  "id": 34,
+  "name": "[KM] - LEMBRETE CPL",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "40a19df9-7e55-410a-9309-46b67baea887",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "19cc371c-2494-4b3c-976a-3063e9e30970",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "3430248d-3c8c-4d67-9101-161d2e8bb006",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        560
+      ],
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363025728520418-group",
+        "options": {}
+      },
+      "id": "60199e97-ec8a-493f-85df-35e3b9bcd68d",
+      "name": "GRUPO 015",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "52942dca-e489-4192-8a48-b805b91e6cad",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "4bdb0cdb-5806-40f7-ad24-884522e179a4",
+      "name": "SplitInBatches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026510185136-group",
+        "options": {}
+      },
+      "id": "cad4c727-b812-44b5-8c00-647e819d9f1d",
+      "name": "GRUPO 011",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "a3fbf981-0161-40a2-aa12-f767e9c4d57b",
+      "name": "Item Lists2",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "e49f0363-054b-4cd3-a978-b4029ae7db0f",
+      "name": "SplitInBatches2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363027304404326-group",
+        "options": {}
+      },
+      "id": "95a03871-d382-46a7-ae2e-8b4d1ef90075",
+      "name": "GRUPO 012",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "94698d63-7a14-4472-8ab9-a1fbedd0512e",
+      "name": "Item Lists3",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "1f6c4646-5d69-4081-a1aa-53ae0fdb2962",
+      "name": "SplitInBatches3",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363044675210637-group",
+        "options": {}
+      },
+      "id": "1702ba50-a5cb-4229-9d00-a3ed6e377c86",
+      "name": "GRUPO 014",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "3d50d630-3ad9-42f2-bb9d-c3d196ffb24d",
+      "name": "Item Lists4",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "1dde62eb-d10b-4a52-8ebf-59ab1247edb6",
+      "name": "SplitInBatches4",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026738668546-group",
+        "options": {}
+      },
+      "id": "91f2b01b-47b2-4be5-8047-bad085b3d5fe",
+      "name": "GRUPO 010",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "cb022685-c3a4-4651-916f-5c8f09bcc87b",
+      "name": "Item Lists5",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "dba2b443-e878-44fd-b9f5-3c4e724d72f7",
+      "name": "SplitInBatches5",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026738668546-group",
+        "options": {}
+      },
+      "id": "46f65ed1-da64-48a8-b651-56d2275a59f5",
+      "name": "GRUPO 013",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "participants",
+        "options": {}
+      },
+      "id": "f31f1307-b401-4e4c-88b5-55b84d9f7cb4",
+      "name": "Item Lists6",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "c3995b63-b294-4b55-9f10-b39e7233c8da",
+      "name": "SplitInBatches6",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/group-metadata/120363026738668546-group",
+        "options": {}
+      },
+      "id": "9f6783b3-c3b0-46ae-8f32-0c98a58f8311",
+      "name": "GRUPO 016",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        880,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "c6ad25e2-1f99-4832-aeaa-9c2ae1a1a8ec",
+      "name": "[TEXTO e IMAGEM] - É AMANHA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "b0954d86-92aa-4741-9d26-f5a4458489f0",
+      "name": "[TEXTO e IMAGEM] - É AMANHA1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        -300
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "228853ff-58d3-4a17-8b71-c6b2ab301df8",
+      "name": "[TEXTO e IMAGEM] - É AMANHA2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "f1178a5d-c0aa-4095-88be-82a82f3421e5",
+      "name": "[TEXTO e IMAGEM] - É AMANHA3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "0e47955b-166d-4104-8b73-0d23b1ac28ef",
+      "name": "[TEXTO e IMAGEM] - É AMANHA4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "027679bf-6d0a-4f4f-88fd-529d23719e06",
+      "name": "[TEXTO e IMAGEM] - É AMANHA5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/3B20C7DAC9AEC0E76356DA965400693C/token/1970AA5EC6D85851F1857F5C/send-image",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"phone\"]}}\",\n   \"image\": \"https://kamartinsfotografia.com.br/wp-content/uploads/2022/09/WhatsApp-Image-2022-09-28-at-10.06.45.jpeg\",\n  \"caption\": \"Eaiiii! Tudo bem ?\\n\\nAqui é a Letícia, assistente de atendimento da Karina Martins, vim te lembrar que o AULÃO DE TRATAMENTO DE PELE PROFISSIONAL já é amanhã. Acesse o link abaixo e ative o lembrete da live, te esperamos ao vivo, quinta às 20h. \\n\\nhttps://youtu.be/4Rk6JF1f5hw\"\n}"
+      },
+      "id": "3c646983-d0e9-45f9-8294-15807b0e7f76",
+      "name": "[TEXTO e IMAGEM] - É AMANHA6",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        780
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-09-27T22:10:30.493Z",
+      "updatedAt": "2022-09-27T22:10:30.493Z",
+      "id": "8",
+      "name": "💭🟢"
+    }
+  ],
+  "updatedAt": "2022-09-28T19:22:37.512Z"
+}
