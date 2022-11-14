@@ -1,0 +1,249 @@
+{
+  "active": false,
+  "connections": {
+    "MSG SAUDAÇÃO": {
+      "main": [
+        [
+          {
+            "node": "ADICIONA NO GRUPO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ADICIONA NO GRUPO": {
+      "main": [
+        [
+          {
+            "node": "MSG ENVIANDO AGORA O EBOOK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG ESCUTA O AUDIO": {
+      "main": [
+        [
+          {
+            "node": "ENVIA AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MSG ENVIANDO AGORA O EBOOK": {
+      "main": [
+        [
+          {
+            "node": "MSG ESCUTA O AUDIO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA AUDIO": {
+      "main": [
+        [
+          {
+            "node": "ENVIA EBOOK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Called By Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "MSG SAUDAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENVIA EBOOK": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "MSG LINK DO GRUPO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-26T15:29:14.583Z",
+  "hash": "93c1ca7af91c2d672f19068d57470099",
+  "id": 56,
+  "name": "[WD10K] - WHATSAPP",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "9db9a1a2-40ab-4f3b-8229-cab914f306d8",
+      "name": "When Called By Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"message\": \"{{$node[\"When Called By Another Workflow\"].json[\"nome\"]}} que bom te ver por aqui!\"\n}"
+      },
+      "id": "e5f754e0-f601-438a-9e45-71dbe520cd44",
+      "name": "MSG SAUDAÇÃO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        740,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}add-participant",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n    \"groupId\": \"120363028165101436-group\",\n    \"phones\": [\"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\"]\n  }"
+      },
+      "id": "03fd9d57-3239-4e24-9c79-33d6370b0356",
+      "name": "ADICIONA NO GRUPO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        940,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"message\": \"Aproveita e escuta o áudio do Vini antes de ler o Ebook\"\n}"
+      },
+      "id": "ffc63702-0932-46a3-ad27-a098b8a89b5f",
+      "name": "MSG ESCUTA O AUDIO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"message\": \"Estou te enviando agora o Ebook: *O que você deve e o que não deve fazer quando Prospectar clientes*\"\n}"
+      },
+      "id": "98e985f7-db02-40d6-8377-9fbedb436d90",
+      "name": "MSG ENVIANDO AGORA O EBOOK",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-audio",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"audio\": \"https://paginare.com/wp-content/uploads/2022/10/audio-vini.mpeg\"\n}"
+      },
+      "id": "5f57adf0-1882-42bd-9260-57ff57ee64c2",
+      "name": "ENVIA AUDIO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-document/pdf",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"document\": \"https://paginare.com/wp-content/uploads/2022/10/PROSPECCAO-VINICIUS_KOLLING.pdf\",\n  \"fileName\": \"Prospecção - Vinicius Kolling\"\n}"
+      },
+      "id": "c2247fb6-d9f8-4d62-afd2-369553a44175",
+      "name": "ENVIA EBOOK",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1800,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 20,
+        "unit": "seconds"
+      },
+      "id": "cccce7c5-3a82-48b2-bbaa-a759972bf8ed",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        380
+      ],
+      "webhookId": "76914974-8023-4afe-ae9c-91481592dda1"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"When Called By Another Workflow\"].json[\"url\"]}}send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"When Called By Another Workflow\"].json[\"whatsapp\"]}}\",\n  \"message\": \"Caso você não esteja no grupo ainda, pode entrar por aqui: https://chat.whatsapp.com/CE9xYfu6di2FmbvazElp3T\"\n}"
+      },
+      "id": "b6ce20de-0205-41d6-8402-c1b3941b0df0",
+      "name": "MSG LINK DO GRUPO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-26T18:29:59.918Z"
+}
