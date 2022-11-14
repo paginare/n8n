@@ -1,0 +1,338 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Resposta Sim",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set2": {
+      "main": [
+        [
+          {
+            "node": "Resposta Não",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-10-01T18:58:35.965Z",
+  "hash": "ef077733fc286477cb15471edc97301e",
+  "id": 38,
+  "name": "[TEMPLATE] - ROBO WHATSAPP BUSINESS CLOUD",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "23197791-4f55-4346-bc05-95bea4977870",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cloudwpp",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "4bc08ae4-3617-4ab1-b514-af0db09f931e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        520,
+        180
+      ],
+      "webhookId": "484c0bbc-8544-4a9a-bbad-fb863f50a22d"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json[\"query\"][\"hub.verify_token\"] }}",
+              "value2": "9guAz27aAtJk"
+            }
+          ]
+        }
+      },
+      "id": "07b8f20c-1474-41aa-92be-bfa8b4d2c51f",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        760,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $node[\"Webhook\"].json[\"query\"][\"hub.challenge\"] }}",
+        "options": {}
+      },
+      "id": "01c4f8fd-66d7-4196-9837-20359541070e",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        980,
+        80
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a5a2ca10-1bdf-4060-8afa-7a63de17e526",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "body.messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "body.recipient_type",
+              "value": "individual"
+            },
+            {
+              "name": "body.to",
+              "value": "={{$json[\"body\"][\"entry\"][0][\"changes\"][0][\"value\"][\"contacts\"][0][\"wa_id\"]}}"
+            },
+            {
+              "name": "body.type",
+              "value": "text"
+            },
+            {
+              "name": "body.text.preview_url",
+              "value": "false"
+            },
+            {
+              "name": "body.text.body",
+              "value": "=Pronto {{$node[\"Switch\"].json[\"body\"][\"entry\"][0][\"changes\"][0][\"value\"][\"contacts\"][0][\"profile\"][\"name\"]}},\n\nSeu agendamento foi realizado com sucesso! 😉"
+            },
+            {
+              "name": "headers.Authorization",
+              "value": "Bearer EAArLLBd3dnIBAEimrV8dRrRs0tAbsy2sZCZBy09BJpCqFZBhgJ5Org191g2Ldkgp46loEVrZCEEM8vRpEGuSDy38OyG5GxO3Njp3B3WSEjKfcMc9J6cHAEZBgMApqtOYXrnu2tGK4tIzLI2NfUrOsMKxNdf1xDIyWSCeCcyna7IZCe1Y1g90mnfgiGpy10HRNKzYRh77O1ZBTAvdRYCpEaW5ZC5BnfuZBEr8ZD"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        640
+      ],
+      "id": "814a4bb4-8683-4faa-a915-3e6b92149fbf"
+    },
+    {
+      "parameters": {
+        "content": "## Msg texto",
+        "height": 580,
+        "width": 840
+      },
+      "name": "Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        760,
+        580
+      ],
+      "id": "8ad7449f-c0aa-4d8d-a88f-11b1b5b70d75"
+    },
+    {
+      "parameters": {
+        "value1": "={{$json[\"body\"][\"entry\"][0][\"changes\"][0][\"value\"][\"messages\"][0][\"button\"][\"text\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": "=Quero comprar"
+            },
+            {
+              "operation": "equal",
+              "value2": "=Sim, ainda tenho dúvidas",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        800,
+        740
+      ],
+      "id": "d5a9bcb0-9b7d-45ed-9af8-5955b4e5f4bb"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://graph.facebook.com/v14.0/100471429516026/messages",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={{$json[\"body\"]}}",
+        "headerParametersJson": "={{$json[\"headers\"]}}"
+      },
+      "name": "Resposta Sim",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        640
+      ],
+      "id": "8a81addc-5de7-4130-b30b-c9835823f35b"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://graph.facebook.com/v14.0/100471429516026/messages",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={{$json[\"body\"]}}",
+        "headerParametersJson": "={{$json[\"headers\"]}}"
+      },
+      "name": "Resposta Não",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        820
+      ],
+      "id": "9505c6f8-8d74-4c93-b3af-c3a4389e4582"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "body.messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "body.recipient_type",
+              "value": "individual"
+            },
+            {
+              "name": "body.to",
+              "value": "={{$json[\"body\"][\"entry\"][0][\"changes\"][0][\"value\"][\"contacts\"][0][\"wa_id\"]}}"
+            },
+            {
+              "name": "body.type",
+              "value": "text"
+            },
+            {
+              "name": "body.text.preview_url",
+              "value": "false"
+            },
+            {
+              "name": "body.text.body",
+              "value": "=Olá {{$node[\"Switch\"].json[\"body\"][\"entry\"][0][\"changes\"][0][\"value\"][\"contacts\"][0][\"profile\"][\"name\"]}},\n\nTudo bem! Precisando é só nos chamar! 😉"
+            },
+            {
+              "name": "headers.Authorization",
+              "value": "Bearer EAArLLBd3dnIBAEimrV8dRrRs0tAbsy2sZCZBy09BJpCqFZBhgJ5Org191g2Ldkgp46loEVrZCEEM8vRpEGuSDy38OyG5GxO3Njp3B3WSEjKfcMc9J6cHAEZBgMApqtOYXrnu2tGK4tIzLI2NfUrOsMKxNdf1xDIyWSCeCcyna7IZCe1Y1g90mnfgiGpy10HRNKzYRh77O1ZBTAvdRYCpEaW5ZC5BnfuZBEr8ZD"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        820
+      ],
+      "id": "541285d3-d5e0-49fd-a821-48a9e9702e2e"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-10-18T13:08:24.917Z"
+}
