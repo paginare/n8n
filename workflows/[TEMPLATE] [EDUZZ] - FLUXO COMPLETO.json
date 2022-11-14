@@ -1,0 +1,249 @@
+{
+  "active": false,
+  "connections": {
+    "PAGA": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Cancelada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancelada": {
+      "main": [
+        [],
+        [
+          {
+            "node": "NoOp1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EM ABERTO": {
+      "main": [
+        [
+          {
+            "node": "BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "PAGA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "EM ABERTO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PIX": {
+      "main": [
+        [],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOLETO": {
+      "main": [
+        [],
+        [
+          {
+            "node": "PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-20T16:37:18.301Z",
+  "hash": "da7c55dd2c041c11c9f577fbfc37cc3e",
+  "id": 11,
+  "name": "[TEMPLATE] [EDUZZ] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a299cdc0-0756-4f58-98eb-5de238122977",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        80,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eduzz-carrinho",
+        "options": {}
+      },
+      "id": "76ff4737-e891-4739-9e39-9e877a98736f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        200
+      ],
+      "webhookId": "865e489e-1ac5-4500-9788-4e56f985d4ff"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"trans_status\"]}}",
+              "value2": "1"
+            }
+          ]
+        }
+      },
+      "id": "b534224c-bb5e-41fb-9e1d-7a6f1daf152f",
+      "name": "EM ABERTO",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        700,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"trans_paymentmethod\"]}}",
+              "value2": "1"
+            }
+          ]
+        }
+      },
+      "id": "d6be8a8c-f2e5-4fdd-a175-587c09f98214",
+      "name": "BOLETO",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"trans_paymentmethod\"]}}",
+              "value2": "1"
+            }
+          ]
+        }
+      },
+      "id": "dcaf64e9-b61a-4278-ab1a-126733f43a1e",
+      "name": "PIX",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        -40
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7e7546dc-4f0a-4742-b53c-c98977a0d2b0",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"trans_status\"]}}",
+              "value2": "3"
+            }
+          ]
+        }
+      },
+      "id": "80552339-eaf5-4984-87b6-4b3da2a65890",
+      "name": "PAGA",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        920,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Webhook\"].json[\"body\"][\"trans_status\"]}}",
+              "value2": "4"
+            }
+          ]
+        }
+      },
+      "id": "0b03b239-69a8-41d9-942b-be1e14a757a2",
+      "name": "Cancelada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5854f9fe-ab6a-4aa7-a123-dd7baf8622cb",
+      "name": "NoOp1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        780
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T22:55:29.512Z",
+      "updatedAt": "2022-08-22T22:55:29.512Z",
+      "id": "4",
+      "name": "🌞"
+    }
+  ],
+  "updatedAt": "2022-10-17T04:56:12.426Z"
+}
