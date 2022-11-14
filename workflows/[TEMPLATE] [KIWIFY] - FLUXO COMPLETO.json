@@ -1,0 +1,293 @@
+{
+  "active": false,
+  "connections": {
+    "Status": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguardando Pagamento": {
+      "main": [
+        [
+          {
+            "node": "Boleto ou Pix?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Negada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Negada": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Aprovada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aprovada": {
+      "main": [
+        [],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boleto ou Pix?": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "🛒 Carrinho Abandonado": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Aguardando Pagamento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2022-10-14T23:01:19.102Z",
+  "hash": "f1574c1680829ca5077e18c505121d70",
+  "id": 50,
+  "name": "[TEMPLATE] [KIWIFY] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "acea53d4-363d-4858-b08f-7ee6556eb4b0",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"payment_method\"]}}",
+              "value2": "pix"
+            }
+          ]
+        }
+      },
+      "id": "4c4b728b-0782-4f2b-89bb-fd6ae09728d3",
+      "name": "Boleto ou Pix?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        420,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "refused"
+            }
+          ]
+        }
+      },
+      "id": "e1c98a76-6c71-418d-a943-c1fbabc9cdc3",
+      "name": "Negada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        340,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "waiting_payment"
+            }
+          ]
+        }
+      },
+      "id": "39721dd0-982f-409f-b327-779c60beecf6",
+      "name": "Aguardando Pagamento",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        160,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"Status\"].json[\"body\"][\"order_status\"]}}",
+              "value2": "paid"
+            }
+          ]
+        }
+      },
+      "id": "80647ced-5f3e-4469-aeb3-43fb88e5c8ed",
+      "name": "Aprovada",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        560,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ws-kiwify",
+        "options": {}
+      },
+      "id": "3c1a12b1-0ddc-4c03-bce6-caea89a260d8",
+      "name": "Status",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        300
+      ],
+      "webhookId": "dfe031d9-984a-4041-8758-bd441b4434f7"
+    },
+    {
+      "parameters": {},
+      "id": "629393f8-4b95-4a93-a16d-cd88ec166d56",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        920,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ws-kiwify-carrinho",
+        "options": {}
+      },
+      "id": "24631955-3c1b-4ce8-a61a-f94d64330e12",
+      "name": "🛒 Carrinho Abandonado",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        1020
+      ],
+      "webhookId": "bd81b9cc-cae6-42c5-a05e-b46ef974e7b9"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/SUAINSTANCIA/token/SEUTOKEN/"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json[\"body\"][\"Customer\"][\"mobile\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "de33b9f6-c9ed-4d3c-b337-5fc6fbd9df8b",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/SUAINSTANCIA/token/SEUTOKEN/"
+            },
+            {
+              "name": "phone",
+              "value": "=55{{$node[\"🛒 Carrinho Abandonado\"].json[\"body\"][\"phone\"].replace(/\\D/g,'')}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c076d24d-ecfc-48a7-a877-f95a4bfe0770",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        1020
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T22:55:17.226Z",
+      "updatedAt": "2022-08-22T22:55:17.226Z",
+      "id": "3",
+      "name": "🥝"
+    }
+  ],
+  "updatedAt": "2022-10-14T23:03:21.395Z"
+}
