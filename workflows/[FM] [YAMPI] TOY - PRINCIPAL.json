@@ -1,0 +1,341 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "APV / CARRINHO / ATT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "APV / CARRINHO / ATT": {
+      "main": [
+        [
+          {
+            "node": "Msg Pedido Aprovado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Msg Carrinho Abandonado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "SEP / TRANP / ENTREGUE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEP / TRANP / ENTREGUE": {
+      "main": [
+        [
+          {
+            "node": "Msg Produto em Separação",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Msg Em Transporte",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Msg Entregue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-17T18:56:43.512Z",
+  "hash": "0e114c2a41e24237af60ed6189233822",
+  "id": 6,
+  "name": "[FM] [YAMPI] TOY - PRINCIPAL",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b30a28c0-e267-4ff4-9fea-7d9e083a78e8",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        120,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "/toy-carrinho",
+        "options": {}
+      },
+      "id": "0f9b195f-260d-41e6-92fc-1428c7583ee4",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        320,
+        460
+      ],
+      "webhookId": "8b1b0605-e51d-4eb9-bb1a-991a975d020e"
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Olá, {{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"]}}! Tudo bem? 🥰\n\n✅ Seu pagamento foi confirmado e daremos sequência ao seu pedido.\n\nNão se preocupe, pois estamos cuidando de tudo para você. Qualquer dúvida, é só dizer..."
+            },
+            {
+              "name": "sender",
+              "value": "553898563070"
+            },
+            {
+              "name": "token",
+              "value": "o0yEKfHMLLuWI6wGjcD0"
+            }
+          ]
+        }
+      },
+      "id": "2d4e6c75-49df-4d6e-94f1-68e86f44a1ad",
+      "name": "Msg Pedido Aprovado",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Oi {{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"]}}, tudo bem? 👊🏻\n\nVimos que passou na Toy Shopping, mas acabou esquecendo os seus produtos.\n👉🏼 Use o cupom TOY10 e finalize sua compra com desconto e FRETE GRÁTIS!\n\n{{$json[\"body\"][\"resource\"][\"simulate_url\"]}}"
+            },
+            {
+              "name": "sender",
+              "value": "553898563070"
+            },
+            {
+              "name": "token",
+              "value": "o0yEKfHMLLuWI6wGjcD0"
+            }
+          ]
+        }
+      },
+      "id": "dc6ba7c2-7536-44ff-8c2b-fcc65505c5fd",
+      "name": "Msg Carrinho Abandonado",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"]}}, temos boas notícias! 🤩\n\nSeu pedido já está com nosso time de operações em processo de separação...\n\n📍Em breve, você receberá o código de rastreio para acompanhamento."
+            },
+            {
+              "name": "sender",
+              "value": "558188550851"
+            },
+            {
+              "name": "token",
+              "value": "593WuEXOqriOMbFAtGWl"
+            }
+          ]
+        }
+      },
+      "id": "9a53df02-1e01-441c-81a4-839f41ef88c8",
+      "name": "Msg Produto em Separação",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "=Oi, {{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"]}}!\n\nO código de rastreio do seu pedido é {{$json[\"body\"][\"resource\"][\"track_code\"]}} e ele já está em transporte aéreo! ✈️📦\n\nVocê pode acompanhar a entrega por aqui 👇: \nhttps://melhorrastreio.com.br/rastreio/{{$json[\"body\"][\"resource\"][\"track_code\"]}}."
+            },
+            {
+              "name": "sender",
+              "value": "558188550851"
+            },
+            {
+              "name": "token",
+              "value": "593WuEXOqriOMbFAtGWl"
+            }
+          ]
+        }
+      },
+      "id": "965272e1-e0b9-48f2-8003-d24c46a4d510",
+      "name": "Msg Em Transporte",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dw-api.com/send",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "receiver",
+              "value": "=55{{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"]}}"
+            },
+            {
+              "name": "msgtext",
+              "value": "={{$json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"]}}, vimos aqui que seu pedido foi *Entregue*.\nEsperamos que goste! E não esqueça de nos marcar no instagram @leid.com.br."
+            },
+            {
+              "name": "sender",
+              "value": "558188550851"
+            },
+            {
+              "name": "token",
+              "value": "593WuEXOqriOMbFAtGWl"
+            }
+          ]
+        }
+      },
+      "id": "96c87e04-baa2-496f-b83b-de930cbff7b8",
+      "name": "Msg Entregue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        900
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"body\"][\"event\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "order.paid"
+            },
+            {
+              "value2": "cart.reminder",
+              "output": 1
+            },
+            {
+              "value2": "order.status.updated",
+              "output": 2
+            }
+          ]
+        }
+      },
+      "id": "fda7dd80-0ccb-4210-8dcf-758d253d1d6a",
+      "name": "APV / CARRINHO / ATT",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        600,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "value1": "={{$json[\"body\"][\"resource\"][\"status\"][\"id\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": 5
+            },
+            {
+              "operation": "equal",
+              "value2": 6,
+              "output": 1
+            },
+            {
+              "operation": "equal",
+              "value2": 7,
+              "output": 2
+            }
+          ]
+        }
+      },
+      "id": "26e79270-70a3-47d9-a827-dfd3e06172fe",
+      "name": "SEP / TRANP / ENTREGUE",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        540
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T22:54:47.348Z",
+      "updatedAt": "2022-08-22T22:54:47.348Z",
+      "id": "2",
+      "name": "💜"
+    }
+  ],
+  "updatedAt": "2022-10-02T02:22:40.296Z"
+}
