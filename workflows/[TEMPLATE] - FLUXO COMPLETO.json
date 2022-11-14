@@ -1,0 +1,512 @@
+{
+  "active": false,
+  "connections": {
+    "HOTMART ENVIA WEBHOOK": {
+      "main": [
+        [
+          {
+            "node": "PARÂMETROS API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É CARRINHO?": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - MSG 🛒 - INICIAL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📮 FILTRA SITUAÇÃO": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - APROVADO 1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[TEXTO] - CANCELADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "BOLETO OU PIX ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BOLETO OU PIX ?": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "[TEXTO] - PIX",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR": {
+      "main": [
+        [
+          {
+            "node": "🔎 CONSULTA DADOS NA API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PARÂMETROS API": {
+      "main": [
+        [
+          {
+            "node": "É CARRINHO?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - BOLETO": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - CÓDIGO DO BOLETO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "[TEXTO] - PIX": {
+      "main": [
+        [
+          {
+            "node": "[TEXTO] - PIX1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "salva telefone": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "🔎 CONSULTA DADOS NA API1": {
+      "main": [
+        [
+          {
+            "node": "salva telefone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "📮 FILTRA SITUAÇÃO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-09-27T19:01:39.761Z",
+  "hash": "1fc4f82f386018dfc1db476fdb04a6bb",
+  "id": 33,
+  "name": "[TEMPLATE] - FLUXO COMPLETO",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2185c3b6-22a2-417b-9498-90f20e690960",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "seu_webhook",
+        "options": {}
+      },
+      "id": "1f6f2f27-42db-4b1f-8fbb-ba5ae3d5aa7b",
+      "name": "HOTMART ENVIA WEBHOOK",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        160
+      ],
+      "webhookId": "0bdb591f-c8b7-42c3-84cd-101a8d2b6e76"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"event\"]}}",
+              "value2": "PURCHASE_OUT_OF_SHOPPING_CART"
+            }
+          ]
+        }
+      },
+      "id": "79e512fd-aa0e-423b-8f0b-c556d4436aa1",
+      "name": "É CARRINHO?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        100,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"status\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "APPROVED"
+            },
+            {
+              "value2": "CANCELED",
+              "output": 1
+            },
+            {
+              "value2": "BILLET_PRINTED",
+              "output": 2
+            },
+            {
+              "value2": "WAITING_PAYMENT",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "dbe38ff8-2d74-45d1-b27d-e85202000434",
+      "name": "📮 FILTRA SITUAÇÃO",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"boleto\"]}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "00bbcb56-906c-411f-8f25-77e2359e4280",
+      "name": "BOLETO OU PIX ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            },
+            {
+              "name": "boleto",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"billet_barcode\"]}}"
+            },
+            {
+              "name": "pix",
+              "value": "={{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e4d25b70-b44a-4f60-901a-380f0388d0f4",
+      "name": "🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        320,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "token",
+              "value": "1970AA5EC6D85851F1857F5C"
+            },
+            {
+              "name": "instancia",
+              "value": "3B20C7DAC9AEC0E76356DA965400693C"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5add6fb7-772d-4298-b7ab-9b15f4f4d522",
+      "name": "PARÂMETROS API",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n\"phone\": \"55{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"buyer\"][\"phone\"]}}\",\n\"message\": \"Sua Mensagem aqui\"\n}"
+      },
+      "id": "7c0839c1-519e-4951-ac47-89f648a20b41",
+      "name": "[TEXTO] - MSG 🛒 - INICIAL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        440,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Sua Mensagem aqui\"\n}"
+      },
+      "id": "05e803e3-8b3f-4f0c-9db2-80eb1385731f",
+      "name": "[TEXTO] - APROVADO 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"55{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Sua Mensagem aqui \"\n}"
+      },
+      "id": "06cb5780-ec7f-4fcc-8b24-ca489a9ce939",
+      "name": "[TEXTO] - CANCELADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Sua Mensagem aqui\"\n}"
+      },
+      "id": "897891f8-83ed-41fe-9520-7a392ec9eece",
+      "name": "[TEXTO] - BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"billet_barcode\"]}}\"\n}"
+      },
+      "id": "519028e2-d07c-4012-a734-b1a554b56331",
+      "name": "[TEXTO] - CÓDIGO DO BOLETO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"Sua Mensagem aqui\"\n}"
+      },
+      "id": "749bff19-b180-4210-b738-cdc72d5cb606",
+      "name": "[TEXTO] - PIX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=hthttps://api.z-api.io/instances/{{$node[\"PARÂMETROS API\"].json[\"instancia\"]}}/token/{{$node[\"PARÂMETROS API\"].json[\"token\"]}}/send-text",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"phone\": \"{{$node[\"salva telefone\"].json[\"telefone\"]}}\",\n  \"message\": \"{{$node[\"HOTMART ENVIA WEBHOOK\"].json[\"body\"][\"data\"][\"purchase\"][\"payment\"][\"pix_code\"]}}\"\n}"
+      },
+      "id": "44192076-a57e-4bbb-a2c2-e713b8eabb88",
+      "name": "[TEXTO] - PIX1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "telefone",
+              "value": "=55{{$json[\"items\"][0][\"users\"][1][\"user\"][\"phone\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0ca00d9a-39a1-41ed-93a5-054861068526",
+      "name": "salva telefone",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        800,
+        480
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c57e0575-1603-4de4-9033-1a8306ae42c0",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "url": "https://developers.hotmart.com/payments/api/v1/sales/users",
+        "options": {},
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "transaction",
+              "value": "={{$node[\"🪝 CAPTURA O ID DA TRANSAÇÃO / BOLETO / QR\"].json[\"body\"][\"data\"][\"purchase\"][\"transaction\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "ea9770b4-588c-4367-852e-42f842f06eb9",
+      "name": "🔎 CONSULTA DADOS NA API1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        600,
+        320
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "10",
+          "name": "[HOTMART] - [KM2]"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-08-22T19:51:00.273Z",
+      "updatedAt": "2022-08-22T19:51:00.273Z",
+      "id": "1",
+      "name": "🔥"
+    }
+  ],
+  "updatedAt": "2022-10-18T13:09:41.189Z"
+}
