@@ -310,7 +310,7 @@
     }
   },
   "createdAt": "2022-11-12T23:56:38.019Z",
-  "hash": "759b063aa65c0d2c2754f5578d4e7d72",
+  "hash": "a69e38c400cc4966c91e53ece4e73c03",
   "id": 75,
   "name": "[TEMPLATE] - EXTRAÇÃO DIÁRIA",
   "nodes": [
@@ -696,7 +696,7 @@
             },
             {
               "name": "access_token",
-              "value": "EAAIztZCyWBF4BALGRpzcBxJDZCWjHz9X6YBx9lZCHly8orkL30dO0E9o9UjgTaCrJBn1uV0dG5tQNEWnp4BOmZBU1GH1sZBvZAZB8A0PmdFwZCLk1gJbls0ZBoc82D8EuNa6DkQWtmsjkRPlSIy3Dyx3w3tEtD3z9KfD2hqxsmFLLH3xnFZBfTgkZCJZAQWZBOVGHGEIvhBNfPZCZBGpAZDZD"
+              "value": "EAASaWFsw6bUBAGxRtjh5JZBPZBOUhWQVf3PToI2coC4n0YjPsFyrkge615VZAwiuJ0QaTqZCGymKpcNz87Ce9P6BZCymq2j327JSkA26ENZCmIpuGskv8PYAt7NJTlEotFZC0TfyKhlrWZB5XKy7bslmXbtwJNVvGsbCXstYqQ5JjyFpftyLz8X6PdisJoFdiwaiJmZCg0pjdDwZDZD"
             }
           ]
         },
@@ -1081,5 +1081,5 @@
       "name": "Workshop Métricas Pro"
     }
   ],
-  "updatedAt": "2022-11-13T22:14:59.005Z"
+  "updatedAt": "2022-11-14T18:13:40.255Z"
 }
