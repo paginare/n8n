@@ -20,12 +20,19 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
   },
   "createdAt": "2022-11-11T18:45:40.486Z",
-  "hash": "9d9fb1692c4d3876aec25cd3b86eca57",
+  "hash": "b356e16f5805b8db54225050f4c39f4c",
   "id": 73,
   "name": "YAMPI -> FLASH",
   "nodes": [
@@ -61,7 +68,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        400,
+        380,
         380
       ]
     },
@@ -81,15 +88,26 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        800,
-        300
+        720,
+        280
       ],
       "credentials": {
         "httpBasicAuth": {
-          "id": "20",
-          "name": "Unnamed credential"
+          "id": "23",
+          "name": "Flash Courrier"
         }
       }
+    },
+    {
+      "parameters": {},
+      "id": "173dd47c-a785-4b4d-8a8e-24d0d77665b9",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        720,
+        540
+      ]
     }
   ],
   "pinData": {
@@ -629,5 +647,5 @@
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-12T02:23:26.621Z"
+  "updatedAt": "2022-11-14T18:08:41.806Z"
 }
