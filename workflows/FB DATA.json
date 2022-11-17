@@ -11,10 +11,65 @@
           }
         ]
       ]
+    },
+    "Facebook Graph API": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-09T18:57:10.347Z",
-  "hash": "1707d1180f5973295865fddb713e1da4",
+  "hash": "95f32b90dc498f8d2d1e70d9b77185c8",
   "id": 72,
   "name": "FB DATA",
   "nodes": [
@@ -25,14 +80,14 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        280,
-        340
+        -160,
+        300
       ]
     },
     {
       "parameters": {
         "graphApiVersion": "=v15.0",
-        "node": "act_594046525115981/insights?level=ad&fields=campaign_name,adset_name,ad_name,impressions,reach,clicks,actions,spend,conversions,cpc,cpm,ctr",
+        "node": "act_436162477421100/insights?level=campaign&fields=campaign_name,spend,action_values",
         "options": {}
       },
       "id": "0fa495a8-c1c2-4f2d-b655-2ebf1827f00a",
@@ -40,13 +95,91 @@
       "type": "n8n-nodes-base.facebookGraphApi",
       "typeVersion": 1,
       "position": [
-        620,
-        340
+        120,
+        300
       ],
       "credentials": {
         "facebookGraphApi": {
-          "id": "19",
-          "name": "Facebook Graph account 2"
+          "id": "24",
+          "name": "MARINALVA - (V)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "id": "ff481034-4063-4931-aaca-ae6bd3d1a167",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        360,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "86542634-8858-4faa-90cd-d366d8d4e849",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "CAMPANHA",
+              "value": "={{ $json[\"campaign_name\"] }}"
+            },
+            {
+              "name": "GASTO",
+              "value": "={{ $json[\"spend\"] }}"
+            },
+            {
+              "name": "FATURADO",
+              "value": "={{ $json[\"action_values\"][4][\"value\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e7cb1a60-ecd4-4e52-9016-78f14f58854c",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        860,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "1AIyIFUSjdpYlhW9ION9QRCvDeeTKzvNvPTcwHiM6kek",
+        "options": {}
+      },
+      "id": "cd926c25-88ad-4186-8ea2-bb6594b65ef7",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        300
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
         }
       }
     }
@@ -55,5 +188,5 @@
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-09T19:02:43.889Z"
+  "updatedAt": "2022-11-16T18:34:54.204Z"
 }
