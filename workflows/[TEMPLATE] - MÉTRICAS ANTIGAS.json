@@ -164,7 +164,7 @@
     }
   },
   "createdAt": "2022-11-13T22:02:35.917Z",
-  "hash": "3285c367e6c511ba9728a562965e86ce",
+  "hash": "774a5bb85cb7a99ecb85373139ff29b9",
   "id": 78,
   "name": "[TEMPLATE] - MÉTRICAS ANTIGAS",
   "nodes": [
@@ -334,7 +334,7 @@
     },
     {
       "parameters": {
-        "sheetId": "12SVl92XfJzkzr7P0o6D4RPWD4tmZfwVFpnolwM_1RnU",
+        "sheetId": "1Z_GWwAI0sQ2iRiA08ugGbcCg5xuiQq0LdlRt7Fj7KrU",
         "range": "A:Z",
         "options": {
           "valueRenderMode": "FORMATTED_VALUE"
@@ -371,7 +371,7 @@
     },
     {
       "parameters": {
-        "url": "https://graph.facebook.com/v15.0/act_594046525115981/insights",
+        "url": "https://graph.facebook.com/v15.0/act_436162477421100/insights",
         "sendQuery": true,
         "queryParameters": {
           "parameters": [
@@ -385,11 +385,11 @@
             },
             {
               "name": "access_token",
-              "value": "EAASaWFsw6bUBAGxRtjh5JZBPZBOUhWQVf3PToI2coC4n0YjPsFyrkge615VZAwiuJ0QaTqZCGymKpcNz87Ce9P6BZCymq2j327JSkA26ENZCmIpuGskv8PYAt7NJTlEotFZC0TfyKhlrWZB5XKy7bslmXbtwJNVvGsbCXstYqQ5JjyFpftyLz8X6PdisJoFdiwaiJmZCg0pjdDwZDZD"
+              "value": "EAAIZC83ght7IBAG33ZBsZBZAybfZBYgf8yvtzfpYWbZCmplM1x7GErAU39Fx0f62MWzyEuPEKE5GFBZAvZB5C6Eg3SJZAx0hBC1pUpVFMcdqvIN2M3WjZCuBwBLnPjLZBsNa9StzRaUft2i8zLPHyi8eiZCwckwNo2xxoELMjsFKs51ZArEGVwgLQJOIu"
             },
             {
               "name": "level",
-              "value": "ad"
+              "value": "campaign"
             }
           ]
         },
@@ -457,7 +457,7 @@
             },
             {
               "name": "access_token",
-              "value": "EAASaWFsw6bUBAGxRtjh5JZBPZBOUhWQVf3PToI2coC4n0YjPsFyrkge615VZAwiuJ0QaTqZCGymKpcNz87Ce9P6BZCymq2j327JSkA26ENZCmIpuGskv8PYAt7NJTlEotFZC0TfyKhlrWZB5XKy7bslmXbtwJNVvGsbCXstYqQ5JjyFpftyLz8X6PdisJoFdiwaiJmZCg0pjdDwZDZD"
+              "value": "EAAIZC83ght7IBAG33ZBsZBZAybfZBYgf8yvtzfpYWbZCmplM1x7GErAU39Fx0f62MWzyEuPEKE5GFBZAvZB5C6Eg3SJZAx0hBC1pUpVFMcdqvIN2M3WjZCuBwBLnPjLZBsNa9StzRaUft2i8zLPHyi8eiZCwckwNo2xxoELMjsFKs51ZArEGVwgLQJOIu"
             }
           ]
         },
@@ -610,7 +610,7 @@
     {
       "parameters": {
         "operation": "append",
-        "sheetId": "12SVl92XfJzkzr7P0o6D4RPWD4tmZfwVFpnolwM_1RnU",
+        "sheetId": "1Z_GWwAI0sQ2iRiA08ugGbcCg5xuiQq0LdlRt7Fj7KrU",
         "range": "NÍVEL AD!A:Z",
         "options": {
           "valueInputMode": "USER_ENTERED"
@@ -654,6 +654,7 @@
     },
     {
       "parameters": {
+        "amount": 3,
         "unit": "seconds"
       },
       "id": "aa511a08-d5bf-4146-be9e-eed861c2ce6c",
@@ -678,5 +679,5 @@
       "name": "Workshop Métricas Pro"
     }
   ],
-  "updatedAt": "2022-11-14T01:23:16.072Z"
+  "updatedAt": "2022-11-16T18:51:19.461Z"
 }
