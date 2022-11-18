@@ -1,0 +1,194 @@
+{
+  "active": false,
+  "connections": {
+    "APV / CARRINHO / ATT": {
+      "main": [
+        [
+          {
+            "node": "PAGAMENTO APROVADO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "SEP / TRANP / ENTREGUE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "START YAMPI": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "APV / CARRINHO / ATT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-18T03:30:07.979Z",
+  "hash": "df59afe0717971b907a1dfb096b33473",
+  "id": 79,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"body\"][\"event\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "order.paid"
+            },
+            {
+              "value2": "cart.reminder",
+              "output": 1
+            },
+            {
+              "value2": "order.status.updated",
+              "output": 2
+            },
+            {
+              "value2": "refused",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "66e535cc-cdaf-4b4a-9d66-35e6fc977e74",
+      "name": "APV / CARRINHO / ATT",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        220,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "value1": "={{$json[\"body\"][\"resource\"][\"status_id\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": 5
+            },
+            {
+              "operation": "equal",
+              "value2": 6,
+              "output": 1
+            },
+            {
+              "operation": "equal",
+              "value2": 7,
+              "output": 2
+            },
+            {
+              "operation": "equal",
+              "value2": 12,
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "73f0703e-ddf0-4ee0-be3f-cd31dd990d30",
+      "name": "SEP / TRANP / ENTREGUE",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        620,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "principal",
+        "options": {}
+      },
+      "id": "38688abc-e246-4664-a59f-5f171107f7dc",
+      "name": "START YAMPI",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        620
+      ],
+      "webhookId": "8b1b0605-e51d-4eb9-bb1a-991a975d020e"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "url",
+              "value": "https://api.z-api.io/instances/3B48C7326F379034A66A166F1EEA881D/token/2F52D4F1825B0781CD772716/"
+            },
+            {
+              "name": "nome",
+              "value": "={{ $json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"] }}"
+            },
+            {
+              "name": "numero",
+              "value": "=55{{ $json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"] }}"
+            },
+            {
+              "name": "pedido",
+              "value": "={{ $json[\"body\"][\"resource\"][\"number\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fe7d187b-52f9-445f-ba95-ec8dc1200b9e",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$node[\"Set1\"].json[\"url\"]}}send-messages",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "raw"
+        },
+        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"numero\"]}}\",\n\"message\": \"Olá {{$json[\"nome\"]}}, tudo bem?\\n\\nSeu pagamento foi confirmado e o número do seu pedido é #{{$json[\"pedido\"]}} e logo será enviado para você. 🚚\\n\\n Lembrando que todas as atualizações do seu pedido serão feitas por aqui. Trago novidades em breve.\"}"
+      },
+      "id": "65400878-1adc-4499-a1ce-b77e95165238",
+      "name": "PAGAMENTO APROVADO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        660,
+        340
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-18T03:30:07.979Z"
+}
