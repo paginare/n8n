@@ -1,26 +1,40 @@
 {
   "active": false,
   "connections": {
-    "APV / CARRINHO / ATT": {
+    "On clicking 'execute'": {
       "main": [
         [
           {
-            "node": "PAGAMENTO APROVADO",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [],
-        [
-          {
-            "node": "SEP / TRANP / ENTREGUE",
+            "node": "Date & Time",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "START YAMPI": {
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "DATA HOJE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROSA SELVAGEM BRASIL": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROSA SELVAGEM OFICIAL": {
       "main": [
         [
           {
@@ -31,11 +45,92 @@
         ]
       ]
     },
+    "ROSA SELVAGEM ÁCIDO": {
+      "main": [
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CALL CENTER": {
+      "main": [
+        [
+          {
+            "node": "Set3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DATA HOJE": {
+      "main": [
+        [
+          {
+            "node": "ROSA SELVAGEM BRASIL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ROSA SELVAGEM OFICIAL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ROSA SELVAGEM ÁCIDO",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "CALL CENTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Set1": {
       "main": [
         [
           {
-            "node": "APV / CARRINHO / ATT",
+            "node": "Google Sheets1",
             "type": "main",
             "index": 0
           }
@@ -44,151 +139,345 @@
     }
   },
   "createdAt": "2022-11-18T03:30:07.979Z",
-  "hash": "df59afe0717971b907a1dfb096b33473",
+  "hash": "7b643deb8233e9eb7ee18077f55c1ab5",
   "id": 79,
   "name": "My workflow",
   "nodes": [
     {
-      "parameters": {
-        "dataType": "string",
-        "value1": "={{$json[\"body\"][\"event\"]}}",
-        "rules": {
-          "rules": [
-            {
-              "value2": "order.paid"
-            },
-            {
-              "value2": "cart.reminder",
-              "output": 1
-            },
-            {
-              "value2": "order.status.updated",
-              "output": 2
-            },
-            {
-              "value2": "refused",
-              "output": 3
-            }
-          ]
-        }
-      },
-      "id": "66e535cc-cdaf-4b4a-9d66-35e6fc977e74",
-      "name": "APV / CARRINHO / ATT",
-      "type": "n8n-nodes-base.switch",
+      "parameters": {},
+      "id": "d616bd6f-8819-4a2b-9dcc-1c3fd6511680",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        220,
-        620
+        -1320,
+        740
       ]
     },
     {
       "parameters": {
-        "value1": "={{$json[\"body\"][\"resource\"][\"status_id\"]}}",
-        "rules": {
-          "rules": [
-            {
-              "operation": "equal",
-              "value2": 5
-            },
-            {
-              "operation": "equal",
-              "value2": 6,
-              "output": 1
-            },
-            {
-              "operation": "equal",
-              "value2": 7,
-              "output": 2
-            },
-            {
-              "operation": "equal",
-              "value2": 12,
-              "output": 3
-            }
-          ]
-        }
-      },
-      "id": "73f0703e-ddf0-4ee0-be3f-cd31dd990d30",
-      "name": "SEP / TRANP / ENTREGUE",
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 1,
-      "position": [
-        620,
-        620
-      ]
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "principal",
+        "value": "={{new Date()}}",
+        "toFormat": "YYYY-MM-DD",
         "options": {}
       },
-      "id": "38688abc-e246-4664-a59f-5f171107f7dc",
-      "name": "START YAMPI",
-      "type": "n8n-nodes-base.webhook",
+      "id": "197aed7e-eb26-4f8a-872f-e236212f5232",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
       "typeVersion": 1,
       "position": [
-        -340,
-        620
-      ],
-      "webhookId": "8b1b0605-e51d-4eb9-bb1a-991a975d020e"
+        -1060,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/rosaselvagem/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "973feecfab2bdbc1583e2074133810dded1cd87f"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_nztAmyKqsvtHS2PQlcwoqmP66TaSC3m0ECfS1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "01ff8f09-1a26-4a27-a334-eac5e7993e93",
+      "name": "ROSA SELVAGEM BRASIL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/rosaselvagemoficial/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "0f68089b850eaa85ca328293f21897a611d2f7f9"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_GMRHBdr89JQxT7XyTgwCoK4Yn5qWH0aBA1HqT"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "59c8cc8d-42e9-413c-9086-9ea8d03de3d4",
+      "name": "ROSA SELVAGEM OFICIAL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -420,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/cleanskinbr2/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "5c2ecac51e4cff9986ca049da482bb6d92838969"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_9mMlLRynS02sZKA9geK4QfaRriJSZJPOv0diG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ef577434-b81e-44bd-b342-bcccc951c146",
+      "name": "ROSA SELVAGEM ÁCIDO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -420,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/rosaselvagemcall/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "ce04b4757daa66d67dbe73bbe97525539b4658d5"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_lRSgkftVYZ6IThmJDjVSFtmuuEeffgh1j9ffC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b52a0622-98c8-4cb7-8de9-a7d620fd5fb7",
+      "name": "CALL CENTER",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -420,
+        940
+      ]
     },
     {
       "parameters": {
         "values": {
           "string": [
             {
-              "name": "url",
-              "value": "https://api.z-api.io/instances/3B48C7326F379034A66A166F1EEA881D/token/2F52D4F1825B0781CD772716/"
+              "name": "hoje",
+              "value": "={{ $json[\"data\"] }}"
             },
             {
-              "name": "nome",
-              "value": "={{ $json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"first_name\"] }}"
-            },
-            {
-              "name": "numero",
-              "value": "=55{{ $json[\"body\"][\"resource\"][\"customer\"][\"data\"][\"phone\"][\"full_number\"] }}"
-            },
-            {
-              "name": "pedido",
-              "value": "={{ $json[\"body\"][\"resource\"][\"number\"] }}"
+              "name": "hora",
+              "value": "={{new Date().toString()}}"
             }
           ]
         },
         "options": {}
       },
-      "id": "fe7d187b-52f9-445f-ba95-ec8dc1200b9e",
-      "name": "Set1",
+      "id": "d080ed73-b0bf-4c16-b131-22efcd9fb655",
+      "name": "DATA HOJE",
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        -80,
-        620
+        -840,
+        740
       ]
     },
     {
       "parameters": {
-        "requestMethod": "POST",
-        "url": "={{$node[\"Set1\"].json[\"url\"]}}send-messages",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "raw"
+        "values": {
+          "string": [
+            {
+              "name": "brasil",
+              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
+            }
+          ]
         },
-        "bodyParametersJson": "={\n  \"phone\": \"{{$json[\"numero\"]}}\",\n\"message\": \"Olá {{$json[\"nome\"]}}, tudo bem?\\n\\nSeu pagamento foi confirmado e o número do seu pedido é #{{$json[\"pedido\"]}} e logo será enviado para você. 🚚\\n\\n Lembrando que todas as atualizações do seu pedido serão feitas por aqui. Trago novidades em breve.\"}"
+        "options": {}
       },
-      "id": "65400878-1adc-4499-a1ce-b77e95165238",
-      "name": "PAGAMENTO APROVADO",
-      "type": "n8n-nodes-base.httpRequest",
+      "id": "72e11999-323f-44fe-afcc-dd38cdd81e46",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "ecom",
+              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4434b5aa-81cf-49f8-9ddd-2798271a266e",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "acido",
+              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "971aefc6-a1a5-4c1f-abd8-4fa90308c92f",
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "call",
+              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a09d4bcc-2468-44a8-af87-a61cd7c95230",
+      "name": "Set3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
+        "key": "brasil",
+        "options": {}
+      },
+      "id": "07109a26-f10c-4be1-befc-21a5920ea8ae",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 2,
       "position": [
-        660,
-        340
-      ]
+        220,
+        320
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
+        "key": "ecom",
+        "options": {}
+      },
+      "id": "d08e7f04-2a85-4dc0-b1c8-15e09031aca3",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        220,
+        520
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
+        "key": "acido",
+        "options": {}
+      },
+      "id": "8438af18-2adb-47a2-9f10-12a24648c906",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        220,
+        740
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
+        "key": "call",
+        "options": {}
+      },
+      "id": "5bbda370-3d94-42f5-8110-c99d110ec84d",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        220,
+        940
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
     }
   ],
   "pinData": {},
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-18T03:30:07.979Z"
+  "updatedAt": "2022-11-20T14:26:25.494Z"
 }
