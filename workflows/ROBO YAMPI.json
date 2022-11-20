@@ -1,0 +1,247 @@
+{
+  "active": true,
+  "connections": {
+    "START ROBÔ": {
+      "main": [
+        [
+          {
+            "node": "TEXTO - BOTÃO - LISTA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É GATILHO OU BOTÃO?": {
+      "main": [
+        [],
+        [],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TEXTO - BOTÃO - LISTA": {
+      "main": [
+        [
+          {
+            "node": "É GATILHO OU BOTÃO?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-20T16:34:49.277Z",
+  "hash": "2352b4b35c8fe61ff6740349069c05ec",
+  "id": 81,
+  "name": "ROBO YAMPI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "automacao-curso",
+        "options": {}
+      },
+      "id": "e4ffa8df-c98a-43ea-a65a-36c3bbbd0b91",
+      "name": "START ROBÔ",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        40,
+        320
+      ],
+      "webhookId": "251d9f30-1aac-4bb8-a370-c764d398704a"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"texto\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "quero comprar"
+            },
+            {
+              "operation": "contains",
+              "value2": "tenho dúvidas ",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "valor"
+            },
+            {
+              "operation": "contains",
+              "value2": "preço"
+            },
+            {
+              "operation": "contains",
+              "value2": "pressu"
+            },
+            {
+              "value2": "robo"
+            },
+            {
+              "operation": "contains",
+              "value2": "robô"
+            },
+            {
+              "operation": "contains",
+              "value2": "duvidas",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "duvida",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "dúvidas",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "duvidas"
+            },
+            {
+              "operation": "contains",
+              "value2": "cuanto"
+            },
+            {
+              "operation": "contains",
+              "value2": "investir"
+            },
+            {
+              "operation": "contains",
+              "value2": "investimento"
+            },
+            {
+              "operation": "contains",
+              "value2": "divide"
+            },
+            {
+              "operation": "contains",
+              "value2": "presso"
+            },
+            {
+              "operation": "contains",
+              "value2": "quantos que é?"
+            },
+            {
+              "operation": "contains",
+              "value2": "va lor"
+            },
+            {
+              "operation": "contains",
+              "value2": "pre ço"
+            },
+            {
+              "operation": "contains",
+              "value2": "curso"
+            },
+            {
+              "operation": "contains",
+              "value2": "cuso"
+            },
+            {
+              "operation": "contains",
+              "value2": "quero"
+            },
+            {
+              "value2": "fdiario",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "30f38e7c-7958-4aea-908f-8aa378478dc6",
+      "name": "É GATILHO OU BOTÃO?",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        740,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "numero",
+              "value": "={{$json[\"body\"][\"phone\"]}}"
+            },
+            {
+              "name": "texto",
+              "value": "={{$json[\"body\"][\"text\"][\"message\"].toLowerCase()}}"
+            },
+            {
+              "name": "button",
+              "value": "={{$json[\"body\"][\"buttonsResponseMessage\"][\"message\"].toLowerCase()}}"
+            },
+            {
+              "name": "resposta-lista",
+              "value": "={{$json[\"body\"][\"listResponseMessage\"][\"title\"].toLowerCase()}}"
+            },
+            {
+              "name": "token",
+              "value": "3F0C5FDA165654A355A4E14C"
+            },
+            {
+              "name": "instancia",
+              "value": "3B1C018FE037F0C08302DA965400693C"
+            },
+            {
+              "name": "nome",
+              "value": "={{$json[\"body\"][\"senderName\"]}}"
+            },
+            {
+              "name": "idmsg",
+              "value": "={{$json[\"body\"][\"messageId\"]}}"
+            },
+            {
+              "name": "photo",
+              "value": "={{$json[\"body\"][\"photo\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e3052226-3941-4731-87ce-4a16db737e64",
+      "name": "TEXTO - BOTÃO - LISTA",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        280,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "79"
+      },
+      "id": "3eeee1d4-b52a-4909-b9e9-6721d295672b",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        620
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-20T16:35:18.917Z"
+}
