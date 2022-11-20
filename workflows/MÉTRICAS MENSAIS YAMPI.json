@@ -1,0 +1,586 @@
+{
+  "active": false,
+  "connections": {
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "inicio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROSA SELVAGEM BRASIL": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROSA SELVAGEM OFICIAL": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ROSA SELVAGEM ÁCIDO": {
+      "main": [
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CALL CENTER": {
+      "main": [
+        [
+          {
+            "node": "Set3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set3": {
+      "main": [
+        [
+          {
+            "node": "Baserow3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set2": {
+      "main": [
+        [
+          {
+            "node": "Baserow2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow3": {
+      "main": [
+        []
+      ]
+    },
+    "inicio": {
+      "main": [
+        [
+          {
+            "node": "fim",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fim": {
+      "main": [
+        [
+          {
+            "node": "ROSA SELVAGEM BRASIL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ROSA SELVAGEM OFICIAL",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ROSA SELVAGEM ÁCIDO",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "CALL CENTER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow4": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Baserow4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-20T16:38:26.073Z",
+  "hash": "52405896e3833bc342f48302a5f59a8b",
+  "id": 82,
+  "name": "MÉTRICAS MENSAIS YAMPI",
+  "nodes": [
+    {
+      "parameters": {
+        "value": "={{new Date()}}",
+        "toFormat": "YYYY-MM-DD",
+        "options": {}
+      },
+      "id": "3d5c9d09-6655-4bb2-8570-917751d6a1c0",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 1,
+      "position": [
+        -1480,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/rosaselvagem/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "973feecfab2bdbc1583e2074133810dded1cd87f"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_nztAmyKqsvtHS2PQlcwoqmP66TaSC3m0ECfS1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "70c9e45d-817f-4ca5-ab71-011fca123e00",
+      "name": "ROSA SELVAGEM BRASIL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -380,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/rosaselvagemoficial/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "0f68089b850eaa85ca328293f21897a611d2f7f9"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_GMRHBdr89JQxT7XyTgwCoK4Yn5qWH0aBA1HqT"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "136fe4d5-d9ae-4d69-931b-47198a8d8be4",
+      "name": "ROSA SELVAGEM OFICIAL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -380,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/cleanskinbr2/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "5c2ecac51e4cff9986ca049da482bb6d92838969"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_9mMlLRynS02sZKA9geK4QfaRriJSZJPOv0diG"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "01ee6b28-86e9-4f80-8e0a-7051fad0165f",
+      "name": "ROSA SELVAGEM ÁCIDO",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -380,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.dooki.com.br/v2/rosaselvagemcall/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "ce04b4757daa66d67dbe73bbe97525539b4658d5"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_lRSgkftVYZ6IThmJDjVSFtmuuEeffgh1j9ffC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6b0f5c90-69a5-4487-8c5f-6a8e2ac75509",
+      "name": "CALL CENTER",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -380,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "brasil",
+              "value": "={{Number.parseFloat( $json[\"meta\"][\"facets\"][\"amount\"][\"value\"]).toFixed(2)}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3b07312e-400f-4c68-93b3-33e895f2fc73",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "ecom",
+              "value": "={{Number.parseFloat( $json[\"meta\"][\"facets\"][\"amount\"][\"value\"]).toFixed(2)}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "92965935-df01-46e7-b5b2-1f07967235fd",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "acido",
+              "value": "={{Number.parseFloat( $json[\"meta\"][\"facets\"][\"amount\"][\"value\"]).toFixed(2)}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3e677da-b63e-4a93-925e-97babd69247a",
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "call",
+              "value": "={{Number.parseFloat( $json[\"meta\"][\"facets\"][\"amount\"][\"value\"]).toFixed(2)}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "59dc8aac-022e-4d9c-b461-6f4eb0c987e1",
+      "name": "Set3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 46836,
+        "tableId": 116216,
+        "rowId": "1",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 738277,
+              "fieldValue": "={{ $json[\"brasil\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "cc50de85-dab1-49ec-9167-86326be8c801",
+      "name": "Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        320
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 46836,
+        "tableId": 116216,
+        "rowId": "1",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 738278,
+              "fieldValue": "={{ $json[\"ecom\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "84d3690a-c117-4cef-808c-fa2f583d5b39",
+      "name": "Baserow1",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 46836,
+        "tableId": 116216,
+        "rowId": "1",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 738279,
+              "fieldValue": "={{ $json[\"acido\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "fce24a1d-0d02-47b3-a69c-67c50e6fd5ac",
+      "name": "Baserow2",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        740
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 46836,
+        "tableId": 116216,
+        "rowId": "1",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 738280,
+              "fieldValue": "={{$json[\"call\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "412eb5d7-d1f3-4fac-837a-12ef373a047e",
+      "name": "Baserow3",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        220,
+        940
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "80"
+      },
+      "id": "fd595658-29cb-4430-88bf-f64834de05b8",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        -2040,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "37956292-fd81-48cc-8066-635dcfdf941a",
+      "name": "inicio",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -1260,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "hoje",
+              "value": "={{ $json[\"data\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bd7d7d54-2a3e-4076-a66b-22d66d291f7e",
+      "name": "fim",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -1060,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116253,
+        "rowId": "1"
+      },
+      "id": "7dfd40e3-7c05-42c3-8e1a-646e644cd956",
+      "name": "Baserow4",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -1740,
+        740
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "f63ac8c3-d8ff-47c5-b973-2a3476f12834",
+      "name": "When Called By Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        540
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-20T16:49:34.459Z"
+}
