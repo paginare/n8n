@@ -1,0 +1,118 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-21T03:49:58.412Z",
+  "hash": "94a4f4c45304a8ab78943538618c3cfc",
+  "id": 86,
+  "name": "VERIFICAÇÃO WPP BUSINESS",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        460
+      ],
+      "id": "4d2751cb-724d-425c-876e-d22c3c2eacc1"
+    },
+    {
+      "parameters": {
+        "path": "wpp-token",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        460
+      ],
+      "webhookId": "f934fac8-6ad2-4300-b287-465bea6958c6",
+      "id": "010d3491-ec43-4a12-b87c-ce817c314a06"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"query\"][\"hub.verify_token\"]}}",
+              "value2": "whats098"
+            }
+          ]
+        }
+      },
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        180,
+        460
+      ],
+      "id": "e2be3184-0906-46dd-bdbe-1eb1ecc2e955"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{$json[\"query\"][\"hub.challenge\"]}}",
+        "options": {}
+      },
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        460,
+        320
+      ],
+      "id": "32d44600-8147-410e-802b-cf19d26d9d04"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        460,
+        560
+      ],
+      "id": "625bcc0b-01db-49e0-8a00-d0ae4d0bc648"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-21T04:53:41.298Z"
+}
