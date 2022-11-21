@@ -33,32 +33,10 @@
           }
         ]
       ]
-    },
-    "Baserow1": {
-      "main": [
-        [
-          {
-            "node": "Date & Time1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Date & Time1": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "createdAt": "2022-11-20T16:01:44.062Z",
-  "hash": "3577f003420153b4507b4d791bf859c2",
+  "hash": "4cb691cc8f5c197e5a7e67faba17789a",
   "id": 80,
   "name": "ENVIA METRICAS",
   "nodes": [
@@ -142,81 +120,11 @@
         300,
         300
       ]
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "databaseId": 46836,
-        "tableId": 116252,
-        "rowId": "1"
-      },
-      "id": "8022fbbd-0fab-4a4b-9cae-273e763585cb",
-      "name": "Baserow1",
-      "type": "n8n-nodes-base.baserow",
-      "typeVersion": 1,
-      "position": [
-        60,
-        540
-      ],
-      "credentials": {
-        "baserowApi": {
-          "id": "25",
-          "name": "Baserow account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "phone",
-              "value": "558481521797-1618576752"
-            },
-            {
-              "name": "message",
-              "value": "=Atualizado em: {{ $json[\"dia-hora\"] }}\n\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "ae3b3803-5922-4019-8485-bc8fa462d6a2",
-      "name": "HTTP Request1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        600,
-        540
-      ]
-    },
-    {
-      "parameters": {
-        "value": "={{ $json[\"date\"] }}",
-        "dataPropertyName": "dia-hora",
-        "custom": true,
-        "toFormat": "DD-MM-YYYY H:m:s",
-        "options": {
-          "fromTimezone": "UTC",
-          "toTimezone": "America/Sao_Paulo"
-        }
-      },
-      "id": "9e674441-f541-4d93-83d9-c2738c2cc907",
-      "name": "Date & Time1",
-      "type": "n8n-nodes-base.dateTime",
-      "typeVersion": 1,
-      "position": [
-        300,
-        540
-      ]
     }
   ],
   "pinData": {},
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T16:53:19.456Z"
+  "updatedAt": "2022-11-20T18:34:37.431Z"
 }
