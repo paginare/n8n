@@ -14,11 +14,30 @@
     },
     "É GATILHO OU BOTÃO?": {
       "main": [
-        [],
-        [],
         [
           {
             "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch",
             "type": "main",
             "index": 0
           }
@@ -35,10 +54,238 @@
           }
         ]
       ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Baserow2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Baserow5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow5": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Baserow8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow10",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow9": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow10": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow11": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-20T16:34:49.277Z",
-  "hash": "2352b4b35c8fe61ff6740349069c05ec",
+  "hash": "e9985c5fbfb9b93541849293ccba8a3a",
   "id": 81,
   "name": "ROBO YAMPI",
   "nodes": [
@@ -53,7 +300,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        40,
+        -20,
         320
       ],
       "webhookId": "251d9f30-1aac-4bb8-a370-c764d398704a"
@@ -65,98 +312,14 @@
         "rules": {
           "rules": [
             {
-              "operation": "contains",
-              "value2": "quero comprar"
+              "value2": "fdiario"
             },
             {
-              "operation": "contains",
-              "value2": "tenho dúvidas ",
+              "value2": "fjaneiro",
               "output": 1
             },
             {
-              "operation": "contains",
-              "value2": "valor"
-            },
-            {
-              "operation": "contains",
-              "value2": "preço"
-            },
-            {
-              "operation": "contains",
-              "value2": "pressu"
-            },
-            {
-              "value2": "robo"
-            },
-            {
-              "operation": "contains",
-              "value2": "robô"
-            },
-            {
-              "operation": "contains",
-              "value2": "duvidas",
-              "output": 1
-            },
-            {
-              "operation": "contains",
-              "value2": "duvida",
-              "output": 1
-            },
-            {
-              "operation": "contains",
-              "value2": "dúvidas",
-              "output": 1
-            },
-            {
-              "operation": "contains",
-              "value2": "duvidas"
-            },
-            {
-              "operation": "contains",
-              "value2": "cuanto"
-            },
-            {
-              "operation": "contains",
-              "value2": "investir"
-            },
-            {
-              "operation": "contains",
-              "value2": "investimento"
-            },
-            {
-              "operation": "contains",
-              "value2": "divide"
-            },
-            {
-              "operation": "contains",
-              "value2": "presso"
-            },
-            {
-              "operation": "contains",
-              "value2": "quantos que é?"
-            },
-            {
-              "operation": "contains",
-              "value2": "va lor"
-            },
-            {
-              "operation": "contains",
-              "value2": "pre ço"
-            },
-            {
-              "operation": "contains",
-              "value2": "curso"
-            },
-            {
-              "operation": "contains",
-              "value2": "cuso"
-            },
-            {
-              "operation": "contains",
-              "value2": "quero"
-            },
-            {
-              "value2": "fdiario",
+              "value2": "ffevereiro",
               "output": 2
             }
           ]
@@ -168,7 +331,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        740,
+        600,
         320
       ]
     },
@@ -177,40 +340,8 @@
         "values": {
           "string": [
             {
-              "name": "numero",
-              "value": "={{$json[\"body\"][\"phone\"]}}"
-            },
-            {
               "name": "texto",
               "value": "={{$json[\"body\"][\"text\"][\"message\"].toLowerCase()}}"
-            },
-            {
-              "name": "button",
-              "value": "={{$json[\"body\"][\"buttonsResponseMessage\"][\"message\"].toLowerCase()}}"
-            },
-            {
-              "name": "resposta-lista",
-              "value": "={{$json[\"body\"][\"listResponseMessage\"][\"title\"].toLowerCase()}}"
-            },
-            {
-              "name": "token",
-              "value": "3F0C5FDA165654A355A4E14C"
-            },
-            {
-              "name": "instancia",
-              "value": "3B1C018FE037F0C08302DA965400693C"
-            },
-            {
-              "name": "nome",
-              "value": "={{$json[\"body\"][\"senderName\"]}}"
-            },
-            {
-              "name": "idmsg",
-              "value": "={{$json[\"body\"][\"messageId\"]}}"
-            },
-            {
-              "name": "photo",
-              "value": "={{$json[\"body\"][\"photo\"]}}"
             }
           ]
         },
@@ -221,7 +352,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        280,
+        220,
         320
       ]
     },
@@ -234,14 +365,715 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
+        720,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"texto\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "fmarco"
+            },
+            {
+              "value2": "fabril",
+              "output": 1
+            },
+            {
+              "value2": "maio",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "b75f9a3b-3d29-49eb-b939-b81544c3513c",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        860,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"texto\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "fjunho"
+            },
+            {
+              "value2": "fjulho",
+              "output": 1
+            },
+            {
+              "value2": "fagosto",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "id": "af1dabdb-ca7a-4502-b222-896245f57836",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"texto\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "fsetembro"
+            },
+            {
+              "value2": "foutubro",
+              "output": 1
+            },
+            {
+              "value2": "fnovembro",
+              "output": 2
+            },
+            {
+              "value2": "fdezembro",
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "26af3c31-d78b-4855-b2bf-b70805a07273",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        2180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "1"
+      },
+      "id": "646987a8-cc9a-4aea-b9c8-e0f4793db597",
+      "name": "Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        980,
+        120
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*JANEIRO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ead65f45-7854-4319-a681-f40a309c34d7",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1220,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "2"
+      },
+      "id": "9f5f1fe4-07ee-49e3-8619-1ebf6e6f7708",
+      "name": "Baserow1",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        980,
+        320
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*FEVEREIRO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b8ae794c-8c61-42f0-85e2-c7e004a4e5f8",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1240,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "3"
+      },
+      "id": "0deb7985-face-47b9-b5de-d3395a3b7437",
+      "name": "Baserow2",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        540
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*MARÇO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d84fa27e-2f4f-4695-8f21-12ecd80995ae",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1360,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "4"
+      },
+      "id": "684bf729-3657-4543-8fc6-4592853513a4",
+      "name": "Baserow3",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
         1140,
-        620
+        720
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*ABRIL 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0858e52c-d783-4f4d-8c89-1dec74d833bb",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1380,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "5"
+      },
+      "id": "8fddd0bc-a777-4dac-a411-1f671b886391",
+      "name": "Baserow4",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        940
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*MAIO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2cdc819c-176f-4abb-ad79-ea3cb952ab37",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1520,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "6"
+      },
+      "id": "0cee9ae8-5d23-4e3b-afb2-0692647c87d1",
+      "name": "Baserow5",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        1220
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*JUNHO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3a01c9d9-973a-4bb7-b63e-6b006415aec6",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1580,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "7"
+      },
+      "id": "96f4bdfc-cfdc-43a2-88b0-83b41f82c3c6",
+      "name": "Baserow6",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        1420
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*JULHO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "38e0e468-fd1c-4190-86bf-e501c28924ed",
+      "name": "HTTP Request6",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1660,
+        1420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "8"
+      },
+      "id": "61ab7f27-d12f-4ab8-a5c4-be729e61009e",
+      "name": "Baserow7",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        1620
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*AGOSTO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fd7832c9-d9ac-48ce-9bec-84668a99b3b0",
+      "name": "HTTP Request7",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1740,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "9"
+      },
+      "id": "81115732-d8ba-4644-8c7d-d2f1285658c4",
+      "name": "Baserow8",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        1860
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*SETEMBRO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "56215d29-6198-488a-b6c1-0edb3aa1b207",
+      "name": "HTTP Request8",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1780,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "9"
+      },
+      "id": "e34fec56-147b-4211-9d6d-986d02b37249",
+      "name": "Baserow9",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        2100
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*SETEMBRO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8438339d-6324-4506-b65d-64c350f49e74",
+      "name": "HTTP Request9",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1840,
+        2100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "11"
+      },
+      "id": "bcc19d0b-b970-4369-a793-5cd9b8156e93",
+      "name": "Baserow10",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        2360
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*NOVEMBRO 22*\n\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "34279eba-dd26-4df2-93e0-297f40479dd2",
+      "name": "HTTP Request10",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1860,
+        2360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 46836,
+        "tableId": 116252,
+        "rowId": "12"
+      },
+      "id": "becb9175-97e8-4ed4-bcc8-b4a0b64bcb1c",
+      "name": "Baserow11",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        2580
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "25",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.z-api.io/instances/3B1C018FE037F0C08302DA965400693C/token/3F0C5FDA165654A355A4E14C/send-messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "558481521797-1618576752"
+            },
+            {
+              "name": "message",
+              "value": "=*DEZEMBRO 22*\nRosa Selvagem Brasil: R${{$json[\"brasil\"]}}\nE-commerce: R${{$json[\"ecom\"]}}\nRosa Selvagem Ácido: R${{$json[\"acido\"]}}\nCall Center: R${{$json[\"call\"]}}\n\nTotal: R${{$json[\"total\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7a88fb5a-f0d6-47f2-a795-8fac390915d3",
+      "name": "HTTP Request11",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1840,
+        2580
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "TEXTO - BOTÃO - LISTA": [
+      {
+        "json": {
+          "texto": "fjaneiro"
+        }
+      }
+    ]
+  },
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T16:35:18.917Z"
+  "updatedAt": "2022-11-20T18:46:32.648Z"
 }
