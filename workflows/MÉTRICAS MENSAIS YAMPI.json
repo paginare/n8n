@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "Date & Time": {
-      "main": [
-        [
-          {
-            "node": "inicio",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ROSA SELVAGEM BRASIL": {
       "main": [
         [
@@ -100,23 +89,29 @@
         ]
       ]
     },
-    "Baserow3": {
-      "main": [
-        []
-      ]
-    },
-    "inicio": {
+    "Baserow4": {
       "main": [
         [
           {
-            "node": "fim",
+            "node": "SplitInBatches",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "fim": {
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Baserow4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set4": {
       "main": [
         [
           {
@@ -142,18 +137,7 @@
         ]
       ]
     },
-    "Baserow4": {
-      "main": [
-        [
-          {
-            "node": "Date & Time",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Execute Workflow": {
+    "On clicking 'execute'": {
       "main": [
         [
           {
@@ -163,31 +147,38 @@
           }
         ]
       ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "Set4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow3": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-20T16:38:26.073Z",
-  "hash": "52405896e3833bc342f48302a5f59a8b",
+  "hash": "85b4ddd89c00eb45e507bf99eb712bd1",
   "id": 82,
   "name": "MÉTRICAS MENSAIS YAMPI",
   "nodes": [
     {
       "parameters": {
-        "value": "={{new Date()}}",
-        "toFormat": "YYYY-MM-DD",
-        "options": {}
-      },
-      "id": "3d5c9d09-6655-4bb2-8570-917751d6a1c0",
-      "name": "Date & Time",
-      "type": "n8n-nodes-base.dateTime",
-      "typeVersion": 1,
-      "position": [
-        -1480,
-        740
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.dooki.com.br/v2/rosaselvagem/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "url": "=https://api.dooki.com.br/v2/rosaselvagem/orders?date=created_at:{{$json[\"inicio\"]}}|{{$json[\"fim\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -214,7 +205,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.dooki.com.br/v2/rosaselvagemoficial/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "url": "=https://api.dooki.com.br/v2/rosaselvagemoficial/orders?date=created_at:{{$json[\"inicio\"]}}|{{$json[\"fim\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -241,7 +232,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.dooki.com.br/v2/cleanskinbr2/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "url": "=https://api.dooki.com.br/v2/cleanskinbr2/orders?date=created_at:{{$json[\"inicio\"]}}|{{$json[\"fim\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -268,7 +259,7 @@
     },
     {
       "parameters": {
-        "url": "=https://api.dooki.com.br/v2/rosaselvagemcall/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
+        "url": "=https://api.dooki.com.br/v2/rosaselvagemcall/orders?date=created_at:{{$json[\"inicio\"]}}|{{$json[\"fim\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -381,13 +372,13 @@
       "parameters": {
         "operation": "update",
         "databaseId": 46836,
-        "tableId": 116216,
-        "rowId": "1",
+        "tableId": 116252,
+        "rowId": "={{ $node[\"SplitInBatches\"].json[\"id\"] }}",
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": 738277,
-              "fieldValue": "={{ $json[\"brasil\"] }}"
+              "fieldId": 738524,
+              "fieldValue": "={{$json[\"brasil\"]}}"
             }
           ]
         }
@@ -411,12 +402,12 @@
       "parameters": {
         "operation": "update",
         "databaseId": 46836,
-        "tableId": 116216,
-        "rowId": "1",
+        "tableId": 116252,
+        "rowId": "={{ $node[\"SplitInBatches\"].json[\"id\"] }}",
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": 738278,
+              "fieldId": 738525,
               "fieldValue": "={{ $json[\"ecom\"] }}"
             }
           ]
@@ -441,12 +432,12 @@
       "parameters": {
         "operation": "update",
         "databaseId": 46836,
-        "tableId": 116216,
-        "rowId": "1",
+        "tableId": 116252,
+        "rowId": "={{ $node[\"SplitInBatches\"].json[\"id\"] }}",
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": 738279,
+              "fieldId": 738526,
               "fieldValue": "={{ $json[\"acido\"] }}"
             }
           ]
@@ -471,12 +462,12 @@
       "parameters": {
         "operation": "update",
         "databaseId": 46836,
-        "tableId": 116216,
-        "rowId": "1",
+        "tableId": 116252,
+        "rowId": "={{ $node[\"SplitInBatches\"].json[\"id\"] }}",
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": 738280,
+              "fieldId": 738527,
               "fieldValue": "={{$json[\"call\"]}}"
             }
           ]
@@ -506,58 +497,24 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -2040,
-        740
-      ]
+        -1860,
+        560
+      ],
+      "disabled": true
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "id": "37956292-fd81-48cc-8066-635dcfdf941a",
-      "name": "inicio",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        -1260,
-        740
-      ]
-    },
-    {
-      "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "hoje",
-              "value": "={{ $json[\"data\"] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "bd7d7d54-2a3e-4076-a66b-22d66d291f7e",
-      "name": "fim",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        -1060,
-        740
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "get",
         "databaseId": 46836,
         "tableId": 116253,
-        "rowId": "1"
+        "additionalOptions": {}
       },
       "id": "7dfd40e3-7c05-42c3-8e1a-646e644cd956",
       "name": "Baserow4",
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        -1740,
-        740
+        -1540,
+        560
       ],
       "credentials": {
         "baserowApi": {
@@ -567,20 +524,174 @@
       }
     },
     {
-      "parameters": {},
-      "id": "f63ac8c3-d8ff-47c5-b973-2a3476f12834",
-      "name": "When Called By Another Workflow",
-      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "inicio",
+              "value": "={{ $json[\"inicial\"] }}"
+            },
+            {
+              "name": "fim",
+              "value": "={{ $json[\"final\"] }}"
+            },
+            {
+              "name": "mes",
+              "value": "={{$json[\"mes\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6db0d575-a321-433f-9657-6114e7c258fd",
+      "name": "Set4",
+      "type": "n8n-nodes-base.set",
       "typeVersion": 1,
       "position": [
-        1120,
-        540
+        -1060,
+        560
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cf4bd8b6-0193-4b18-ac2a-401c3ab00d20",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1960,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "619b4dff-012d-4452-8994-260f84c83130",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        560
       ]
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Baserow4": [
+      {
+        "json": {
+          "id": 1,
+          "order": "1.00000000000000000000",
+          "mes": "janeiro",
+          "inicial": "2022-01-01",
+          "final": "2022-01-31"
+        }
+      },
+      {
+        "json": {
+          "id": 2,
+          "order": "2.00000000000000000000",
+          "mes": "fevereiro",
+          "inicial": "2022-02-01",
+          "final": "2022-02-28"
+        }
+      },
+      {
+        "json": {
+          "id": 3,
+          "order": "3.00000000000000000000",
+          "mes": "marco",
+          "inicial": "2022-03-01",
+          "final": "2022-03-31"
+        }
+      },
+      {
+        "json": {
+          "id": 4,
+          "order": "4.00000000000000000000",
+          "mes": "abril",
+          "inicial": "2022-04-01",
+          "final": "2022-04-30"
+        }
+      },
+      {
+        "json": {
+          "id": 5,
+          "order": "5.00000000000000000000",
+          "mes": "maio",
+          "inicial": "2022-05-01",
+          "final": "2022-05-31"
+        }
+      },
+      {
+        "json": {
+          "id": 6,
+          "order": "6.00000000000000000000",
+          "mes": "junho",
+          "inicial": "2022-06-01",
+          "final": "2022-06-30"
+        }
+      },
+      {
+        "json": {
+          "id": 7,
+          "order": "7.00000000000000000000",
+          "mes": "julho",
+          "inicial": "2022-07-01",
+          "final": "2022-07-31"
+        }
+      },
+      {
+        "json": {
+          "id": 8,
+          "order": "8.00000000000000000000",
+          "mes": "agosto",
+          "inicial": "2022-08-01",
+          "final": "2022-08-31"
+        }
+      },
+      {
+        "json": {
+          "id": 9,
+          "order": "9.00000000000000000000",
+          "mes": "setembro",
+          "inicial": "2022-09-01",
+          "final": "2022-09-30"
+        }
+      },
+      {
+        "json": {
+          "id": 10,
+          "order": "10.00000000000000000000",
+          "mes": "outubro",
+          "inicial": "2022-10-01",
+          "final": "2022-10-31"
+        }
+      },
+      {
+        "json": {
+          "id": 11,
+          "order": "11.00000000000000000000",
+          "mes": "novembro",
+          "inicial": "2022-11-01",
+          "final": "2022-11-30"
+        }
+      },
+      {
+        "json": {
+          "id": 12,
+          "order": "12.00000000000000000000",
+          "mes": "dezembro",
+          "inicial": "2022-12-01",
+          "final": "2022-12-31"
+        }
+      }
+    ]
+  },
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T16:49:34.459Z"
+  "updatedAt": "2022-11-20T18:18:33.154Z"
 }
