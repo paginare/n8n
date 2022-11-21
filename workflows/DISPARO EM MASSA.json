@@ -1,0 +1,249 @@
+{
+  "active": false,
+  "connections": {
+    "Ler Planilha": {
+      "main": [
+        [
+          {
+            "node": "Separar em Lotes de 1000",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Ler Planilha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Atualiza Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualiza Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Separar em Lotes de 1000": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2022-11-21T03:41:02.700Z",
+  "hash": "6e9fbbf3d7fea9b93807b0af72087e84",
+  "id": 85,
+  "name": "DISPARO EM MASSA",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "sheetId": "1t_0dZhV5fdBnUD-HSDJBhfOrFPby13TRjI3v08T07Gk",
+        "range": "Números Formato Devzapp!A:B",
+        "options": {}
+      },
+      "name": "Ler Planilha",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 1,
+      "position": [
+        -120,
+        420
+      ],
+      "id": "1ccd44ba-1dce-491e-bdc6-774e539359f9",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1000,
+        "options": {}
+      },
+      "name": "Separar em Lotes de 1000",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        140,
+        420
+      ],
+      "id": "7c50df35-dd3e-4a41-83a4-f5d9b3cfb369"
+    },
+    {
+      "parameters": {},
+      "id": "1bf3371c-e5e2-43d5-90ff-cea6a7ad112a",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "107186748832301",
+        "recipientPhoneNumber": "={{$node[\"SplitInBatches\"].json[\"NUMERO\"]}}",
+        "template": "video_treinamento_v2|pt_BR"
+      },
+      "id": "075e7805-3d94-40c4-9ecb-ac23afcfd05f",
+      "name": "WhatsApp",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        580,
+        420
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "63",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "ENVIADO",
+              "value": "Sim"
+            },
+            {
+              "name": "NUMERO",
+              "value": "={{$node[\"SplitInBatches\"].json[\"NUMERO\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d66368bc-177f-4415-808f-346abac97d20",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        780,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "9bb7795e-987a-46d2-bcfa-9e4c9cabe53b",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        360,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "seconds"
+      },
+      "id": "d0373a5b-a4db-4479-bfc2-a45d1db8f22b",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        420
+      ],
+      "webhookId": "f4a6e461-0b41-4b2d-af2a-e57d71f73fc5"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "1mIYh3FJlTIhKqSFfe_gxKOl-P0F0YZ62oBF0XtwEUl8",
+        "range": "A:C",
+        "key": "NUMERO",
+        "options": {
+          "valueRenderMode": "FORMATTED_VALUE"
+        }
+      },
+      "id": "7c317db8-da68-4e4f-bbda-ff4ab6542f43",
+      "name": "Atualiza Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        420
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "9",
+          "name": "Google Sheets account VA"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-21T03:48:35.852Z"
+}
