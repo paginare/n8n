@@ -1,0 +1,186 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-21T00:46:14.888Z",
+  "hash": "ecf91e5749095a38aa641d9f3a91fe46",
+  "id": 84,
+  "name": "CRIA CUPOM",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f2697157-53fc-4266-b0a0-bd21245fe7dd",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        180,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "boolean": [
+            {
+              "name": "active"
+            },
+            {
+              "name": "for_the_price_of"
+            },
+            {
+              "name": "accumulate",
+              "value": true
+            },
+            {
+              "name": "once_per_customer"
+            },
+            {
+              "name": "abandoned_cart"
+            },
+            {
+              "name": "newsletter"
+            },
+            {
+              "name": "free_shipment",
+              "value": true
+            },
+            {
+              "name": "ignore_promotion_products"
+            }
+          ],
+          "string": [
+            {
+              "name": "discount_type",
+              "value": "p"
+            },
+            {
+              "name": "value",
+              "value": "10"
+            },
+            {
+              "name": "code",
+              "value": "antonioteste10"
+            },
+            {
+              "name": "start_at",
+              "value": "={{ $json[\"data\"] }}"
+            },
+            {
+              "name": "end_at",
+              "value": "2050-12-31 00:00:00"
+            }
+          ],
+          "number": [
+            {
+              "name": "quantity",
+              "value": 9999999
+            },
+            {
+              "name": "min_value",
+              "value": 0.1
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "aa0b83fa-dcb3-4d80-8d13-878fdd0d480c",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        640,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "value": "={{new Date()}}",
+        "custom": true,
+        "toFormat": "YYYY-MM-DD H:m:s",
+        "options": {
+          "fromTimezone": "UTC",
+          "toTimezone": "America/Sao_Paulo"
+        }
+      },
+      "id": "27534f8c-282e-4b0d-8ef4-acbccd40b92a",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 1,
+      "position": [
+        420,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.dooki.com.br/v2/rosaselvagem/pricing/promocodes",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Token",
+              "value": "973feecfab2bdbc1583e2074133810dded1cd87f"
+            },
+            {
+              "name": "User-Secret-Key",
+              "value": "sk_nztAmyKqsvtHS2PQlcwoqmP66TaSC3m0ECfS1"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $node[\"Set\"].json }}",
+        "options": {}
+      },
+      "id": "d2e4e48c-309d-44c0-932c-9238904e470e",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        860,
+        280
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-21T01:15:08.281Z"
+}
