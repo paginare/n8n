@@ -1,17 +1,6 @@
 {
   "active": false,
   "connections": {
-    "On clicking 'execute'": {
-      "main": [
-        [
-          {
-            "node": "ROSA SELVAGEM ÁCIDO",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "ROSA SELVAGEM BRASIL": {
       "main": [
         [
@@ -165,24 +154,24 @@
           }
         ]
       ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "ROSA SELVAGEM OFICIAL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-20T18:47:02.143Z",
-  "hash": "426a0f6aae70456b43c5e84fb1909faf",
+  "hash": "b97a94c4382d7001c7f450cde6dd6aca",
   "id": 83,
   "name": "CUPONS",
   "nodes": [
-    {
-      "parameters": {},
-      "id": "6fbc22bd-78cc-4f24-bf19-78c627084d71",
-      "name": "On clicking 'execute'",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -160,
-        460
-      ]
-    },
     {
       "parameters": {
         "url": "=https://api.dooki.com.br/v2/rosaselvagem/pricing/promocodes?fields=id,code&limit=3000&page=1",
@@ -492,11 +481,26 @@
         920,
         240
       ]
+    },
+    {
+      "parameters": {},
+      "id": "0eb191fe-fce2-4b51-ba26-0a6d2a1e8a27",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        480
+      ]
     }
   ],
   "pinData": {},
-  "settings": {},
+  "settings": {
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-21T01:09:54.430Z"
+  "updatedAt": "2022-11-21T04:53:27.533Z"
 }
