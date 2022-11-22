@@ -36,7 +36,7 @@
     }
   },
   "createdAt": "2022-11-21T00:46:14.888Z",
-  "hash": "13131aa410236c4ba6cc97224b81326e",
+  "hash": "ab89dfdd138a696cdac61b44613227a0",
   "id": 84,
   "name": "CRIA CUPOM",
   "nodes": [
@@ -57,7 +57,8 @@
         "values": {
           "boolean": [
             {
-              "name": "active"
+              "name": "active",
+              "value": true
             },
             {
               "name": "for_the_price_of"
@@ -164,6 +165,11 @@
           ]
         },
         "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
         "options": {}
       },
       "id": "d2e4e48c-309d-44c0-932c-9238904e470e",
@@ -180,5 +186,5 @@
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-21T05:02:13.366Z"
+  "updatedAt": "2022-11-21T17:05:21.126Z"
 }
