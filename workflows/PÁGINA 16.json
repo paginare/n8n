@@ -1,0 +1,229 @@
+{
+  "active": false,
+  "connections": {
+    "Ler Planilha": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Called By Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Ler Planilha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-21T18:26:14.726Z",
+  "hash": "618d06d21634dbc1b9470d5c1cc8463d",
+  "id": 101,
+  "name": "PÁGINA 16",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "sheetId": "12SPzxmgEQL4oHj-fwta1k_sXh3GqmrmGZh7qkCHqd-I",
+        "range": "Página16!A:C",
+        "options": {}
+      },
+      "name": "Ler Planilha",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        420
+      ],
+      "id": "7f53a6ad-7109-4427-8cfa-cd3411140592",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "7107c373-0ff0-4ce5-94a7-532b02c361f2",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        140,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "109733218628046",
+        "recipientPhoneNumber": "={{ $json[\"numero\"] }}",
+        "template": "aovivo|pt_BR"
+      },
+      "id": "387663c3-4823-410a-b5e8-8ed902cc8148",
+      "name": "WhatsApp",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        360,
+        420
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "37",
+          "name": "FINAL 9552 - TEM 250"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "enviado",
+              "value": "ok"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "899295b7-e58b-487e-ad37-4c6c405ff7f3",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        740,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "sheetId": "12SPzxmgEQL4oHj-fwta1k_sXh3GqmrmGZh7qkCHqd-I",
+        "range": "={{$node[\"Ler Planilha\"].parameter[\"range\"]}}",
+        "key": "contador",
+        "options": {}
+      },
+      "id": "dd4f6dcc-e122-4f4e-8bcd-dad9533aed24",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        920,
+        420
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "lookup",
+        "sheetId": "12SPzxmgEQL4oHj-fwta1k_sXh3GqmrmGZh7qkCHqd-I",
+        "range": "={{$node[\"Ler Planilha\"].parameter[\"range\"]}}",
+        "lookupColumn": "contador",
+        "lookupValue": "={{ $json[\"contador\"] }}",
+        "options": {}
+      },
+      "id": "d8ad0db3-cf7f-4417-a5ce-8a5c24840cdd",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        540,
+        420
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "6125bdc7-542c-4902-aef1-c6bb3d10be0b",
+      "name": "When Called By Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        420
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-21T18:27:32.113Z"
+}
