@@ -5,132 +5,72 @@
       "main": [
         [
           {
-            "node": "Date & Time",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Date & Time": {
-      "main": [
-        [
-          {
-            "node": "DATA HOJE",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ROSA SELVAGEM BRASIL": {
-      "main": [
-        [
-          {
-            "node": "Set",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ROSA SELVAGEM OFICIAL": {
-      "main": [
-        [
-          {
-            "node": "Set1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ROSA SELVAGEM ÁCIDO": {
-      "main": [
-        [
-          {
-            "node": "Set2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CALL CENTER": {
-      "main": [
-        [
-          {
-            "node": "Set3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "DATA HOJE": {
-      "main": [
-        [
-          {
-            "node": "ROSA SELVAGEM BRASIL",
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           },
           {
-            "node": "ROSA SELVAGEM OFICIAL",
+            "node": "Execute Workflow1",
             "type": "main",
             "index": 0
           },
           {
-            "node": "ROSA SELVAGEM ÁCIDO",
+            "node": "Execute Workflow2",
             "type": "main",
             "index": 0
           },
           {
-            "node": "CALL CENTER",
+            "node": "Execute Workflow3",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Set": {
-      "main": [
-        [
+          },
           {
-            "node": "Google Sheets",
+            "node": "Execute Workflow4",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Set3": {
-      "main": [
-        [
+          },
           {
-            "node": "Google Sheets3",
+            "node": "Execute Workflow5",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Set2": {
-      "main": [
-        [
+          },
           {
-            "node": "Google Sheets2",
+            "node": "Execute Workflow6",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Set1": {
-      "main": [
-        [
+          },
           {
-            "node": "Google Sheets1",
+            "node": "Execute Workflow7",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow8",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow9",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow10",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow11",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow12",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow13",
             "type": "main",
             "index": 0
           }
@@ -138,346 +78,212 @@
       ]
     }
   },
-  "createdAt": "2022-11-18T03:30:07.979Z",
-  "hash": "7b643deb8233e9eb7ee18077f55c1ab5",
-  "id": 79,
+  "createdAt": "2022-11-21T19:05:34.994Z",
+  "hash": "5ed044e6154709fe2d4ded89fc365078",
+  "id": 103,
   "name": "My workflow",
   "nodes": [
     {
       "parameters": {},
-      "id": "d616bd6f-8819-4a2b-9dcc-1c3fd6511680",
+      "id": "ac0e1932-c186-43bd-b648-2dc49ba7fcb4",
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -1320,
-        740
+        -240,
+        1180
       ]
     },
     {
       "parameters": {
-        "value": "={{new Date()}}",
-        "toFormat": "YYYY-MM-DD",
-        "options": {}
+        "workflowId": "85"
       },
-      "id": "197aed7e-eb26-4f8a-872f-e236212f5232",
-      "name": "Date & Time",
-      "type": "n8n-nodes-base.dateTime",
+      "id": "0bf7bcae-888e-4726-a2df-ab36005ae674",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -1060,
-        740
+        600,
+        100
       ]
     },
     {
       "parameters": {
-        "url": "=https://api.dooki.com.br/v2/rosaselvagem/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "User-Token",
-              "value": "973feecfab2bdbc1583e2074133810dded1cd87f"
-            },
-            {
-              "name": "User-Secret-Key",
-              "value": "sk_nztAmyKqsvtHS2PQlcwoqmP66TaSC3m0ECfS1"
-            }
-          ]
-        },
-        "options": {}
+        "workflowId": "87"
       },
-      "id": "01ff8f09-1a26-4a27-a334-eac5e7993e93",
-      "name": "ROSA SELVAGEM BRASIL",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        -420,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.dooki.com.br/v2/rosaselvagemoficial/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "User-Token",
-              "value": "0f68089b850eaa85ca328293f21897a611d2f7f9"
-            },
-            {
-              "name": "User-Secret-Key",
-              "value": "sk_GMRHBdr89JQxT7XyTgwCoK4Yn5qWH0aBA1HqT"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "59c8cc8d-42e9-413c-9086-9ea8d03de3d4",
-      "name": "ROSA SELVAGEM OFICIAL",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        -420,
-        520
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.dooki.com.br/v2/cleanskinbr2/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "User-Token",
-              "value": "5c2ecac51e4cff9986ca049da482bb6d92838969"
-            },
-            {
-              "name": "User-Secret-Key",
-              "value": "sk_9mMlLRynS02sZKA9geK4QfaRriJSZJPOv0diG"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "ef577434-b81e-44bd-b342-bcccc951c146",
-      "name": "ROSA SELVAGEM ÁCIDO",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        -420,
-        740
-      ]
-    },
-    {
-      "parameters": {
-        "url": "=https://api.dooki.com.br/v2/rosaselvagemcall/orders?date=created_at:{{$json[\"data\"]}}|{{$json[\"data\"]}}&status_id[]=4&status_id[]=5&status_id[]=6&status_id[]=7&status_id[]=10&status_id[]=12",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "User-Token",
-              "value": "ce04b4757daa66d67dbe73bbe97525539b4658d5"
-            },
-            {
-              "name": "User-Secret-Key",
-              "value": "sk_lRSgkftVYZ6IThmJDjVSFtmuuEeffgh1j9ffC"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "b52a0622-98c8-4cb7-8de9-a7d620fd5fb7",
-      "name": "CALL CENTER",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        -420,
-        940
-      ]
-    },
-    {
-      "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "hoje",
-              "value": "={{ $json[\"data\"] }}"
-            },
-            {
-              "name": "hora",
-              "value": "={{new Date().toString()}}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "d080ed73-b0bf-4c16-b131-22efcd9fb655",
-      "name": "DATA HOJE",
-      "type": "n8n-nodes-base.set",
+      "id": "6be109da-5864-49c0-ad90-9cf4875038c6",
+      "name": "Execute Workflow1",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -840,
-        740
+        600,
+        300
       ]
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "brasil",
-              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
-            }
-          ]
-        },
-        "options": {}
+        "workflowId": "88"
       },
-      "id": "72e11999-323f-44fe-afcc-dd38cdd81e46",
-      "name": "Set",
-      "type": "n8n-nodes-base.set",
+      "id": "c8ca9099-bfb4-4cd0-8a53-b9cf80b57b02",
+      "name": "Execute Workflow2",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -120,
-        320
+        620,
+        480
       ]
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "ecom",
-              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
-            }
-          ]
-        },
-        "options": {}
+        "workflowId": "89"
       },
-      "id": "4434b5aa-81cf-49f8-9ddd-2798271a266e",
-      "name": "Set1",
-      "type": "n8n-nodes-base.set",
+      "id": "856cf380-58a8-420f-9d63-cf3faf0ee620",
+      "name": "Execute Workflow3",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -120,
-        520
+        620,
+        640
       ]
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "acido",
-              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
-            }
-          ]
-        },
-        "options": {}
+        "workflowId": "91"
       },
-      "id": "971aefc6-a1a5-4c1f-abd8-4fa90308c92f",
-      "name": "Set2",
-      "type": "n8n-nodes-base.set",
+      "id": "3d5aa563-9c92-406b-a46f-b89db3e0c4ef",
+      "name": "Execute Workflow4",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -120,
-        740
+        620,
+        800
       ]
     },
     {
       "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "call",
-              "value": "={{ $json[\"meta\"][\"facets\"][\"amount\"][\"value\"] }}"
-            }
-          ]
-        },
-        "options": {}
+        "workflowId": "93"
       },
-      "id": "a09d4bcc-2468-44a8-af87-a61cd7c95230",
-      "name": "Set3",
-      "type": "n8n-nodes-base.set",
+      "id": "acf75ac2-1628-4eab-b1f2-06de6f4e236e",
+      "name": "Execute Workflow5",
+      "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1,
       "position": [
-        -120,
-        940
+        620,
+        980
       ]
     },
     {
       "parameters": {
-        "operation": "update",
-        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
-        "key": "brasil",
-        "options": {}
+        "workflowId": "94"
       },
-      "id": "07109a26-f10c-4be1-befc-21a5920ea8ae",
-      "name": "Google Sheets",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 2,
+      "id": "b885ed31-9cb8-44c8-a956-783daf9c9993",
+      "name": "Execute Workflow6",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
       "position": [
-        220,
-        320
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "7",
-          "name": "Google Sheets account"
-        }
-      }
+        620,
+        1140
+      ]
     },
     {
       "parameters": {
-        "operation": "update",
-        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
-        "key": "ecom",
-        "options": {}
+        "workflowId": "96"
       },
-      "id": "d08e7f04-2a85-4dc0-b1c8-15e09031aca3",
-      "name": "Google Sheets1",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 2,
+      "id": "b813eede-61d3-4e3f-9f46-87c8d476a06b",
+      "name": "Execute Workflow7",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
       "position": [
-        220,
-        520
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "7",
-          "name": "Google Sheets account"
-        }
-      }
+        620,
+        1300
+      ]
     },
     {
       "parameters": {
-        "operation": "update",
-        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
-        "key": "acido",
-        "options": {}
+        "workflowId": "97"
       },
-      "id": "8438af18-2adb-47a2-9f10-12a24648c906",
-      "name": "Google Sheets2",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 2,
+      "id": "16a5dcfd-1825-4fd2-a3f6-ab8eb9c3a7d6",
+      "name": "Execute Workflow8",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
       "position": [
-        220,
-        740
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "7",
-          "name": "Google Sheets account"
-        }
-      }
+        620,
+        1460
+      ]
     },
     {
       "parameters": {
-        "operation": "update",
-        "sheetId": "1_HH0-AN-Os9wH1ehciNfZDGurGtatc-gucsGt2eJRP4",
-        "key": "call",
-        "options": {}
+        "workflowId": "98"
       },
-      "id": "5bbda370-3d94-42f5-8110-c99d110ec84d",
-      "name": "Google Sheets3",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 2,
+      "id": "7f10e175-4dba-4559-a0f2-5594a8dfd6a0",
+      "name": "Execute Workflow9",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
       "position": [
-        220,
-        940
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "7",
-          "name": "Google Sheets account"
-        }
-      }
+        620,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "99"
+      },
+      "id": "1ca95ba0-05fe-467b-8848-19a27f05455d",
+      "name": "Execute Workflow10",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        1740
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "100"
+      },
+      "id": "44166fc0-2b77-4ed5-9917-b62bd3ba03b2",
+      "name": "Execute Workflow11",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        1880
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "101"
+      },
+      "id": "7ff8f83f-fe37-40b2-a69b-ea5f9a6e22f1",
+      "name": "Execute Workflow12",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        2020
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "102"
+      },
+      "id": "cee97004-5d42-4291-82fe-129fe981738c",
+      "name": "Execute Workflow13",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        620,
+        2160
+      ]
     }
   ],
   "pinData": {},
-  "settings": {},
+  "settings": {
+    "timezone": "America/Fortaleza",
+    "saveManualExecutions": false,
+    "callerPolicy": "any"
+  },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T14:26:25.494Z"
+  "updatedAt": "2022-11-21T19:21:24.046Z"
 }
