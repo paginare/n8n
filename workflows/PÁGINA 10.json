@@ -1,0 +1,98 @@
+{
+  "active": false,
+  "connections": {
+    "Ler Planilha": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp": {
+      "main": [
+        []
+      ]
+    },
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Ler Planilha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-21T18:21:25.178Z",
+  "hash": "79c1f299ab1fdebed9c316017ad629a4",
+  "id": 95,
+  "name": "PÁGINA 10",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "sheetId": "12SPzxmgEQL4oHj-fwta1k_sXh3GqmrmGZh7qkCHqd-I",
+        "range": "Página10!A:C",
+        "options": {}
+      },
+      "name": "Ler Planilha",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        420
+      ],
+      "id": "309de404-103e-41db-811f-df78ce92d127",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "111418318457091",
+        "recipientPhoneNumber": "={{ $json[\"numero\"] }}",
+        "template": "aovivo|pt_BR"
+      },
+      "id": "11d32802-951a-4572-b72f-30b99f98c10b",
+      "name": "WhatsApp",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        360,
+        420
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "34",
+          "name": "FINAL 7530 - TEM 1K"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "5b44f92a-0b06-4763-88e8-fa161985bbfb",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        400
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-21T23:41:39.636Z"
+}
